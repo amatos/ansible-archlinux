@@ -1,7 +1,8 @@
 ---
 
-initrd_mods: "ext4"
+initrd_mods: "btrfs usbhid xhci_hcd"
 initrd_bin: ""
 initrd_files: ""
-initrd_hooks: "base udev autodetect keyboard keymap modconf block encrypt consolefont filesystems fsck shutdown"
-initrd_compression: "gzip"
+initrd_hooks: "base systemd keyboard autodetect modconf microcode kms sd-vconsole block sd-encrypt resume filesystems fsck"
+initrd_compression: "zstd"
+initrd_compression_options: "-c -T16 -"

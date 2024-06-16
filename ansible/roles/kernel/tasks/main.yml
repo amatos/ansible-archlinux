@@ -10,6 +10,16 @@
     - update grub
     - update syslinux
 
+- name: Install linux-zen and zen headers
+  pacman:
+    name:
+      - linux-zen
+      - linux-zen-headers
+    state: present
+  notify:
+    - update grub
+    - update syslinux
+
 - name: Push mkinitcpio configuration and regenerate initramfs
   ansible.builtin.template:
     src: mkinitcpio.conf.j2

@@ -1,0 +1,7 @@
+---
+
+- name: Install 1password from aur
+  aur: name={{ item }} user={{ user.name }} skip_pgp=true
+  with_items:
+    - 1password
+    - 1passsord-cli

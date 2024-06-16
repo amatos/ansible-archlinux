@@ -1,0 +1,5 @@
+---
+
+- name: Install rEFInd bootloader and tools
+  pacman: name=refind state=present
+  when: bootloader == "refind"

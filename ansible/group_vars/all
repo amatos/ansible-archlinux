@@ -3,7 +3,7 @@
 # ==================
 ##
 user:
-    name: aaron
+    name: alberth
     group: users
     shell: /bin/zsh
 
@@ -20,18 +20,18 @@ user:
 #                    if you wan't proprietary drivers follow the steps documented in the arch wiki.
 ##
 system:
-    locale: de_CH.UTF-8
-    timezone: Europe/Zurich
+    locale: en_US.UTF-8
+    timezone: America/New_York
     processor: amd
-    graphics_card: nvidia
+    graphics_card: amd
     macspoof: disabled
 
 ##
 # Bootloader configuration
 # ========================
-# syslinux and grub are supported
+# refind, syslinux and grub are supported
 ##
-bootloader: syslinux
+bootloader: refind
 
 ##
 # Connectivity configuration
@@ -44,11 +44,11 @@ ssh:
 ##
 # Dotfile configuration
 # =====================
-# Choose wheter custom dotfiles should be installed or not
+# Choose whether custom dotfiles should be installed or not
 # Just set the installation flag to false to avoid an installation
 ##
 dotfiles:
-    installation: "true"
+    installation: "false"
     url: https://github.com/id101010/dotfiles.git
     destination: .dotfiles
     rcup_flags: -fx README.md
@@ -61,13 +61,15 @@ base_packages:
     - base-devel
     - cronie
     - openssh
-    - rkhunter
     - zsh
-    - htop
+    - fish
+    - btop
     - nmap
     - curl
+    - links
     - tmux
     - git
+    - subversion
     - rsync
     - coreutils
     - dateutils
@@ -75,4 +77,14 @@ base_packages:
     - strace
     - lsof
     - sysstat
-    - tig
+    - go
+    - python
+    - python-pipx
+    - perl
+    - nodejs
+    - npm
+    - rust
+    - ruby
+    - cmake
+    - ninja
+    - rkhunter

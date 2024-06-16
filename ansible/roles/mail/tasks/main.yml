@@ -1,6 +1,6 @@
 ---
 
-- name: Install thunderbird and enigmail
+- name: Install thunderbird
   pacman:
     name:
       - thunderbird

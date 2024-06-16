@@ -11,13 +11,13 @@ will only get installed if the `dotfiles` variable is defined.
 * A desktop environment consisting of i3gaps, i3status-rust, rofi and picom
 
 ## Additional security features
-* Restrictive and comprahensive iptables rules
+* Restrictive and comprehensive iptables rules
 * Use of linux-hardened
 * Automatic mac address spoofer for wireless network devices
 * No bullshit installed
 
 ## Install base system
-You can eighter install your own minimal system or you follow the instructions
+You can either install your own minimal system or you follow the instructions
 provided in the two installation guides below.
 
 * [INSTALL\_EFI](/doc/INSTALL_EFI.md)

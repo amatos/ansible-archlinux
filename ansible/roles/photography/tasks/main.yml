@@ -1,6 +1,6 @@
 ---
 
-- name: Install gimp
+- name: Install photography tools
   pacman:
     name:
       - gimp

@@ -12,6 +12,7 @@
     - { role: firewall, tags: ['firewall'] }
     - { role: grub, tags: ['grub'], when: "bootloader == 'grub'"}
     - { role: syslinux, tags: ['syslinux'], when: "bootloader == 'syslinux'"}
+    - { role: refind, tags: ['refind'], when: "bootloader == 'refind'"}
     - { role: dotfiles, tags: ['dotfiles'] }
     - { role: shell, tags: ['shell'] }
     - { role: editor, tags: ['editor'] }
@@ -22,11 +23,11 @@
     - { role: calibre, tags: ['calibre'] }
     - { role: redshift, tags: ['redshift'] }
     - { role: keepass, tags: ['keepass'] }
+    - { role: 1password, tags: ['1password'] }
     - { role: spotify, tags: ['spotify'] }
     - { role: macspoof, tags: ['macspoof'], when: "system.macspoof == 'enabled'"}
     - { role: sound, tags: ['sound'] }
     - { role: mail, tags: ['mail'] }
     - { role: photography, tags: ['photography'] }
     - { role: messengers, tags: ['messengers'] }
-    - { role: teamspeak3, tags: ['teamspeak3'] }
     - { role: games, tags: ['games'] }
