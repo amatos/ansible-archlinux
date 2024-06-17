@@ -1,17 +1,37 @@
 ---
 
-- name: Apply ipv4 iptables config
-  ansible.builtin.template: src=iptables.rules.j2 dest=/etc/iptables/iptables.rules
-  notify:
-    - restart iptables
+- name: Enable and start FirewallD
+  ansible.builtin.service: name=firewalld.service enabled=true state=started
 
-- name: Enable and start iptables
-  ansible.builtin.service: name=iptables.service enabled=true state=started
+- name: Change network for interfaces to "Home"
+  ansible.posix.firewalld:
+    zone: home
+    interface: "{{ item }}"
+    permanent: true
+    state: enabled
+  with_items:
+    - "{{ ansible_interfaces }}"
+  when: item != 'lo'
+  notify: restart FirewallD
 
-- name: Apply ipv6 iptables config
-  ansible.builtin.template: src=ip6tables.rules.j2 dest=/etc/iptables/ip6tables.rules
-  notify:
-    - restart ip6tables
-
-- name: Enable and start ip6tables
-  ansible.builtin.service: name=ip6tables.service enabled=true state=started
+- name: Updating home zone rules
+  ansible.posix.firewalld:
+    zone: home
+    service: "{{ item }}"
+    permanent: true
+    state: enabled
+  with_items:
+    - ssh
+    - mdns
+    - samba-client
+    - dhcpv6-client
+    - cockpit
+    - factorio
+    - ipsec
+    - steam-streaming
+    - stellaris
+    - syncthing
+    - syncthing-gui
+    - syncthing-relay
+    - terraria
+    - upnp-client

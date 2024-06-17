@@ -1,7 +1,4 @@
 ---
 
-- name: restart iptables
-  ansible.builtin.service: name=iptables.service state=restarted
-
-- name: restart ip6tables
-  ansible.builtin.service: name=ip6tables.service state=restarted
+- name: restart FirewallD
+  ansible.builtin.service: name=firewalld.service state=restarted
