@@ -41,10 +41,11 @@
     - rkhunter propupdate
 
 - name: Install yay as aur helper
-  aur:
-    name: yay
-    user: "{{ user.name }}"
-    skip_pgp: true
+  kewlfft.aur.aur:
+    name:
+      - yay
+  become: yes
+  become_user: "{{ user.name }}"
   register: task_result
   until: task_result is success
   retries: 10

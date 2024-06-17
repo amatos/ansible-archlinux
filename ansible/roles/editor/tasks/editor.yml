@@ -6,6 +6,9 @@
     state: present
 
 - name: install Sublime Text
-  aur:
-    name: sublime-text-4
-    user: "{{ user.name }}"
+  kewlfft.aur.aur:
+    name:
+      - sublime-text-4
+    use: yay
+  become: yes
+  become_user: "{{ user.name }}"

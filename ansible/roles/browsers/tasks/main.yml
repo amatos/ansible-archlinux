@@ -5,9 +5,11 @@
   tags:
     - firefox
 
+
 - name: install Brave from AUR
-  aur:
-    name: brave-bin
-    user: "{{ user.name }}"
-  with_items:
-    - brave-bin
+  kewlfft.aur.aur:
+    name:
+      - brave-bin
+    use: yay
+  become: yes
+  become_user: "{{ user.name }}"

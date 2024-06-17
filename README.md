@@ -33,7 +33,7 @@ done on modern systems.
 First install ansible
 
 ``` bash
-$ sudo pacman -S ansible
+$ sudo pacman -S ansible python-jmespath
 ```
 
 then download the playbook and make sure you adjust the values of the global
