@@ -1,0 +1,64 @@
+---
+
+- name: Update makepkg.conf -- -march
+  ansible.builtin.lineinfile:
+    path: /etc/makepkg.conf
+    state: present
+    regexp: '-march=[^ ]* -mtune=[^ ]*'
+    line: 'CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fno-plt -fexceptions \'
+
+- name: Update makepkg.conf -- options=!strip
+  ansible.builtin.lineinfile:
+    path: /etc/makepkg.conf
+    state: present
+    regexp: 'OPTIONS=\(strip.*'
+    line: 'OPTIONS=(!strip docs !libtool !staticlibs emptydirs zipman purge debug lto)'
+
+- name: Update makepkg.conf -- -RUSTFLAGS
+  ansible.builtin.lineinfile:
+    path: /etc/makepkg.conf
+    state: present
+    regexp: 'RUSTFLAGS.*'
+    line: 'RUSTFLAGS="-C opt-level=2"'
+
+- name: Update makepkg.conf -- makeflags
+  ansible.builtin.lineinfile:
+    path: /etc/makepkg.conf
+    state: present
+    regexp: '^#MAKEFLAGS.*'
+    line: 'MAKEFLAGS="-j$(nproc)"'
+
+- name: Update makepkg.conf -- buildenv
+  ansible.builtin.lineinfile:
+    path: /etc/makepkg.conf
+    state: present
+    regexp: '^BUILDENV.*'
+    line: 'BUILDENV=(!distcc color ccache check !sign'
+
+- name: Update makepkg.conf -- gzip
+  ansible.builtin.lineinfile:
+    path: /etc/makepkg.conf
+    state: present
+    regexp: '^COMPRESSGZ.*'
+    line: 'COMPRESSGZ=(pigz -c -f -n)'
+
+- name: Update makepkg.conf -- bzip2
+  ansible.builtin.lineinfile:
+    path: /etc/makepkg.conf
+    state: present
+    regexp: '^COMPRESSBZ2.*'
+    line: 'COMPRESSBZ2=(pbzip2 -c -f)'
+
+- name: Update makepkg.conf -- xz
+  ansible.builtin.lineinfile:
+    path: /etc/makepkg.conf
+    state: present
+    regexp: '^COMPRESSXZ.*'
+    line: 'COMPRESSXZ=(xz -c -z --threads=0 -)'
+
+- name: Update makepkg.conf -- zst
+  ansible.builtin.lineinfile:
+    path: /etc/makepkg.conf
+    state: present
+    regexp: '^COMPRESSZST.*'
+    line: 'COMPRESSZST=(zstd -c -z -q --threads=0 -)'

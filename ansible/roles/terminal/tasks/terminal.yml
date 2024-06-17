@@ -1,14 +1,5 @@
 ---
 
-- name: install urxvt terminal emulator
-  pacman:
-    name: rxvt-unicode
-    state: present
-  register: task_result
-  until: task_result is success
-  retries: 10
-  delay: 2
-
 - name: install alacritty terminal emulator
   pacman:
     name: "alacritty"

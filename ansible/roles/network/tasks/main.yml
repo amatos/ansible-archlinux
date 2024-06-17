@@ -7,6 +7,7 @@
       - wpa_supplicant
       - dhcpcd
       - nmap
+      - iwd
       - networkmanager
       - network-manager-applet
       - networkmanager-openconnect
@@ -24,3 +25,20 @@
     name: NetworkManager
     state: started
     enabled: true
+
+- name: deploy disable_mdns
+  ansible.builtin.copy: src=1-disable_mdns.conf dest=/etc/systemd/resolved.conf.d/
+  notify:
+    - restart resolved
+
+- name: deploy stub dns
+  ansible.builtin.copy: src=10-stub-dns.conf dest=/etc/systemd/resolved.conf.d/
+  notify:
+    - restart resolved
+
+- name: Update nsswitch.conf
+  ansible.builtin.lineinfile:
+    path: /etc/nsswitch.conf
+    state: present
+    regexp: '^hosts: mymachines resolve .*'
+    line: 'hosts: mymachines mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] files myhostname dns'

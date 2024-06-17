@@ -8,3 +8,7 @@
   name: ntp
 - ansible.builtin.import_tasks: locale.yml
   name: locale
+- ansible.builtin.import_tasks: userconf-dropin.yml
+  name: Local system customizations -- systemd/user.conf dropin
+- ansible.builtin.import_tasks: makepkg.yml
+  name: Local system customizations -- /etc/makepkg.conf

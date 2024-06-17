@@ -1,7 +1,10 @@
 ---
 
 - name: Install spotify from aur
-  aur:
-    name: spotify
-    user: "{{ user.name }}"
-    skip_pgp: true
+  kewlfft.aur.aur:
+    name:
+      - spotify
+    use: yay
+  become: yes
+  become_user: "{{ user.name }}"
+  

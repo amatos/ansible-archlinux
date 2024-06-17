@@ -51,6 +51,16 @@
   retries: 10
   delay: 2
 
+- name: Install sbctl for easy secure boot management
+  pacman:
+    name:
+      - sbctl
+    state: present
+  register: task_result
+  until: task_result is success
+  retries: 10
+  delay: 2
+
 - name: Install microcode updates for intel (if necessary)
   pacman:
     name: intel-ucode
@@ -61,7 +71,7 @@
   delay: 2
   notify:
     - update grub
-    - update syslinux
+    - regenerate initramfs
   when: system.processor == "intel"
 
 - name: Install microcode updates for amd (if necessary)
@@ -74,8 +84,33 @@
   delay: 2
   notify:
     - update grub
-    - update syslinux
+    - regenerate initramfs
   when: system.processor == "amd"
 
 - name: Enable cronie server
   ansible.builtin.service: name=cronie state=started enabled=true
+
+- name: Enable ssh server
+  ansible.builtin.service: name=sshd state=started enabled=true
+  when: ssh.enable_sshd == "true"
+
+- name: Install misc packages
+  kewlfft.aur.aur:
+    name: "{{ misc_packages }}"
+  become: yes
+  become_user: "{{ user.name }}"
+  register: task_result
+  until: task_result is success
+  retries: 10
+  delay: 2
+  notify:
+    - rkhunter propupdate
+
+- name: Configure sysctl
+  ansible.builtin.copy: src=99-performance.conf dest=/etc/sysctl.d/
+
+- name: Configure udisk2 mount options
+  ansible.builtin.copy: src=mount_options.conf dest=/etc/udisks2/mount_options.conf
+
+- name: Configure udisk2 rules
+  ansible.builtin.copy: src=99-udisks2.rules dest=/etc/polkit-1/rules.d/

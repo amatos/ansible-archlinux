@@ -1,21 +1,10 @@
 ---
-- name: Install oh-my-zsh-git and optional dependencies from AUR
-  aur: name={{ item }} user={{ user.name }}
-  with_items:
-    - oh-my-zsh-git
-    - oh-my-zsh-powerline-theme-git
-  register: omzinstall
-  until: omzinstall is success
-  retries: 10
-  delay: 2
-
 - name: Install ZSH with completion and syntax
   pacman:
     name:
       - zsh
       - zsh-completions
       - zsh-syntax-highlighting
-      - zsh-theme-powerlevel10k
       - zsh-autosuggestions
     state: present
   register: zshinstall
@@ -23,20 +12,3 @@
   retries: 10
   delay: 2
   notify: change shell
-
-- name: Ensure the cache folder with oh-my-zsh subfolder is present
-  ansible.builtin.file:
-    path: /home/{{ user.name }}/.cache/oh-my-zsh
-    owner: "{{ user.name }}"
-    group: "{{ user.group }}"
-    state: directory
-    mode: 0755
-  when: omzinstall is changed # noqa: no-handler
-
-- name: Ensure the last working dir file for oh-my-zsh is present
-  ansible.builtin.file:
-    path: /home/{{ user.name }}/.cache/oh-my-zsh/last-working-dir
-    owner: "{{ user.name }}"
-    group: "{{ user.group }}"
-    state: touch
-  when: omzinstall is changed # noqa: no-handler

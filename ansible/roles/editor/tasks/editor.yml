@@ -12,3 +12,14 @@
     use: yay
   become: yes
   become_user: "{{ user.name }}"
+  
+- name: install obsidian
+  pacman:
+    name: obsidian
+    state: present
+  
+- name: install Libre Office (fresh)
+  pacman:
+    name: libreoffice-fresh
+    state: present
+  

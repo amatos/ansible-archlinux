@@ -1,0 +1,6 @@
+#!/hint/sh  
+  
+# Define additional functionality for pinentry. For example  
+test -e /usr/lib/libQt6Widgets.so.6 && exec /usr/bin/pinentry-qt     "$@"
+test -e /usr/lib/libQt5Widgets.so.5 && exec /usr/bin/pinentry-qt     "$@"
+test -e /usr/lib/libgcr-base-3.so.1 && exec /usr/bin/pinentry-gnome3 "$@"

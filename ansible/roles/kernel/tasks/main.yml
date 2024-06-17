@@ -1,14 +1,26 @@
 ---
 
+- name: Install linux kernel and headers
+  pacman:
+    name:
+      - linux
+      - linux-headers
+    state: present
+  when: kernel == "linux"
+  notify:
+    - update grub
+    - regenerate initramfs
+
 - name: Install linux-hardened and hardened headers
   pacman:
     name:
       - linux-hardened
       - linux-hardened-headers
     state: present
+  when: kernel == "linux-hardened"
   notify:
     - update grub
-    - update syslinux
+    - regenerate initramfs
 
 - name: Install linux-zen and zen headers
   pacman:
@@ -16,13 +28,47 @@
       - linux-zen
       - linux-zen-headers
     state: present
+  when: kernel == "linux-zen"
   notify:
     - update grub
-    - update syslinux
+    - regenerate initramfs
+
+- name: Get boot device UUID
+  shell: "blkid -s UUID -o value {{ root_device }}"
+  register: root_uuid
+
+- name: Get swap device UUID
+  shell: "cat /etc/fstab | grep swap | cut -f 1"
+  register: swap_uuid
+
+- name: Populate kernel command line root file
+  ansible.builtin.template:
+    src: root.conf.j2
+    dest: /etc/cmdline.d/root.conf
+  notify:
+    - regenerate initramfs
+
+- name: Populate kernel command line resume file
+  ansible.builtin.template:
+    src: resume.conf.j2
+    dest: /etc/cmdline.d/resume.conf
+  notify:
+    - regenerate initramfs
+
+- name: Populate kernel command line plymouth file
+  ansible.builtin.copy: src=plymouth.conf dest=/etc/cmdline.d
+  notify:
+    - regenerate initramfs
+
+- name: Populate kernel command line amd file
+  ansible.builtin.copy: src=amd.conf dest=/etc/cmdline.d
+  when: system.processor == "amd"
+  notify:
+    - regenerate initramfs
 
 - name: Push mkinitcpio configuration and regenerate initramfs
   ansible.builtin.template:
     src: mkinitcpio.conf.j2
-    dest: /etc/mkinitcpio.conf
+    dest: /etc/mkinitcpio.conf.d/override.conf
   notify:
     - regenerate initramfs

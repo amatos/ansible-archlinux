@@ -5,3 +5,6 @@
 
 - name: restart ntpd
   ansible.builtin.service: name=ntpd state=restarted
+
+- name: restart chrony
+  ansible.builtin.service: name=chrony state=restarted

@@ -11,7 +11,6 @@
     - { role: base, tags: ['base'] }
     - { role: firewall, tags: ['firewall'] }
     - { role: grub, tags: ['grub'], when: "bootloader == 'grub'"}
-    - { role: syslinux, tags: ['syslinux'], when: "bootloader == 'syslinux'"}
     - { role: refind, tags: ['refind'], when: "bootloader == 'refind'"}
     - { role: dotfiles, tags: ['dotfiles'] }
     - { role: shell, tags: ['shell'] }
@@ -21,7 +20,7 @@
     - { role: browsers, tags: ['browsers'] }
     - { role: bluetooth, tags: ['bluetooth'] }
     - { role: calibre, tags: ['calibre'] }
-    - { role: redshift, tags: ['redshift'] }
+    - { role: redshift, tags: ['redshift'], when: "kde == 'no'"}
     - { role: keepass, tags: ['keepass'] }
     - { role: 1password, tags: ['1password'] }
     - { role: spotify, tags: ['spotify'] }
@@ -31,3 +30,6 @@
     - { role: photography, tags: ['photography'] }
     - { role: messengers, tags: ['messengers'] }
     - { role: games, tags: ['games'] }
+    - { role: syncthing, tags: ['syncthing'] }
+    - { role: gnupg, tags: ['gnupg'] }
+    - { role: gitkraken, tags: ['gitkraken'] }

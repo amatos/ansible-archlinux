@@ -1,4 +1,15 @@
 ##
+# Linux Kernel
+# ============
+# For details, see https://wiki.archlinux.org/title/Kernel
+# Kernels:
+#   Option: "linux" Vanilla Linux kernel and modules, with a few patches applied.
+#   Option: "linux-hardened" A security-focused Linux kernel
+#   Option: "linux-zen" The result of a collaborative effort of kernel hackers to provide the best Linux kernel possible for everyday systems.
+##
+kernel: linux-zen
+
+##
 # User configuration
 # ==================
 ##
@@ -29,7 +40,7 @@ system:
 ##
 # Bootloader configuration
 # ========================
-# refind, syslinux and grub are supported
+# refind and grub are supported
 ##
 bootloader: refind
 
@@ -49,42 +60,153 @@ ssh:
 ##
 dotfiles:
     installation: "false"
-    url: https://github.com/id101010/dotfiles.git
+    url: https://github.com/amatos/dotfiles.git
     destination: .dotfiles
     rcup_flags: -fx README.md
+
+##
+# Install Keypassxc
+# =================
+# yes/no to installing keypassxc
+##
+keepass: no
+
+##
+# Install KDE
+# =================
+# yes/no to installing KDE Plasma
+##
+kde: yes
+
+##
+# Install gitkraken
+# =================
+# yes/no to installing KDE Plasma
+##
+gitkraken: yes
 
 ##
 # Base package configuration
 # ==========================
 ##
 base_packages:
+    - avahi
+    - nss-mdns
     - base-devel
-    - cronie
-    - openssh
-    - zsh
-    - fish
-    - btop
-    - nmap
-    - curl
-    - links
-    - tmux
-    - git
-    - subversion
-    - rsync
-    - coreutils
-    - dateutils
     - bc
-    - strace
-    - lsof
-    - sysstat
+    - btop
+    - chrony
+    - cmake
+    - coreutils
+    - cronie
+    - curl
+    - dateutils
+    - firewalld
+    - fish
+    - geoclue
+    - git
     - go
-    - python
-    - python-pipx
-    - perl
+    - links
+    - lsof
+    - ninja
+    - nmap
     - nodejs
     - npm
-    - rust
-    - ruby
-    - cmake
-    - ninja
+    - openssh
+    - perl
+    - python
+    - python-jmespath
+    - python-pipx
     - rkhunter
+    - rsync
+    - ruby
+    - rust
+    - strace
+    - subversion
+    - sysstat
+    - tmux
+    - zsh
+
+##
+# Misc. packages
+# ==============
+##
+
+misc_packages:
+    - ansible-gpg-key-git
+    - find-the-command
+    - pkgfile
+    - argyllcms
+    - aria2
+    - arj
+    - atomicparsley
+    - bash-completion
+    - beanshell
+    - catdoc
+    - cdrdao
+    - cdrtools
+    - coin-or-mp
+    - colord-sane
+    - dosfstools
+    - dvd+rw-tools
+    - emovix
+    - f2fs-tools
+    - fatresize
+    - festival
+    - gavl
+    - geoip2-database
+    - graphviz
+    - gst-plugins-bad
+    - gst-plugins-good
+    - gst-plugins-ugly
+    - gtk4
+    - hunspell-en_us
+    - hunspell-pt-br
+    - inotify-tools
+    - jfsutils
+    - ladspa
+    - languagetool
+    - libappimage
+    - libdvdcss
+    - libid3tag
+    - libmythes
+    - libwmf
+    - libwpg
+    - lrzip
+    - lzop
+    - mediainfo
+    - mlocate
+    - movit
+    - nss-mdns
+    - ntfs-3g
+    - opencl-amd
+    - opencv
+    - openmp
+    - opentimelineio
+    - p7zip
+    - pbzip2
+    - perl-bundle-camelcade
+    - perl-devel-camelcadedb
+    - pigz
+    - pkgfile
+    - prison5
+    - pstoedit
+    - python-setuptools
+    - rocm-language-runtime
+    - rocm-opencl-runtime
+    - rocm-smi-lib
+    - rocminfo
+    - ruby-docs
+    - sane-airscan
+    - shellcheck
+    - speech-dispatcher
+    - sshfs
+    - starship
+    - strace
+    - tesseract-data-por
+    - udftools
+    - unarchiver
+    - unzip
+    - vcdimager
+    - wget
+    - xfsprogs

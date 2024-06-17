@@ -5,3 +5,10 @@
 
 - name: Ensure the locale system.locale exists
   locale_gen: name={{ system.locale }} state=present
+
+- name: update /etc/vconsole.conf
+  ansible.builtin.blockinfile:
+    path: /etc/vconsole.conf
+    append_newline: true
+    block: |
+      KEYMAP=us
