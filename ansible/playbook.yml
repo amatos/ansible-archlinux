@@ -10,27 +10,29 @@
     - { role: reflector, tags: ['reflector'] }
     - { role: kernel, tags: ['kernel'] }
     - { role: base, tags: ['base'] }
+    - { role: bluetooth, tags: ['bluetooth'] }
+    - { role: dotfiles, tags: ['dotfiles'] }
+    - { role: editor, tags: ['editor'] }
     - { role: firewall, tags: ['firewall'] }
     - { role: grub, tags: ['grub'], when: "bootloader == 'grub'"}
     - { role: refind, tags: ['refind'], when: "bootloader == 'refind'"}
-    - { role: dotfiles, tags: ['dotfiles'] }
     - { role: shell, tags: ['shell'] }
-    - { role: editor, tags: ['editor'] }
     - { role: terminal, tags: ['terminal'] }
     - { role: windowmanager, tags: ['windowmanager'] }
-    - { role: browsers, tags: ['browsers'] }
-    - { role: bluetooth, tags: ['bluetooth'] }
-    - { role: calibre, tags: ['calibre'] }
-    - { role: redshift, tags: ['redshift'], when: "kde == 'no'"}
-    - { role: keepass, tags: ['keepass'] }
     - { role: 1password, tags: ['1password'] }
-    - { role: spotify, tags: ['spotify'] }
-    - { role: macspoof, tags: ['macspoof'], when: "system.macspoof == 'enabled'"}
-    - { role: sound, tags: ['sound'] }
-    - { role: mail, tags: ['mail'] }
-    - { role: photography, tags: ['photography'] }
-    - { role: messengers, tags: ['messengers'] }
+    - { role: amd, tags: ['amd'], when: "system.processor == 'amd'" }
+    - { role: browsers, tags: ['browsers'] }
+    - { role: calibre, tags: ['calibre'] }
     - { role: games, tags: ['games'] }
-    - { role: syncthing, tags: ['syncthing'] }
+    - { role: gitkraken, tags: ['gitkraken'], when: "gitkraken == 'yes'" }
     - { role: gnupg, tags: ['gnupg'] }
-    - { role: gitkraken, tags: ['gitkraken'] }
+    - { role: jetbrains, tags: ['jetbrains'], when: "jetbrains == 'yes'" }
+    - { role: keepass, tags: ['keepass'] }
+    - { role: macspoof, tags: ['macspoof'], when: "system.macspoof == 'enabled'"}
+    - { role: mail, tags: ['mail'] }
+    - { role: messengers, tags: ['messengers'] }
+    - { role: photography, tags: ['photography'] }
+    - { role: redshift, tags: ['redshift'], when: "kde == 'no'"}
+    - { role: sound, tags: ['sound'] }
+    - { role: spotify, tags: ['spotify'] }
+    - { role: syncthing, tags: ['syncthing'] }
