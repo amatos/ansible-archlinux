@@ -53,6 +53,12 @@ ssh:
     enable_sshd: true
 
 ##
+# Use systemd-resolved stub DNS resolver (and cache)
+# =================
+##
+resolved_stub: yes
+
+##
 # Dotfile configuration
 # =====================
 # Choose whether custom dotfiles should be installed or not
