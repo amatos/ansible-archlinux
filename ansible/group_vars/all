@@ -92,6 +92,13 @@ kde: yes
 gitkraken: yes
 
 ##
+# Install JetBrains IDEs?
+# =================
+# yes/no to installing CLion and IntelliJ
+##
+jetbrains: yes
+
+##
 # Base package configuration
 # ==========================
 ##

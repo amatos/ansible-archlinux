@@ -1,0 +1,15 @@
+---
+
+- name: Install JetBrains tools (IntelliJ, CLion)
+  kewlfft.aur.aur:
+    name:
+      - clion
+      - clion-cmake
+      - clion-gdb
+      - clion-jre
+      - clion-lldb
+      - intellij-idea-ultimate-edition
+      - intellij-idea-ultimate-edition-jre
+    use: yay
+  become: yes
+  become_user: "{{ user.name }}"
