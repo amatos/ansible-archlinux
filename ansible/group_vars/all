@@ -181,7 +181,6 @@ misc_packages:
     - movit
     - nss-mdns
     - ntfs-3g
-    - opencl-amd
     - opencv
     - openmp
     - opentimelineio
@@ -194,10 +193,6 @@ misc_packages:
     - prison5
     - pstoedit
     - python-setuptools
-    - rocm-language-runtime
-    - rocm-opencl-runtime
-    - rocm-smi-lib
-    - rocminfo
     - ruby-docs
     - sane-airscan
     - shellcheck
