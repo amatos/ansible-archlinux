@@ -90,8 +90,21 @@
   when: ssh.enable_sshd == "true"
 
 - name: Install misc packages
-  kewlfft.aur.aur:
+  pacman:
     name: "{{ misc_packages }}"
+    state: present
+  register: task_result
+  until: task_result is success
+  retries: 10
+  delay: 2
+  notify:
+    - rkhunter propupdate
+
+- name: Install misc AUR packages
+  kewlfft.aur.aur:
+    name: "{{ item }}"
+  with_items:
+    - "{{ aur_packages }}"
   become: yes
   become_user: "{{ user.name }}"
   register: task_result

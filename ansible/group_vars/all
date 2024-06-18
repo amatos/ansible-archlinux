@@ -134,6 +134,7 @@ base_packages:
     - sysstat
     - tmux
     - zsh
+    - pacman-contrib
 
 ##
 # Misc. packages
@@ -141,9 +142,6 @@ base_packages:
 ##
 
 misc_packages:
-    - ansible-gpg-key-git
-    - find-the-command
-    - pkgfile
     - argyllcms
     - aria2
     - arj
@@ -155,21 +153,24 @@ misc_packages:
     - cdrtools
     - coin-or-mp
     - colord-sane
+    - cowsay
     - dosfstools
     - dvd+rw-tools
     - emovix
+    - eza
     - f2fs-tools
     - fatresize
     - festival
+    - fortune-mod
+    - fzf
     - gavl
-    - geoip2-database
+    - geoipupdate
     - graphviz
     - gst-plugins-bad
     - gst-plugins-good
     - gst-plugins-ugly
     - gtk4
     - hunspell-en_us
-    - hunspell-pt-br
     - inotify-tools
     - jfsutils
     - ladspa
@@ -180,6 +181,7 @@ misc_packages:
     - libmythes
     - libwmf
     - libwpg
+    - lolcat
     - lrzip
     - lzop
     - mediainfo
@@ -213,3 +215,15 @@ misc_packages:
     - vcdimager
     - wget
     - xfsprogs
+
+
+##
+# Misc. AUR packages
+# ==============
+##
+
+aur_packages:
+    - ansible-gpg-key-git
+    - find-the-command
+    - hunspell-pt-br
+    - winbox
