@@ -38,7 +38,7 @@
   register: root_uuid
 
 - name: Get swap device UUID
-  shell: "cat /etc/fstab | grep swap | cut -f 1"
+  shell: "cat /etc/fstab | grep swap | cut -f 1 -d \" \""
   register: swap_uuid
 
 - name: Populate kernel command line root file
