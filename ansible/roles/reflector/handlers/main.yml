@@ -1,0 +1,4 @@
+---
+
+- name: restart reflector
+  ansible.builtin.service: name=reflector.service state=restarted

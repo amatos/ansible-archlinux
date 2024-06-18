@@ -7,6 +7,7 @@
 
   roles:
     - { role: network, tags: ['network'] }
+    - { role: reflector, tags: ['reflector'] }
     - { role: kernel, tags: ['kernel'] }
     - { role: base, tags: ['base'] }
     - { role: firewall, tags: ['firewall'] }

@@ -117,6 +117,7 @@ base_packages:
     - python
     - python-jmespath
     - python-pipx
+    - reflector
     - rkhunter
     - rsync
     - ruby

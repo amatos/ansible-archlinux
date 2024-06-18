@@ -1,0 +1,29 @@
+---
+
+- name: Install reflector
+  pacman:
+    name: reflector
+    state: present
+  register: task_result
+  until: task_result is success
+  retries: 10
+  delay: 2
+  notify:
+    - rkhunter propupdate
+
+- name: deploy reflector config file
+  ansible.builtin.copy: src=reflector.conf dest=/etc/xdg/reflector/
+  notify:
+    - restart reflector
+
+- name: Enable reflector service to run on boot, and run it right now
+  ansible.builtin.service:
+    name: reflector
+    state: started
+    enabled: true
+
+- name: Enable a timer unit for reflector
+  ansible.builtin.systemd_service:
+    name: reflector.timer
+    state: started
+    enabled: true
