@@ -26,6 +26,13 @@
     state: started
     enabled: true
 
+- name: Enable systemd-resolved service
+  ansible.builtin.service:
+    name: systemd-resolved
+    state: started
+    enabled: true
+  register: resolved
+
 - name: deploy disable_mdns
   ansible.builtin.copy: src=1-disable_mdns.conf dest=/etc/systemd/resolved.conf.d/
   notify:
@@ -33,8 +40,25 @@
 
 - name: deploy stub dns
   ansible.builtin.copy: src=10-stub-dns.conf dest=/etc/systemd/resolved.conf.d/
+  when: resolved_stub == "yes"
   notify:
     - restart resolved
+
+- name: switch to systemd-resolved stub dns resolver -- removing resolv.conf
+  ansible.builtin.file:
+    path: /etc/resolv.conf
+    state: absent
+  register: removed_resolv
+  when: resolved
+
+- name: switch to systemd-resolved stub dns resolver -- replacing resolv.conf with symlink
+  ansible.builtin.file:
+    src: /var/run/systemd/resolve/stub-resolv.conf
+    dest: /etc/resolv.conf
+    owner: root
+    group: root
+    state: link
+  when: removed_resolv
 
 - name: Update nsswitch.conf
   ansible.builtin.lineinfile:

@@ -94,6 +94,7 @@ base_packages:
     - nss-mdns
     - base-devel
     - bc
+    - bind
     - btop
     - chrony
     - cmake
