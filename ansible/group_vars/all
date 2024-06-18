@@ -87,7 +87,7 @@ kde: yes
 ##
 # Install gitkraken
 # =================
-# yes/no to installing KDE Plasma
+# yes/no to installing GitKraken
 ##
 gitkraken: yes
 
