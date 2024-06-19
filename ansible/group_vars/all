@@ -139,6 +139,7 @@ base_packages:
     - strace
     - subversion
     - sysstat
+    - timeshift
     - tmux
     - zsh
     - pacman-contrib
