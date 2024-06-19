@@ -141,6 +141,8 @@ base_packages:
     - sysstat
     - timeshift
     - tmux
+    - variety
+    - darkman
     - zsh
     - pacman-contrib
 
