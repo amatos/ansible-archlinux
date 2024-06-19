@@ -1,10 +1,10 @@
 ---
 
-- name: install kde
+- name: install KDE Plasma meta package
   pacman:
     name:
       - plasma-meta
-      - trash-cli
+      - sddm
     state: present
   register: task_result
   until: task_result is success
@@ -12,15 +12,15 @@
   delay: 2
 
 - name: install KDE additions
-  kewlfft.aur.aur:
+  pacman:
     name:
       - alligator
+      - trash-cli
       - appmenu-gtk-module
       - ark
       - audiocd-kio
       - breeze-plymouth
       - colord-kde
-      - discover
       - dolphin
       - dolphin-plugins
       - dragon
@@ -104,13 +104,9 @@
       - okteta
       - okular
       - partitionmanager
-      - plasma-desktop
       - plasma-sdk
       - plymouth-kcm
       - poxml
-      - print-manager
-      - sddm
-      - sddm-kcm
       - skanlite
       - skanpage
       - spectacle
@@ -122,15 +118,18 @@
       - tuned-ppd
       - xwaylandvideobridge
       - yakuake
-    use: yay
     state: present
-  become: yes
-  become_user: "{{ user.name }}"
   when: kde == 'yes'
   register: task_result
   until: task_result is success
   retries: 10
   delay: 2
+
+- name: deploy sddm wayland configuration file
+  ansible.builtin.copy:
+    src: 10-wayland.conf
+    dest: /etc/sddm.conf.d/
+
 
 - name: Enable sddm service
   ansible.builtin.service:
