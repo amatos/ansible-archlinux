@@ -225,6 +225,7 @@ misc_packages:
     - vcdimager
     - wget
     - xfsprogs
+    - ccache
 
 
 ##

@@ -33,7 +33,7 @@
     path: /etc/makepkg.conf
     state: present
     regexp: '^BUILDENV.*'
-    line: 'BUILDENV=(!distcc color ccache check !sign'
+    line: 'BUILDENV=(!distcc color ccache check !sign)'
 
 - name: Update makepkg.conf -- gzip
   ansible.builtin.lineinfile:
