@@ -1,5 +1,4 @@
 ---
-
 - ansible.builtin.import_tasks: userconfig.yml
   name: userconfig
 - ansible.builtin.import_tasks: base.yml

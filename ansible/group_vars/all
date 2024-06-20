@@ -1,4 +1,14 @@
 ##
+# Server or Desktop
+# ====================
+# IMPORTANT:  Setting this to server will override any desktop settings below
+# options:
+#   "desktop", install additional items associated with a desktop environment
+#   "server", secure and simple install.
+###
+system: server
+
+##
 # Linux Kernel
 # ============
 # For details, see https://wiki.archlinux.org/title/Kernel
