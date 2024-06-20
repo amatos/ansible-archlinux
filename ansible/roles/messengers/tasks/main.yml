@@ -1,11 +1,12 @@
 ---
 - name: Install signal-desktop and discord
   pacman:
-    name:
+    name: "{{ item }}"
+    state: present
+  with_items:
       - signal-desktop
       - discord
       - telegram-desktop
-    state: present
   register: task_result
   until: task_result is success
   retries: 10

@@ -2,7 +2,9 @@
 
 - name: Install alsa-utils and pipewire tools
   pacman:
-    name:
+    name: "{{ item }}"
+    state: present
+  with_items:
       - alsa-utils
       - pipewire
       - pipewire-pulse
@@ -10,8 +12,6 @@
       - pavucontrol
       - pipewire-roc
       - pipewire-v4l2
-
-    state: present
   register: task_result
   until: task_result is success
   retries: 10

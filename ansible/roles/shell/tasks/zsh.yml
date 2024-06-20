@@ -1,12 +1,13 @@
 ---
 - name: Install ZSH with completion and syntax
   pacman:
-    name:
+    name: "{{ item }}"
+    state: present
+  with_items:
       - zsh
       - zsh-completions
       - zsh-syntax-highlighting
       - zsh-autosuggestions
-    state: present
   register: zshinstall
   until: zshinstall is success
   retries: 10

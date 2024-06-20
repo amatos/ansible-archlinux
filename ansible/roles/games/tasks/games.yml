@@ -1,34 +1,35 @@
 - name: pacman install steam, lutris, and associated tools
   kewlfft.aur.aur:
-    name:
-      - heroic-games-launcher-bin
-      - protonup-qt
-      - reshade-shaders-git
-      - steam-hdr
-      - steamtinkerlaunch
-      - vkbasalt
-      - vkbasalt-cli
-      - lib32-vkbasalt
-      - gamemode
-      - gamescope
-      - goverlay
-      - lib32-dbus
-      - lib32-glu
-      - lib32-libcurl-compat
-      - lib32-mesa
-      - lib32-nss
-      - lib32-systemd
-      - lib32-vulkan-radeon
-      - libva-mesa-driver
-      - lutris
-      - mangohud
-      - mesa
-      - sndio
-      - steam
-      - v4l2loopback-dkms
-      - vulkan-radeon
-      - wf-recorder
-      - xf86-video-amdgpu
+    name: "{{ item }}"
     use: yay
+  with_items:
+    - heroic-games-launcher-bin
+    - protonup-qt
+    - reshade-shaders-git
+    - steam-hdr
+    - steamtinkerlaunch
+    - vkbasalt
+    - vkbasalt-cli
+    - lib32-vkbasalt
+    - gamemode
+    - gamescope
+    - goverlay
+    - lib32-dbus
+    - lib32-glu
+    - lib32-libcurl-compat
+    - lib32-mesa
+    - lib32-nss
+    - lib32-systemd
+    - lib32-vulkan-radeon
+    - libva-mesa-driver
+    - lutris
+    - mangohud
+    - mesa
+    - sndio
+    - steam
+    - v4l2loopback-dkms
+    - vulkan-radeon
+    - wf-recorder
+    - xf86-video-amdgpu
   become: yes
   become_user: "{{ user.name }}"

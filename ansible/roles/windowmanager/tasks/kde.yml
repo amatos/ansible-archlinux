@@ -2,10 +2,11 @@
 
 - name: install KDE Plasma meta package
   pacman:
-    name:
+    name: "{{ item }}"
+    state: present
+  with_items:
       - plasma-meta
       - sddm
-    state: present
   register: task_result
   until: task_result is success
   retries: 10
@@ -13,7 +14,9 @@
 
 - name: install KDE additions
   pacman:
-    name:
+    name: "{{ item }}"
+    state: present
+  with_items:
       - alligator
       - trash-cli
       - appmenu-gtk-module
@@ -118,7 +121,6 @@
       - tuned-ppd
       - xwaylandvideobridge
       - yakuake
-    state: present
   when: kde == 'yes'
   register: task_result
   until: task_result is success
