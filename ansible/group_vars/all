@@ -226,6 +226,11 @@ misc_packages:
     - wget
     - xfsprogs
     - ccache
+    - yaml-language-server
+    - lua-language-server
+    - bash-language-server
+    - ansible-language-server
+    - python-lsp-server
 
 
 ##
