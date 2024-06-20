@@ -1,6 +1,6 @@
 ---
 
-- name: Create systemd/user.conf dropin directory
+- name: Create systemd/user.conf drop-in directory
   ansible.builtin.file:
     path: /etc/systemd/user.conf.d
     state: directory
