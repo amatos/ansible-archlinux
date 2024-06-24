@@ -6,7 +6,7 @@
 #   "desktop", install additional items associated with a desktop environment
 #   "server", secure and simple install.
 ###
-system: server
+system_type: desktop
 
 ##
 # Linux Kernel

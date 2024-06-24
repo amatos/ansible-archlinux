@@ -11,5 +11,3 @@
     use: yay
   become: yes
   become_user: "{{ user.name }}"
-  when: system.processor == "amd"
-    
