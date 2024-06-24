@@ -14,7 +14,7 @@
     - { role: dotfiles, tags: ["dotfiles"] }
     - { role: editor, tags: ["editor"] }
     - { role: firewall, tags: ["firewall"] }
-    - { role: grub, tags: ["grub"], when: "bootloader == 'grub'" }
+    - { role: printing, tags: ["printing"] }
     - { role: grub, tags: ["grub"], when: bootloader == "grub" }
     - { role: refind, tags: ["refind"], when: bootloader == "refind" }
     - { role: shell, tags: ["shell"] }
