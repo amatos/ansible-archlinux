@@ -90,9 +90,11 @@ keepass: no
 ##
 # Install KDE
 # =================
-# yes/no to installing KDE Plasma
+# yes/no to installing KDE Plasma and/or kde-pim.  kde-pim alone will install
+# some parts of kde, but not all of plasma
 ##
 kde: yes
+kdepim: yes
 
 ##
 # Install gitkraken
