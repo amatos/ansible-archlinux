@@ -20,7 +20,6 @@
 - name: install aur fonts
   kewlfft.aur.aur:
     name:
-      - powerline-fonts-git
       - ttf-meslo-nerd-font-powerlevel10k
       - apple-fonts
       - nerd-fonts-sf-mono

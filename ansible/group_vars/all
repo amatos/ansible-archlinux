@@ -26,7 +26,7 @@ kernel: linux-zen
 user:
     name: alberth
     group: users
-    shell: /bin/zsh
+    shell: /bin/fish
 
 ##
 # System configuration
@@ -43,8 +43,8 @@ user:
 system:
     locale: en_US.UTF-8
     timezone: America/New_York
-    processor: amd
-    graphics_card: amd
+    processor: intel
+    graphics_card: intel
     macspoof: disabled
 
 ##
@@ -216,8 +216,6 @@ misc_packages:
     - opentimelineio
     - p7zip
     - pbzip2
-    - perl-bundle-camelcade
-    - perl-devel-camelcadedb
     - pigz
     - pkgfile
     - prison5
@@ -254,4 +252,6 @@ aur_packages:
     - ansible-gpg-key-git
     - find-the-command
     - hunspell-pt-br
+    - perl-bundle-camelcade
+    - perl-devel-camelcadedb
     - winbox
