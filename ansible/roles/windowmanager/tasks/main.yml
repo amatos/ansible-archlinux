@@ -5,3 +5,6 @@
 
 - ansible.builtin.import_tasks: kde.yml
   name: kde
+
+- ansible.builtin.import_tasks: common.yaml
+  name: Common GUI packages

@@ -45,7 +45,6 @@
     state: present
   with_items:
       - alligator
-      - trash-cli
       - appmenu-gtk-module
       - ark
       - audiocd-kio
@@ -137,6 +136,7 @@
       - plasma-sdk
       - plymouth-kcm
       - poxml
+      - qt6-tools
       - skanlite
       - skanpage
       - spectacle

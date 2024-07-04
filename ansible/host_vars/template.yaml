@@ -1,0 +1,259 @@
+##
+# Server or Desktop
+# ====================
+# IMPORTANT:  Setting this to server will override any desktop settings below
+# options:
+#   "desktop", install additional items associated with a desktop environment
+#   "server", secure and simple install.
+###
+system_type: desktop
+
+##
+# Linux Kernel
+# ============
+# For details, see https://wiki.archlinux.org/title/Kernel
+# Kernels:
+#   Option: "linux" Vanilla Linux kernel and modules, with a few patches applied.
+#   Option: "linux-hardened" A security-focused Linux kernel
+#   Option: "linux-zen" The result of a collaborative effort of kernel hackers to provide the best Linux kernel possible for everyday systems.
+##
+kernel: linux-zen
+
+##
+# User configuration
+# ==================
+##
+user:
+    name: alberth
+    group: users
+    shell: /bin/fish
+
+##
+# System configuration
+# ====================
+# processor type:
+#   Option: "intel" will install microcode updates and configure the bootloader accordingly
+#   Option: "amd" will do the same for amd
+# graphics_card type: 
+#   Option: "intel" will install intel graphics drivers
+#   Option: "amd" will install amd drivers
+#   Option: "nvidia" will install nouveau because i will NEVER EVER touch those filthy nvidia drivers
+#                    if you wan't proprietary drivers follow the steps documented in the arch wiki.
+##
+system:
+    locale: en_US.UTF-8
+    timezone: America/New_York
+    processor: amd
+    graphics_card: amd
+    macspoof: disabled
+
+##
+# Bootloader configuration
+# ========================
+# refind and grub are supported
+##
+bootloader: refind
+
+##
+# Connectivity configuration
+# ==========================
+##
+ssh:
+    port: 22
+    enable_sshd: true
+
+##
+# Use systemd-resolved stub DNS resolver (and cache)
+# =================
+##
+resolved_stub: yes
+
+##
+# Dotfile configuration
+# =====================
+# Choose whether custom dotfiles should be installed or not
+# Just set the installation flag to false to avoid an installation
+##
+dotfiles:
+    installation: "false"
+    url: https://github.com/amatos/dotfiles.git
+    destination: .dotfiles
+    rcup_flags: -fx README.md
+
+##
+# Install Keypassxc
+# =================
+# yes/no to installing keypassxc
+##
+keepass: no
+
+##
+# Install KDE
+# =================
+# yes/no to installing KDE Plasma and/or kde-pim.  kde-pim alone will install
+# some parts of kde, but not all of plasma
+##
+kde: yes
+kdepim: yes
+
+##
+# Install gitkraken
+# =================
+# yes/no to installing GitKraken
+##
+gitkraken: yes
+
+##
+# Install JetBrains IDEs?
+# =================
+# yes/no to installing CLion and IntelliJ
+##
+jetbrains: yes
+
+##
+# Base package configuration
+# ==========================
+##
+base_packages:
+    - avahi
+    - nss-mdns
+    - base-devel
+    - bc
+    - bind
+    - btop
+    - chrony
+    - cmake
+    - coreutils
+    - cronie
+    - curl
+    - dateutils
+    - firewalld
+    - fish
+    - geoclue
+    - git
+    - go
+    - links
+    - lsof
+    - ninja
+    - nmap
+    - nodejs
+    - npm
+    - openssh
+    - perl
+    - python
+    - python-jmespath
+    - python-pipx
+    - reflector
+    - rkhunter
+    - rsync
+    - ruby
+    - rust
+    - strace
+    - subversion
+    - sysstat
+    - timeshift
+    - tmux
+    - variety
+    - darkman
+    - zsh
+    - pacman-contrib
+
+##
+# Misc. packages
+# ==============
+##
+
+misc_packages:
+    - argyllcms
+    - aria2
+    - arj
+    - atomicparsley
+    - bash-completion
+    - beanshell
+    - catdoc
+    - cdrdao
+    - cdrtools
+    - coin-or-mp
+    - colord-sane
+    - cowsay
+    - dosfstools
+    - dvd+rw-tools
+    - emovix
+    - eza
+    - f2fs-tools
+    - fatresize
+    - festival
+    - fortune-mod
+    - fzf
+    - gavl
+    - geoipupdate
+    - graphviz
+    - gst-plugins-bad
+    - gst-plugins-good
+    - gst-plugins-ugly
+    - gtk4
+    - hunspell-en_us
+    - inotify-tools
+    - jfsutils
+    - ladspa
+    - languagetool
+    - libappimage
+    - libdvdcss
+    - libid3tag
+    - libmythes
+    - libwmf
+    - libwpg
+    - lolcat
+    - lrzip
+    - lzop
+    - mediainfo
+    - mlocate
+    - movit
+    - nss-mdns
+    - ntfs-3g
+    - opencv
+    - openmp
+    - opentimelineio
+    - p7zip
+    - pbzip2
+    - perl-bundle-camelcade
+    - perl-devel-camelcadedb
+    - pigz
+    - pkgfile
+    - prison5
+    - pstoedit
+    - python-setuptools
+    - ruby-docs
+    - sane-airscan
+    - shellcheck
+    - speech-dispatcher
+    - sshfs
+    - starship
+    - strace
+    - tesseract-data-por
+    - udftools
+    - unarchiver
+    - unzip
+    - vcdimager
+    - wget
+    - xfsprogs
+    - ccache
+    - yaml-language-server
+    - lua-language-server
+    - bash-language-server
+    - ansible-language-server
+    - python-lsp-server
+
+
+##
+# Misc. AUR packages
+# ==============
+##
+
+aur_packages:
+    - ansible-gpg-key-git
+    - find-the-command
+    - hunspell-pt-br
+    - onedrive-abraunegg
+    - onedriver
+    - winbox
