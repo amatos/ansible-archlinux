@@ -145,7 +145,6 @@
       - system-config-printer
       - tesseract-data-eng
       - tokodon
-      - tuned-ppd
       - xwaylandvideobridge
       - yakuake
   when: kde == true

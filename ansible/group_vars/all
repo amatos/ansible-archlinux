@@ -259,3 +259,4 @@ aur_packages:
     - perl-bundle-camelcade
     - perl-devel-camelcadedb
     - winbox
+    - tuned-ppd
