@@ -123,6 +123,10 @@ base_packages:
     - btop
     - chrony
     - cmake
+    - cockpit
+    - cockpit-pcp
+    - cockpit-storaged
+    - cockpit-packagekit
     - coreutils
     - cronie
     - curl
