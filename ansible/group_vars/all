@@ -161,6 +161,9 @@ base_packages:
     - darkman
     - zsh
     - pacman-contrib
+    - man-db
+    - man-pages
+    - texinfo
 
 ##
 # Misc. packages
@@ -245,6 +248,7 @@ misc_packages:
     - bash-language-server
     - ansible-language-server
     - python-lsp-server
+    - tldr
 
 
 ##
