@@ -87,7 +87,7 @@
 
 - name: Enable ssh server
   ansible.builtin.service: name=sshd state=started enabled=true
-  when: ssh.enable_sshd == "true"
+  when: ssh.enable_sshd == True
 
 - name: Install misc packages
   pacman:

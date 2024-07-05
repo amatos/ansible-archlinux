@@ -25,15 +25,15 @@
     - { role: browsers, tags: ["browsers"], when: system_type == "desktop" }
     - { role: calibre, tags: ["calibre"], when: system_type == "desktop" }
     - { role: games, tags: ["games"], when: system_type == "desktop" }
-    - { role: gitkraken, tags: ["gitkraken"], when: (gitkraken == "yes") and (system_type == "desktop") }
+    - { role: gitkraken, tags: ["gitkraken"], when: gitkraken == True }
     - { role: gnupg, tags: ["gnupg"] }
-    - { role: jetbrains, tags: ["jetbrains"], when: (jetbrains == "yes") and (system_type == "desktop") }
-    - { role: keepass, tags: ["keepass"], when: system_type == "desktop" }
+    - { role: jetbrains, tags: ["jetbrains"], when: install_jetbrains == True }
+    - { role: keepass, tags: ["keepass"], when: keepass == True }
     - { role: macspoof, tags: ["macspoof"], when: system.macspoof == "enabled" }
     - { role: mail, tags: ["mail"], when: system_type == "desktop" }
     - { role: messengers, tags: ["messengers"], when: system_type == "desktop" }
     - { role: photography, tags: ["photography"], when: system_type == "desktop" }
-    - { role: redshift, tags: ["redshift"], when: (kde == "no") and (system_type == "desktop") }
+    - { role: redshift, tags: ["redshift"], when: (kde == False) and (system_type == "desktop") }
     - { role: sound, tags: ["sound"], when: system_type == "desktop" }
     - { role: spotify, tags: ["spotify"], when: system_type == "desktop" }
     - { role: syncthing, tags: ["syncthing"] }

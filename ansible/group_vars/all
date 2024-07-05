@@ -60,13 +60,13 @@ bootloader: refind
 ##
 ssh:
     port: 22
-    enable_sshd: true
+    enable_sshd: True
 
 ##
 # Use systemd-resolved stub DNS resolver (and cache)
 # =================
 ##
-resolved_stub: yes
+resolved_stub: True
 
 ##
 # Dotfile configuration
@@ -85,7 +85,7 @@ dotfiles:
 # =================
 # yes/no to installing keypassxc
 ##
-keepass: no
+keepass: False
 
 ##
 # Install KDE
@@ -93,22 +93,22 @@ keepass: no
 # yes/no to installing KDE Plasma and/or kde-pim.  kde-pim alone will install
 # some parts of kde, but not all of plasma
 ##
-kde: yes
-kdepim: yes
+kde: True
+kdepim: False
 
 ##
 # Install gitkraken
 # =================
 # yes/no to installing GitKraken
 ##
-gitkraken: yes
+gitkraken: True
 
 ##
 # Install JetBrains IDEs?
 # =================
 # yes/no to installing CLion and IntelliJ
 ##
-jetbrains: yes
+install_jetbrains: True
 
 ##
 # Base package configuration

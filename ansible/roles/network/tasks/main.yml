@@ -40,7 +40,7 @@
 
 - name: deploy stub dns
   ansible.builtin.copy: src=10-stub-dns.conf dest=/etc/systemd/resolved.conf.d/
-  when: resolved_stub == "yes"
+  when: resolved_stub == True
   notify:
     - restart resolved
 
