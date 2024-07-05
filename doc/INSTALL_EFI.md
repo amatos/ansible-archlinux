@@ -167,7 +167,6 @@ $ hwclock --systohc --utc
 Configure your locales.
 ```bash
 $ echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
-$ echo "de_CH.UTF-8 UTF-8" >> /etc/locale.gen
 $ locale-gen
 $ echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 $ echo "LC_ALL=C" >> /etc/locale.conf
@@ -176,9 +175,7 @@ $ echo "LC_ALL=C" >> /etc/locale.conf
 Set a hostname, keymap and nice console font.
 ```bash
 $ echo "myhostname" > /etc/hostname
-$ echo "KEYMAP=de_CH-latin1" >> /etc/vconsole.conf
-$ echo "FONT=lat9w-16" >> /etc/vconsole.conf
-$ echo "FONT_MAP=8859-1_to_uni" >> /etc/vconsole.conf
+$ echo "KEYMAP=us" >> /etc/vconsole.conf
 ```
 
 Set a strong root password.

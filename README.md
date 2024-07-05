@@ -2,19 +2,18 @@
 This ansible playbook automates my personal Arch Linux installation.
 The goal is a fully encrypted and secure desktop system.  All
 dotfiles are kept in an independent repository. They are managed using
-[rcm](https://robots.thoughtbot.com/rcm-for-rc-files-in-dotfiles-repos) and
+[chezmoi](https://www.chezmoi.io/) and
 will only get installed if the `dotfiles` variable is defined.
 
 ## Main features of this installation
-* Full disk encryption
-* LVM on LUKS partitioning scheme
-* A desktop environment consisting of i3gaps, i3status-rust, rofi and picom
+* Full disk encryption (optional)
+* LVM on LUKS partitioning scheme (optional)
+* KDE
 
 ## Additional security features
-* Restrictive and comprehensive iptables rules
-* Use of linux-hardened
-* Automatic mac address spoofer for wireless network devices
-* No bullshit installed
+* Restrictive and comprehensive firewalld rules
+* Automatic mac address spoofer for wireless network devices (optional)
+* Some bullshit installed, but only the bullshit I use.
 
 ## Install base system
 You can either install your own minimal system or you follow the instructions
@@ -33,39 +32,21 @@ done on modern systems.
 First install ansible
 
 ``` bash
-$ sudo pacman -S ansible python-jmespath ansible-gpg-key-git ansible-collection-kewlfft-aur
+$ sudo pacman -S ansible python-jmespath
 ```
 
-then download the playbook and make sure you adjust the values of the global
-config in `group_vars/all` to match your system stats. Then run it.
+Then install some pre-requisites from the AUR:
+Either use your favorite aur helper, or install these by hand:
+* ansible-gpg-key-git
+* ansible-collection-kewlfft-aur
+
+Then download the playbook and make sure you adjust the values of the global
+config in `group_vars/all.yaml` to match your system stats. Then run it.
 
 ``` bash
-$ git clone --recurse-submodules -j8 https://github.com/id101010/ansible-archlinux.git
+$ git clone -j8 https://github.com/amatos/ansible-archlinux.git
 $ cd ansible-archlinux/ansible
-$ ansible-playbook -i inventory/localhost playbook.yml [--tags $LIMIT_TO_TAG]
+$ ansible-playbook -i inventory/localhost playbook.yaml [--tags $LIMIT_TO_TAG]
 ```
 
 Lean back and watch the installation.
-
-## Testing and development (local vagrant machine)
-Warning, this is kind of buggy. Vagrant looks quite abandoned. Hashicorp does not react to issues.
-I might remove this section soon.
-
-Assuming you've already installed vagrant you can set up a vritual machine with
-just these steps
-
-``` bash
-$ git clone --recurse-submodules -j8 https://github.com/id101010/ansible-archlinux.git
-$ cd ansible-archlinux/vagrant
-$ vagrant up --provision
-```
-
-Now reboot the machine and start a graphical session using virtualbox. The
-default credentials are `user:vagrant pw:vagrant`.  Alternativly you can log
-into your machine using the command `vagrant ssh`.
-
-Hint: To reload the configuration into the vagrant box you can eighter reload
-(issues a graceful shutdown) the machine using `vagrant reload` or you can
-update and apply the configuration changes using `vagrant rsync && vagrant
-provision`.  This way you don't need to wait for the machine to boot when
-testing changes.
