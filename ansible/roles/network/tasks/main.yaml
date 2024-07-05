@@ -51,7 +51,7 @@
   register: removed_resolv
   when: resolved
 
-- name: switch to systemd-resolved stub dns resolver -- replacing resolv.conf with symlink
+- name: switch to systemd-resolved stub dns resolver -- replacing resolv.conf with syamlink
   ansible.builtin.file:
     src: /var/run/systemd/resolve/stub-resolv.conf
     dest: /etc/resolv.conf

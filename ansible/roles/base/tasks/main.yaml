@@ -1,0 +1,14 @@
+---
+- ansible.builtin.import_tasks: userconfig.yaml
+  name: userconfig
+- ansible.builtin.import_tasks: base.yaml
+  name: base
+- ansible.builtin.import_tasks: ntp.yaml
+  name: ntp
+- ansible.builtin.import_tasks: locale.yaml
+  name: locale
+- ansible.builtin.import_tasks: userconf-dropin.yaml
+  name: Local system customizations -- systemd/user.conf dropin
+- ansible.builtin.import_tasks: makepkg.yaml
+  name: Local system customizations -- /etc/makepkg.conf
+  when: system.makepkg == "true"

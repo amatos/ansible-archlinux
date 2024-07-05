@@ -1,9 +1,9 @@
 ---
 
-- ansible.builtin.import_tasks: fonts.yml
+- ansible.builtin.import_tasks: fonts.yaml
   name: fonts
 
-- ansible.builtin.import_tasks: kde.yml
+- ansible.builtin.import_tasks: kde.yaml
   name: kde
 
 - ansible.builtin.import_tasks: common.yaml

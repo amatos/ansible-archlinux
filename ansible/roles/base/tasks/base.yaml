@@ -1,13 +1,13 @@
 ---
-
 - name: Pacman config setup
+  when: system.pacman == "true"
   ansible.builtin.copy:
-    src: pacman.conf
-    dest: /etc/
+      src: pacman.conf
+      dest: /etc/
 
 - name: Update pacman package cache
   pacman:
-    update_cache: true
+      update_cache: true
   register: task_result
   until: task_result is success
   retries: 10
@@ -15,30 +15,30 @@
 
 - name: Perform full system upgrade
   pacman:
-    update_cache: true
-    upgrade: true
+      update_cache: true
+      upgrade: true
   register: task_result
   until: task_result is success
   retries: 10
   delay: 2
   notify:
-    - rkhunter propupdate
+      - rkhunter propupdate
 
 - name: Install base packages
   pacman:
-    name: "{{ base_packages }}"
-    state: present
+      name: "{{ base_packages }}"
+      state: present
   register: task_result
   until: task_result is success
   retries: 10
   delay: 2
   notify:
-    - rkhunter propupdate
+      - rkhunter propupdate
 
 - name: Install yay as aur helper
   kewlfft.aur.aur:
-    name:
-      - yay
+      name:
+          - yay
   become: yes
   become_user: "{{ user.name }}"
   register: task_result
@@ -48,9 +48,9 @@
 
 - name: Install sbctl for easy secure boot management
   pacman:
-    name:
-      - sbctl
-    state: present
+      name:
+          - sbctl
+      state: present
   register: task_result
   until: task_result is success
   retries: 10
@@ -58,28 +58,28 @@
 
 - name: Install microcode updates for intel (if necessary)
   pacman:
-    name: intel-ucode
-    state: present
+      name: intel-ucode
+      state: present
   register: task_result
   until: task_result is success
   retries: 10
   delay: 2
   notify:
-    - update grub
-    - regenerate initramfs
+      - update grub
+      - regenerate initramfs
   when: system.processor == "intel"
 
 - name: Install microcode updates for amd (if necessary)
   pacman:
-    name: amd-ucode
-    state: present
+      name: amd-ucode
+      state: present
   register: task_result
   until: task_result is success
   retries: 10
   delay: 2
   notify:
-    - update grub
-    - regenerate initramfs
+      - update grub
+      - regenerate initramfs
   when: system.processor == "amd"
 
 - name: Enable cronie server
@@ -91,20 +91,20 @@
 
 - name: Install misc packages
   pacman:
-    name: "{{ misc_packages }}"
-    state: present
+      name: "{{ misc_packages }}"
+      state: present
   register: task_result
   until: task_result is success
   retries: 10
   delay: 2
   notify:
-    - rkhunter propupdate
+      - rkhunter propupdate
 
 - name: Install misc AUR packages
   kewlfft.aur.aur:
-    name: "{{ item }}"
+      name: "{{ item }}"
   with_items:
-    - "{{ aur_packages }}"
+      - "{{ aur_packages }}"
   become: yes
   become_user: "{{ user.name }}"
   register: task_result
@@ -112,10 +112,11 @@
   retries: 10
   delay: 2
   notify:
-    - rkhunter propupdate
+      - rkhunter propupdate
 
 - name: Configure sysctl
   ansible.builtin.copy: src=99-performance.conf dest=/etc/sysctl.d/
+  when: system.sysctl == "true"
 
 - name: Configure udisk2 mount options
   ansible.builtin.copy: src=mount_options.conf dest=/etc/udisks2/mount_options.conf

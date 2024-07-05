@@ -41,6 +41,13 @@
   shell: "cat /etc/fstab | grep swap | cut -f 1 -d \" \""
   register: swap_uuid
 
+- name: Create /etc/cmdline.d directory
+  ansible.builtin.file:
+    path: /etc/cmdline.d
+    state: directory
+    mode: '0755'
+  register: created_cmdline
+
 - name: Populate kernel command line root file
   ansible.builtin.template:
     src: root.conf.j2
