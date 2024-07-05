@@ -1,0 +1,10 @@
+---
+
+- name: thunderbird psd restart
+  ansible.builtin.service:
+    name: psd
+    scope: user
+    state: restarted
+    enabled: true
+  become: yes
+  become_user: "{{ user.name }}"

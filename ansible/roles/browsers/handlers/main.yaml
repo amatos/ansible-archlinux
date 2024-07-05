@@ -1,0 +1,10 @@
+---
+
+- name: browser psd restart
+  ansible.builtin.service:
+    name: psd
+    state: restarted
+    scope: user
+    enabled: true
+  become: yes
+  become_user: "{{ user.name }}"

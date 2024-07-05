@@ -4,12 +4,25 @@
   pacman: name=firefox state=present
   tags:
     - firefox
+    - profile-sync-daemon
+  notify: browser psd restart
 
 
 - name: install Brave from AUR
   kewlfft.aur.aur:
     name:
       - brave-bin
+      - profile-sync-daemon-brave
     use: yay
+  become: yes
+  become_user: "{{ user.name }}"
+  notify: browser psd restart
+
+- name: Start Profile Sync Daemon back up
+  ansible.builtin.service:
+    name: psd
+    scope: user
+    state: started
+    enabled: true
   become: yes
   become_user: "{{ user.name }}"

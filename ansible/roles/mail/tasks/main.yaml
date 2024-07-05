@@ -4,8 +4,27 @@
   pacman:
     name:
       - thunderbird
+      - profile-sync-daemon
     state: present
   register: task_result
   until: task_result is success
   retries: 10
   delay: 2
+
+- name: install profile-sync-daemon-thunderbird from AUR
+  kewlfft.aur.aur:
+    name:
+      - profile-sync-daemon-thunderbird
+    use: yay
+  become: yes
+  become_user: "{{ user.name }}"
+  notify: thunderbird psd restart
+
+- name: Start Profile Sync Daemon
+  ansible.builtin.service:
+    name: psd
+    scope: user
+    state: started
+    enabled: true
+  become: yes
+  become_user: "{{ user.name }}"
