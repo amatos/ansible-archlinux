@@ -1,4 +1,0 @@
----
-
-- ansible.builtin.import_tasks: zsh.yml
-  name: zsh

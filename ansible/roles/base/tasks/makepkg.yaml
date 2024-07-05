@@ -4,7 +4,7 @@
   ansible.builtin.lineinfile:
     path: /etc/makepkg.conf
     state: present
-    regexp: '-march=[^ ]* -mtune=[^ ]*'
+    regexp: '^CFLAGS="-march=[^ ]*'
     line: 'CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fno-plt -fexceptions \'
 
 - name: Update makepkg.conf -- options=!strip
