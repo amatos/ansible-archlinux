@@ -255,6 +255,9 @@ misc_packages:
     - ansible-language-server
     - python-lsp-server
     - tldr
+    - gum
+    - git-delta
+    - ctags
 
 ##
 # Misc. AUR packages
