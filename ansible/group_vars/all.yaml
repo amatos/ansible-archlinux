@@ -18,7 +18,7 @@ system_type: desktop
 #
 # Leave this blank for CachyOS or other systems where you don't want to specify a kernel.
 ##
-kernel: linux-cachyos
+kernel: linux-zen
 
 ##
 # User configuration
@@ -42,9 +42,9 @@ user:
 #                    if you wan't proprietary drivers follow the steps documented in the arch wiki.
 ##
 system:
-    pacman: "true"
-    sysctl: "true"
-    makepkg: "true"
+    pacman: True
+    sysctl: True
+    makepkg: True
     games: no
     bluetooth: yes
     locale: en_US.UTF-8
@@ -81,7 +81,7 @@ resolved_stub: True
 # Just set the installation flag to false to avoid an installation
 ##
 dotfiles:
-    installation: "false"
+    installation: False
     url: https://github.com/amatos/dotfiles.git
     destination: .dotfiles
     rcup_flags: -fx README.md

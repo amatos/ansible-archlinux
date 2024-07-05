@@ -1,6 +1,6 @@
 ---
 - name: Pacman config setup
-  when: system.pacman == "true"
+  when: system.pacman == True
   ansible.builtin.copy:
       src: pacman.conf
       dest: /etc/
@@ -116,7 +116,7 @@
 
 - name: Configure sysctl
   ansible.builtin.copy: src=99-performance.conf dest=/etc/sysctl.d/
-  when: system.sysctl == "true"
+  when: system.sysctl == True
 
 - name: Configure udisk2 mount options
   ansible.builtin.copy: src=mount_options.conf dest=/etc/udisks2/mount_options.conf
