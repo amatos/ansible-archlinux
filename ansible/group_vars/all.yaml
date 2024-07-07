@@ -43,7 +43,6 @@ user:
 ##
 system:
     pacman: True
-    sysctl: True
     makepkg: True
     games: no
     bluetooth: yes
@@ -52,6 +51,15 @@ system:
     processor: amd
     graphics_card: amd
     macspoof: disabled
+
+##
+# Use Oracle BPFTune
+# ==================
+# Oracle's auto-tuning daemon reacts to system needs and adjusts sysctl tunings automatically.
+# BUT, any user-set sysctl will make bpftune ignore recommendations for that parameter,
+# So, if this is enabled, we DO NOT apply custom sysctl parameters.
+##
+use_bpftune: True
 
 ##
 # Bootloader configuration

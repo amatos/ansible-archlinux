@@ -116,7 +116,11 @@
 
 - name: Configure sysctl
   ansible.builtin.copy: src=99-performance.conf dest=/etc/sysctl.d/
-  when: system.sysctl == True
+  when: use_bpftune == True
+
+- name: Deploy disabled sysctl configuration file
+  ansible.builtin.copy: src=99-performance.conf dest=/etc/sysctl.d/99-performance.conf.disabled
+  when: use_bpftune == False
 
 - name: Configure udisk2 mount options
   ansible.builtin.copy: src=mount_options.conf dest=/etc/udisks2/mount_options.conf
