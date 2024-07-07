@@ -178,6 +178,7 @@ base_packages:
     - man-db
     - man-pages
     - texinfo
+    - pkgstats
 
 ##
 # Misc. packages
