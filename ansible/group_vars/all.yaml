@@ -236,6 +236,7 @@ misc_packages:
     - ntfs-3g
     - opencv
     - openmp
+    - openrgb
     - opentimelineio
     - p7zip
     - pbzip2
