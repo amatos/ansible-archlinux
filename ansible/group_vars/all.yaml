@@ -222,6 +222,7 @@ misc_packages:
     - languagetool
     - libappimage
     - libdvdcss
+    - libgtop
     - libid3tag
     - libmythes
     - libwmf
