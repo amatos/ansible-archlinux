@@ -1,11 +1,23 @@
 ---
 
-- name: install key from default keyserver on target machine
+- name: Copy my public key to temporary file
+  ansible.builtin.copy: src=mykey.asc dest=/tmp/
+  register: staged_my_key
+
+- name: Add my public key to my gpg keyring
   gpg_key:
-    fpr: 5fc8fe1141fa769594e91e48f41bdbf6171a3bb4
-    homedir: "~{{ user.name }}/.gnupg"
+    file: /tmp/mykey.asc
+    trust: 5
   become: yes
   become_user: "{{ user.name }}"
+  when: staged_my_key
+  register: imported_my_key
+
+- name: Remove my public key temp file
+  ansible.builtin.file:
+    src: /tmp/mykey.asc
+    state: absent
+  when: imported_my_key
 
 - name: deploy gpg preexec file with corrected pinentry
   ansible.builtin.copy: src=preexec dest=/etc/pinentry/

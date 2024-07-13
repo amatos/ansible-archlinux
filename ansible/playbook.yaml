@@ -25,7 +25,7 @@
     - { role: browsers, tags: ["browsers"], when: system_type == "desktop" }
     - { role: calibre, tags: ["calibre"], when: system_type == "desktop" }
     - { role: games, tags: ["games"], when: (system_type == "desktop") and (system.games == "True") }
-    - { role: gnupg, tags: ["gnupg"] }
+#    - { role: gnupg, tags: ["gnupg"] }
     - { role: jetbrains, tags: ["jetbrains"], when: install_jetbrains == True }
     - { role: keepass, tags: ["keepass"], when: keepass == True }
     - { role: macspoof, tags: ["macspoof"], when: system.macspoof == "enabled" }
