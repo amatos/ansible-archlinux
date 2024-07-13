@@ -128,6 +128,12 @@
 - name: Configure udisk2 rules
   ansible.builtin.copy: src=99-udisks2.rules dest=/etc/polkit-1/rules.d/
 
+- name: Start pkgfile-update.timer
+  ansible.builtin.systemd_service:
+    name: pkgfile-update.timer
+    enabled: true
+    masked: no
+
 - name: Create /etc/cmdline.d directory
   ansible.builtin.file:
     path: /etc/cmdline.d
