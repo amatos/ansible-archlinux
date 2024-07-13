@@ -20,3 +20,16 @@
   when:
     - refind_root_uuid
     - refind_swap_uuid
+
+- name: Create /etc/pacman.d/hooks/ directory
+  ansible.builtin.file:
+    path: /etc/pacman.d/hooks/
+    state: directory
+    mode: '0755'
+  register: created_pacmand_hooks_dir
+
+- name: Deploy refind hook
+  ansible.builtin.copy:
+    src: refind.hook
+    dest: /etc/pacman.d/hooks/
+  when: created_pacmand_hooks_dir
