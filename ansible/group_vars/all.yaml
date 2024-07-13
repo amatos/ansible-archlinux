@@ -130,7 +130,6 @@ install_jetbrains: True
 ##
 base_packages:
     - avahi
-    - nss-mdns
     - base-devel
     - bc
     - bind
@@ -138,12 +137,13 @@ base_packages:
     - chrony
     - cmake
     - cockpit
+    - cockpit-packagekit
     - cockpit-pcp
     - cockpit-storaged
-    - cockpit-packagekit
     - coreutils
     - cronie
     - curl
+    - darkman
     - dateutils
     - firewalld
     - fish
@@ -153,12 +153,17 @@ base_packages:
     - go
     - links
     - lsof
+    - man-db
+    - man-pages
     - ninja
     - nmap
     - nodejs
     - npm
+    - nss-mdns
     - openssh
+    - pacman-contrib
     - perl
+    - pkgstats
     - python
     - python-jmespath
     - python-pipx
@@ -170,16 +175,11 @@ base_packages:
     - strace
     - subversion
     - sysstat
+    - texinfo
     - timeshift
     - tmux
     - variety
-    - darkman
     - zsh
-    - pacman-contrib
-    - man-db
-    - man-pages
-    - texinfo
-    - pkgstats
 
 ##
 # Misc. packages
@@ -187,18 +187,22 @@ base_packages:
 ##
 
 misc_packages:
+    - ansible-language-server
     - argyllcms
     - aria2
     - arj
     - atomicparsley
     - bash-completion
+    - bash-language-server
     - beanshell
     - catdoc
+    - ccache
     - cdrdao
     - cdrtools
     - coin-or-mp
     - colord-sane
     - cowsay
+    - ctags
     - dosfstools
     - dvd+rw-tools
     - emovix
@@ -210,11 +214,13 @@ misc_packages:
     - fzf
     - gavl
     - geoipupdate
+    - git-delta
     - graphviz
     - gst-plugins-bad
     - gst-plugins-good
     - gst-plugins-ugly
     - gtk4
+    - gum
     - hunspell-en_us
     - inotify-tools
     - jfsutils
@@ -229,6 +235,7 @@ misc_packages:
     - libwpg
     - lolcat
     - lrzip
+    - lua-language-server
     - lzop
     - mediainfo
     - mlocate
@@ -245,6 +252,7 @@ misc_packages:
     - pkgfile
     - prison5
     - pstoedit
+    - python-lsp-server
     - python-setuptools
     - ruby-docs
     - sane-airscan
@@ -254,22 +262,14 @@ misc_packages:
     - starship
     - strace
     - tesseract-data-por
+    - tldr
     - udftools
     - unarchiver
     - unzip
     - vcdimager
     - wget
     - xfsprogs
-    - ccache
     - yaml-language-server
-    - lua-language-server
-    - bash-language-server
-    - ansible-language-server
-    - python-lsp-server
-    - tldr
-    - gum
-    - git-delta
-    - ctags
 
 ##
 # Misc. AUR packages
@@ -282,5 +282,5 @@ aur_packages:
     - hunspell-pt-br
     - perl-bundle-camelcade
     - perl-devel-camelcadedb
-    - winbox
     - tuned-ppd
+    - winbox
