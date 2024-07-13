@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Path
+Target = usr/lib/fwupd/efi/fwupdx64.efi
+
+[Action]
+When = PostTransaction
+Exec = /usr/bin/sbctl sign /usr/lib/fwupd/efi/fwupdx64.efi --output /usr/lib/fwupd/efi/fwupdx64.efi.signed
+Depends = sbctl

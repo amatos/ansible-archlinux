@@ -127,3 +127,16 @@
 
 - name: Configure udisk2 rules
   ansible.builtin.copy: src=99-udisks2.rules dest=/etc/polkit-1/rules.d/
+
+- name: Create /etc/cmdline.d directory
+  ansible.builtin.file:
+    path: /etc/cmdline.d
+    state: directory
+    mode: '0755'
+  register: created_pacman_hooks_dir
+
+- name: Deploy fwupd sbctl signing hook
+  ansible.builtin.copy:
+    src: sign-fwupd-secureboot.hook
+    dest: /etc/pacman.d/hooks/
+  when: created_pacman_hooks_dir
