@@ -16,13 +16,12 @@
   notify:
     - restart reflector
 
-- name: Enable reflector service to run on boot, and run it right now
+- name: Run reflector
   ansible.builtin.service:
     name: reflector
     state: started
-    enabled: true
 
-- name: Enable a timer unit for reflector
+- name: Enable a sytemd timer unit for reflector to run periodically
   ansible.builtin.systemd_service:
     name: reflector.timer
     state: started
