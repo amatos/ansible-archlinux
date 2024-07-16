@@ -11,4 +11,4 @@
   name: Local system customizations -- systemd/user.conf dropin
 - ansible.builtin.import_tasks: makepkg.yaml
   name: Local system customizations -- /etc/makepkg.conf
-  when: system.makepkg == True
+  when: system.makepkg == true

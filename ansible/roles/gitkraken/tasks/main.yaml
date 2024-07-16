@@ -5,5 +5,5 @@
     name:
       - gitkraken
     use: yay
-  become: yes
+  become: true
   become_user: "{{ user.name }}"

@@ -8,7 +8,7 @@
   gpg_key:
     file: /tmp/mykey.asc
     trust: 5
-  become: yes
+  become: true
   become_user: "{{ user.name }}"
   when: staged_my_key
   register: imported_my_key

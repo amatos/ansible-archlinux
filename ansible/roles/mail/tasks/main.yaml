@@ -16,7 +16,7 @@
     name:
       - profile-sync-daemon-thunderbird
     use: yay
-  become: yes
+  become: true
   become_user: "{{ user.name }}"
   notify: thunderbird psd restart
 
@@ -26,5 +26,5 @@
     scope: user
     state: started
     enabled: true
-  become: yes
+  become: true
   become_user: "{{ user.name }}"

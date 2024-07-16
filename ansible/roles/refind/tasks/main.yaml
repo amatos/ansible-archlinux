@@ -16,7 +16,7 @@
   ansible.builtin.template:
     src: refind_linux.conf.j2
     dest: /boot/refind_linux.conf
-  become: yes
+  become: true
   when:
     - refind_root_uuid
     - refind_swap_uuid

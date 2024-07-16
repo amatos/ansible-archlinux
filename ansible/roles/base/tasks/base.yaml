@@ -1,6 +1,6 @@
 ---
 - name: Pacman config setup
-  when: system.pacman == True
+  when: system.pacman == true
   ansible.builtin.copy:
       src: pacman.conf
       dest: /etc/
@@ -39,7 +39,7 @@
   kewlfft.aur.aur:
       name:
           - yay
-  become: yes
+  become: true
   become_user: "{{ user.name }}"
   register: task_result
   until: task_result is success
@@ -87,7 +87,7 @@
 
 - name: Enable ssh server
   ansible.builtin.service: name=sshd state=started enabled=true
-  when: ssh.enable_sshd == True
+  when: ssh.enable_sshd == true
 
 - name: Install misc packages
   pacman:
@@ -105,7 +105,7 @@
       name: "{{ item }}"
   with_items:
       - "{{ aur_packages }}"
-  become: yes
+  become: true
   become_user: "{{ user.name }}"
   register: task_result
   until: task_result is success
@@ -116,11 +116,11 @@
 
 - name: Configure sysctl
   ansible.builtin.copy: src=99-performance.conf dest=/etc/sysctl.d/
-  when: use_bpftune == True
+  when: use_bpftune == true
 
 - name: Deploy disabled sysctl configuration file
   ansible.builtin.copy: src=99-performance.conf dest=/etc/sysctl.d/99-performance.conf.disabled
-  when: use_bpftune == False
+  when: use_bpftune == false
 
 - name: Configure udisk2 mount options
   ansible.builtin.copy: src=mount_options.conf dest=/etc/udisks2/mount_options.conf

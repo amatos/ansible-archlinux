@@ -10,7 +10,7 @@
     name:
       - sublime-text-4
     use: yay
-  become: yes
+  become: true
   become_user: "{{ user.name }}"
   when: system_type == "desktop"
   

@@ -6,5 +6,5 @@
     state: restarted
     scope: user
     enabled: true
-  become: yes
+  become: true
   become_user: "{{ user.name }}"

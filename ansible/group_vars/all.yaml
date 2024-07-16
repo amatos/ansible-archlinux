@@ -42,10 +42,10 @@ user:
 #                    if you wan't proprietary drivers follow the steps documented in the arch wiki.
 ##
 system:
-    pacman: True
-    makepkg: True
-    games: no
-    bluetooth: yes
+    pacman: true
+    makepkg: true
+    games: false
+    bluetooth: true
     locale: en_US.UTF-8
     timezone: America/New_York
     processor: amd
@@ -59,7 +59,7 @@ system:
 # BUT, any user-set sysctl will make bpftune ignore recommendations for that parameter,
 # So, if this is enabled, we DO NOT apply custom sysctl parameters.
 ##
-use_bpftune: True
+use_bpftune: true
 
 ##
 # Bootloader configuration
@@ -74,13 +74,13 @@ bootloader: refind
 ##
 ssh:
     port: 22
-    enable_sshd: True
+    enable_sshd: true
 
 ##
 # Use systemd-resolved stub DNS resolver (and cache)
 # =================
 ##
-resolved_stub: True
+resolved_stub: true
 
 ##
 # Dotfile configuration
@@ -89,7 +89,7 @@ resolved_stub: True
 # Just set the installation flag to false to avoid an installation
 ##
 dotfiles:
-    installation: False
+    installation: false
     url: https://github.com/amatos/dotfiles.git
     destination: .dotfiles
     rcup_flags: -fx README.md
@@ -99,7 +99,7 @@ dotfiles:
 # =================
 # yes/no to installing keypassxc
 ##
-keepass: False
+keepass: false
 
 ##
 # Install KDE
@@ -107,22 +107,22 @@ keepass: False
 # yes/no to installing KDE Plasma and/or kde-pim.  kde-pim alone will install
 # some parts of kde, but not all of plasma
 ##
-kde: True
-kdepim: False
+kde: true
+kdepim: false
 
 ##
 # Install gitkraken
 # =================
 # yes/no to installing GitKraken
 ##
-gitkraken: True
+gitkraken: true
 
 ##
 # Install JetBrains IDEs?
 # =================
 # yes/no to installing CLion and IntelliJ
 ##
-install_jetbrains: True
+install_jetbrains: true
 
 ##
 # Base package configuration

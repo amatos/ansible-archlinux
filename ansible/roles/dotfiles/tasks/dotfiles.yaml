@@ -7,7 +7,7 @@
       - chezmoi
       - chezmoi_modify_manager
     use: yay
-  become: yes
+  become: true
   become_user: "{{ user.name }}"
   register: task_result
   until: task_result is success
@@ -23,12 +23,12 @@
     accept_hostkey: true
     update: true
     force: true
-  when: dotfiles.installation == True
+  when: dotfiles.installation == true
   become: true
   become_user: "{{ user.name }}"
 
 # - name: Install user dotfiles
 #   ansible.builtin.command: "rcup -d /home/{{ user.name }}/{{ dotfiles.destination }} {{ dotfiles.rcup_flags }}"
-#   when: dotfiles.installation == True
+#   when: dotfiles.installation == true
 #   become: true
 #   become_user: "{{ user.name }}"

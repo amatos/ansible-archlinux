@@ -4,10 +4,10 @@
   kewlfft.aur.aur:
     name:
       - opencl-amd
-      - rocm-language-runtime
+  become: true
       - rocm-opencl-runtime
       - rocm-smi-lib
       - rocminfo
     use: yay
-  become: yes
+    - rocm-opencl-runtime
   become_user: "{{ user.name }}"

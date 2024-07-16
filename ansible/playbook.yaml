@@ -10,7 +10,7 @@
     - { role: reflector, tags: ["reflector"] }
     - { role: kernel, tags: ["kernel"] }
     - { role: base, tags: ["base"] }
-    - { role: bluetooth, tags: ["bluetooth"], when: (system_type == "desktop") and (system.bluetooth == "yes") }
+    - { role: bluetooth, tags: ["bluetooth"], when: (system_type == "desktop") and (system.bluetooth == true) }
     - { role: dotfiles, tags: ["dotfiles"] }
     - { role: editor, tags: ["editor"] }
     - { role: firewall, tags: ["firewall"] }
@@ -24,15 +24,15 @@
     - { role: amd, tags: ["amd"], when: system.processor == "amd" }
     - { role: browsers, tags: ["browsers"], when: system_type == "desktop" }
     - { role: calibre, tags: ["calibre"], when: system_type == "desktop" }
-    - { role: games, tags: ["games"], when: (system_type == "desktop") and (system.games == "True") }
+    - { role: games, tags: ["games"], when: (system_type == "desktop") and (system.games == true) }
 #    - { role: gnupg, tags: ["gnupg"] }
-    - { role: jetbrains, tags: ["jetbrains"], when: install_jetbrains == True }
-    - { role: keepass, tags: ["keepass"], when: keepass == True }
+    - { role: jetbrains, tags: ["jetbrains"], when: install_jetbrains == true }
+    - { role: keepass, tags: ["keepass"], when: keepass == true }
     - { role: macspoof, tags: ["macspoof"], when: system.macspoof == "enabled" }
     - { role: mail, tags: ["mail"], when: system_type == "desktop" }
     - { role: messengers, tags: ["messengers"], when: system_type == "desktop" }
     - { role: photography, tags: ["photography"], when: system_type == "desktop" }
-    - { role: redshift, tags: ["redshift"], when: (kde == False) and (system_type == "desktop") }
+    - { role: redshift, tags: ["redshift"], when: (kde == false) and (system_type == "desktop") }
     - { role: sound, tags: ["sound"], when: system_type == "desktop" }
     - { role: spotify, tags: ["spotify"], when: system_type == "desktop" }
     - { role: syncthing, tags: ["syncthing"] }

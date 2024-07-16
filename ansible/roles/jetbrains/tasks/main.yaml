@@ -12,5 +12,5 @@
       - clion-lldb
       - intellij-idea-ultimate-edition
       - intellij-idea-ultimate-edition-jre
-  become: yes
+  become: true
   become_user: "{{ user.name }}"
