@@ -34,13 +34,17 @@
   register: resolved
 
 - name: deploy disable_mdns
-  ansible.builtin.copy: src=1-disable_mdns.conf dest=/etc/systemd/resolved.conf.d/
+  ansible.builtin.copy:
+    src: 1-disable_mdns.conf
+    dest: /etc/systemd/resolved.conf.d/
   notify:
     - restart resolved
 
 - name: deploy stub dns
-  ansible.builtin.copy: src=10-stub-dns.conf dest=/etc/systemd/resolved.conf.d/
-  when: resolved_stub == True
+  ansible.builtin.copy:
+    src: 10-stub-dns.conf
+    dest: /etc/systemd/resolved.conf.d/
+  when: resolved_stub == true
   notify:
     - restart resolved
 

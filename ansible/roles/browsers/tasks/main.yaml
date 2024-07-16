@@ -1,12 +1,13 @@
 ---
 
-- name: Install firefox
-  pacman: name=firefox state=present
+- name: Install Firefox and Profile Sync Daemon
+  pacman:
+    name: firefox
+    state: present
   tags:
     - firefox
     - profile-sync-daemon
   notify: browser psd restart
-
 
 - name: install Brave from AUR
   kewlfft.aur.aur:

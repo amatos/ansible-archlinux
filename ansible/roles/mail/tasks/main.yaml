@@ -1,6 +1,6 @@
 ---
 
-- name: Install thunderbird
+- name: Install Thunderbird and Profile Sync Daemon
   pacman:
     name:
       - thunderbird

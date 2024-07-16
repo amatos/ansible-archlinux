@@ -19,7 +19,6 @@
     name: obsidian
     state: present
   when: system_type == "desktop"
-
   
 - name: install Libre Office (fresh)
   pacman:
@@ -27,3 +26,8 @@
     state: present
   when: system_type == "desktop"
   
+- name: install Code (Open sourced VSCode)
+  pacman:
+    name: code
+    state: present
+  when: system_type == "desktop"

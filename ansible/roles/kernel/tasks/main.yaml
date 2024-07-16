@@ -63,12 +63,16 @@
     - regenerate initramfs
 
 - name: Populate kernel command line plymouth file
-  ansible.builtin.copy: src=plymouth.conf dest=/etc/cmdline.d
+  ansible.builtin.copy:
+    src: plymouth.conf
+    dest: /etc/cmdline.d
   notify:
     - regenerate initramfs
 
 - name: Populate kernel command line amd file
-  ansible.builtin.copy: src=amd.conf dest=/etc/cmdline.d
+  ansible.builtin.copy:
+    src: amd.conf
+    dest: /etc/cmdline.d
   when: system.processor == "amd"
   notify:
     - regenerate initramfs

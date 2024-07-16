@@ -1,7 +1,10 @@
 ---
 
 - name: Enable and start FirewallD
-  ansible.builtin.service: name=firewalld.service enabled=true state=started
+  ansible.builtin.service:
+    name: firewalld.service
+    enabled: true
+    state: started
 
 - name: Change network for interfaces to "Home"
   ansible.posix.firewalld:

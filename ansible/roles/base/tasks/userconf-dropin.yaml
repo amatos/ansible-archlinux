@@ -8,5 +8,7 @@
   register: userconfd_dropin
 
 - name: deploy user.conf dropin file
-  ansible.builtin.copy: src=custom-user.conf dest=/etc/systemd/user.conf.d
+  ansible.builtin.copy:
+    src: custom-user.conf
+    dest: /etc/systemd/user.conf.d
   when: userconfd_dropin

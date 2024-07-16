@@ -8,11 +8,12 @@
 
 - name: Install Syncthingtray
   kewlfft.aur.aur:
-    name:
-      - syncthingtray-qt6
+    name: "{{ item }}"
     use: yay
-  become: yes
+  become: true
   become_user: "{{ user.name }}"
+  with_items:
+    - syncthingtray-qt6
 
 - name: Enable Syncthing@user service
   ansible.builtin.service:

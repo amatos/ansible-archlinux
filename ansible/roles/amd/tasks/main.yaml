@@ -2,12 +2,14 @@
 
 - name: Install AMD-specific tooling
   kewlfft.aur.aur:
-    name:
-      - opencl-amd
-  become: true
-      - rocm-opencl-runtime
-      - rocm-smi-lib
-      - rocminfo
+    name: "{{ item }}"
     use: yay
-    - rocm-opencl-runtime
+  become: true
   become_user: "{{ user.name }}"
+  with_items:
+    - opencl-amd
+    - rocm-language-runtime
+    - rocm-opencl-runtime
+    - rocm-smi-lib
+    - rocminfo
+

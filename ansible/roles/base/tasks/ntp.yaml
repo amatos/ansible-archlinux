@@ -34,7 +34,9 @@
   when: install is changed # noqa: no-handler
 
 - name: Set NetworkManager to update timesyncd time servers
-  ansible.builtin.copy: src=10-update-timesyncd dest=/etc/NetworkManager/dispatcher.d/10-update-timesyncd
+  ansible.builtin.copy:
+    src: 10-update-timesyncd
+    dest: /etc/NetworkManager/dispatcher.d/10-update-timesyncd
   register: updated_timesyncd
 
 - name: Start systemd-timesyncd back up

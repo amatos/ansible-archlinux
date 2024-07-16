@@ -1,11 +1,8 @@
 ---
 
-- name: Install dotfiles management (rcm and chezmoi)
+- name: Install dotfiles management (chezmoi)
   kewlfft.aur.aur:
-    name:
-      - rcm
-      - chezmoi
-      - chezmoi_modify_manager
+    name: "{{ item }}"
     use: yay
   become: true
   become_user: "{{ user.name }}"
@@ -15,6 +12,9 @@
   delay: 2
   tags:
     - aur
+  with_items:
+    - chezmoi
+    - chezmoi_modify_manager
 
 - name: Clone user dotfiles
   ansible.builtin.git:

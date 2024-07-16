@@ -2,9 +2,10 @@
 
 - name: Install 1password from aur
   kewlfft.aur.aur:
-    name:
+    name: "{{ item }}"
+    use: yay
   become: true
+  become_user: "{{ user.name }}"
+  with_items:
       - 1password
       - 1password-cli
-    use: yay
-  become_user: "{{ user.name }}"
