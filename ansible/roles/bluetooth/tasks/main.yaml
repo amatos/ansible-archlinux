@@ -3,7 +3,6 @@
 - name: Install bluetooth tools
   ansible.builtin.package:
     name:
-      - blueman
       - bluez
       - bluez-utils
     state: present
