@@ -5,6 +5,12 @@
       src: pacman.conf
       dest: /etc/
 
+- name: Adding pacoloco config file
+  when: system.pacman == true
+  ansible.builtin.copy:
+      src: pacoloco
+      dest: /etc/pacman.d/
+
 - name: Update pacman package cache
   pacman:
       update_cache: true
