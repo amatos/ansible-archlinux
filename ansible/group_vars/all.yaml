@@ -203,6 +203,7 @@ misc_packages:
     - colord-sane
     - cowsay
     - ctags
+    - diff-so-fancy
     - dosfstools
     - dvd+rw-tools
     - emovix
