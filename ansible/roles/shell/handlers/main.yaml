@@ -2,5 +2,5 @@
 
 - name: change shell
   ansible.builtin.package:
-    name: {{ user.name }}
-    shell: {{ user.shell }}
+    name: "{{ user.name }}"
+    shell: "{{ user.shell }}"
