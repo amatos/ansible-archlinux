@@ -62,6 +62,13 @@ system:
     macspoof: disabled
 
 ##
+# Firewall configuration
+# ========================
+# ufw and firewalld are supported
+##
+firewall: ufw
+
+##
 # Use Oracle BPFTune
 # ==================
 # Oracle's auto-tuning daemon reacts to system needs and adjusts sysctl tunings automatically.

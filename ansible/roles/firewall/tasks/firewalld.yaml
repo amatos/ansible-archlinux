@@ -1,0 +1,43 @@
+- name: Install firewalld
+  pacman:
+      name: firewalld
+      state: present
+
+- name: Enable and start FirewallD
+  ansible.builtin.service:
+      name: firewalld.service
+      enabled: true
+      state: started
+
+- name: Change network for interfaces to "Home"
+  ansible.posix.firewalld:
+      zone: home
+      interface: "{{ item }}"
+      permanent: true
+      state: enabled
+  with_items:
+      - "{{ ansible_interfaces }}"
+  when: item != 'lo'
+  notify: restart FirewallD
+
+- name: Updating home zone rules
+  ansible.posix.firewalld:
+      zone: home
+      service: "{{ item }}"
+      permanent: true
+      state: enabled
+  with_items:
+      - ssh
+      - mdns
+      - samba-client
+      - dhcpv6-client
+      - cockpit
+      - factorio
+      - ipsec
+      - steam-streaming
+      - stellaris
+      - syncthing
+      - syncthing-gui
+      - syncthing-relay
+      - terraria
+      - upnp-client

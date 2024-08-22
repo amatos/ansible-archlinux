@@ -1,3 +1,5 @@
 ---
 - name: restart FirewallD
   ansible.builtin.service: name=firewalld.service state=restarted
+- name: restart ufw
+  ansible.builtin.service: name=ufw.service state=restarted

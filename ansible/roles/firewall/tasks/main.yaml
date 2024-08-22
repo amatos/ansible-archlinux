@@ -1,39 +1,8 @@
 ---
-- name: Enable and start FirewallD
-  ansible.builtin.service:
-      name: firewalld.service
-      enabled: true
-      state: started
+- ansible.builtin.import_tasks: ufw.yaml
+  name: ufw
+  when: firewall == "ufw"
 
-- name: Change network for interfaces to "Home"
-  ansible.posix.firewalld:
-      zone: home
-      interface: "{{ item }}"
-      permanent: true
-      state: enabled
-  with_items:
-      - "{{ ansible_interfaces }}"
-  when: item != 'lo'
-  notify: restart FirewallD
-
-- name: Updating home zone rules
-  ansible.posix.firewalld:
-      zone: home
-      service: "{{ item }}"
-      permanent: true
-      state: enabled
-  with_items:
-      - ssh
-      - mdns
-      - samba-client
-      - dhcpv6-client
-      - cockpit
-      - factorio
-      - ipsec
-      - steam-streaming
-      - stellaris
-      - syncthing
-      - syncthing-gui
-      - syncthing-relay
-      - terraria
-      - upnp-client
+- ansible.builtin.import_tasks: firewalld.yaml
+  name: firewalld
+  when: firewall == "firewalld"
