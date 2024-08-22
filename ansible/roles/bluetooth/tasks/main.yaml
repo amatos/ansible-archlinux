@@ -1,11 +1,10 @@
 ---
-
 - name: Install bluetooth tools
   ansible.builtin.package:
-    name:
-      - bluez
-      - bluez-utils
-    state: present
+      name:
+          - bluez
+          - bluez-utils
+      state: present
   register: task_result
   until: task_result is success
   retries: 10
@@ -13,6 +12,6 @@
 
 - name: Enable Bluetooth service
   ansible.builtin.service:
-    name: bluetooth
-    state: started
-    enabled: true
+      name: bluetooth
+      state: started
+      enabled: true

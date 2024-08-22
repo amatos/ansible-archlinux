@@ -1,15 +1,13 @@
 ---
-
-- name: Install AMD-specific tooling
+- name: Install AMD graphics card specific tooling
   kewlfft.aur.aur:
-    name: "{{ item }}"
-    use: yay
+      name: "{{ item }}"
+      use: yay
   become: true
   become_user: "{{ user.name }}"
   with_items:
-    - opencl-amd
-    - rocm-language-runtime
-    - rocm-opencl-runtime
-    - rocm-smi-lib
-    - rocminfo
-
+      - opencl-amd
+      - rocm-language-runtime
+      - rocm-opencl-runtime
+      - rocm-smi-lib
+      - rocminfo

@@ -1,9 +1,8 @@
 ---
-
 - name: install KDE Plasma meta package
   pacman:
-    name: "{{ item }}"
-    state: present
+      name: "{{ item }}"
+      state: present
   with_items:
       - plasma-meta
       - sddm
@@ -15,24 +14,24 @@
 
 - name: install KDE PIM
   pacman:
-    name: "{{ item }}"
-    state: present
+      name: "{{ item }}"
+      state: present
   with_items:
-    - akonadi-calendar-tools
-    - akonadiconsole
-    - akregator
-    - grantlee-editor
-    - itinerary
-    - kaddressbook
-    - kalarm
-    - kdepim-addons
-    - kleopatra
-    - kmail
-    - knotes
-    - kontact
-    - korganizer
-    - merkuro
-    - zanshin
+      - akonadi-calendar-tools
+      - akonadiconsole
+      - akregator
+      - grantlee-editor
+      - itinerary
+      - kaddressbook
+      - kalarm
+      - kdepim-addons
+      - kleopatra
+      - kmail
+      - knotes
+      - kontact
+      - korganizer
+      - merkuro
+      - zanshin
   when: kdepim == true
   register: task_result
   until: task_result is success
@@ -41,8 +40,8 @@
 
 - name: install KDE additions
   pacman:
-    name: "{{ item }}"
-    state: present
+      name: "{{ item }}"
+      state: present
   with_items:
       - alligator
       - appmenu-gtk-module
@@ -156,12 +155,20 @@
 
 - name: deploy sddm wayland configuration file
   ansible.builtin.copy:
-    src: 10-wayland.conf
-    dest: /etc/sddm.conf.d/
-
+      src: 10-wayland.conf
+      dest: /etc/sddm.conf.d/
 
 - name: Enable sddm service
   ansible.builtin.service:
-    name: sddm
-    state: started
-    enabled: true
+      name: sddm
+      state: started
+      enabled: true
+
+- name: amd-specific gaming items
+  kewlfft.aur.aur:
+      name:
+          - plasma-gamemode-git
+      use: yay
+  when: system.games == true
+  become: true
+  become_user: "{{ user.name }}"

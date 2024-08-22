@@ -1,29 +1,28 @@
 ---
-
 - name: Install Firefox and Profile Sync Daemon
   pacman:
-    name: firefox
-    state: present
+      name: firefox
+      state: present
   tags:
-    - firefox
-    - profile-sync-daemon
+      - firefox
+      - profile-sync-daemon
   notify: browser psd restart
 
 - name: install Brave from AUR
   kewlfft.aur.aur:
-    name:
-      - brave-bin
-      - profile-sync-daemon-brave
-    use: yay
+      name:
+          - brave-bin
+          - profile-sync-daemon-brave
+      use: yay
   become: true
   become_user: "{{ user.name }}"
   notify: browser psd restart
 
 - name: Start Profile Sync Daemon back up
   ansible.builtin.service:
-    name: psd
-    scope: user
-    state: started
-    enabled: true
+      name: psd
+      scope: user
+      state: started
+      enabled: true
   become: true
   become_user: "{{ user.name }}"

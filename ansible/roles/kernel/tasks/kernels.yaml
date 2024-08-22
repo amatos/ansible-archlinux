@@ -1,0 +1,32 @@
+- name: Install linux kernel and headers
+  pacman:
+      name:
+          - linux
+          - linux-headers
+      state: present
+  when: (kernel == "linux") and (system_distribution == "arch")
+  notify:
+      - update grub
+      - regenerate initramfs
+
+- name: Install linux-hardened and hardened headers
+  pacman:
+      name:
+          - linux-hardened
+          - linux-hardened-headers
+      state: present
+  when: (kernel == "linux-hardened") and (system_distribution == "arch")
+  notify:
+      - update grub
+      - regenerate initramfs
+
+- name: Install linux-zen and zen headers
+  pacman:
+      name:
+          - linux-zen
+          - linux-zen-headers
+      state: present
+  when: (kernel == "linux-zen") and (system_distribution == "arch")
+  notify:
+      - update grub
+      - regenerate initramfs

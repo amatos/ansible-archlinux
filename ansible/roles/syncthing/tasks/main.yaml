@@ -10,6 +10,7 @@
   kewlfft.aur.aur:
     name: "{{ item }}"
     use: yay
+  when: kde == true
   become: true
   become_user: "{{ user.name }}"
   with_items:

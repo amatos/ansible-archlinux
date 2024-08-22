@@ -1,18 +1,16 @@
 ---
-
 - name: install additional GUI packages common to all environments
   pacman:
-    name: "{{ item }}"
-    state: present
+      name: "{{ item }}"
+      state: present
   with_items:
-    - variety
-    - darkman
-    - gst-plugins-bad
-    - gst-plugins-good
-    - gst-plugins-ugly
-    - gtk4
-    - trash-cli
-  when: kde == true
+      - variety
+      - darkman
+      - gst-plugins-bad
+      - gst-plugins-good
+      - gst-plugins-ugly
+      - gtk4
+      - trash-cli
   register: task_result
   until: task_result is success
   retries: 10

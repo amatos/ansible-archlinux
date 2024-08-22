@@ -26,8 +26,11 @@
     state: present
   when: system_type == "desktop"
   
-- name: install Code (Open sourced VSCode)
-  pacman:
-    name: code
-    state: present
+- name: install VSCode
+  kewlfft.aur.aur:
+    name:
+      - visual-studio-code-bin
+    use: yay
   when: system_type == "desktop"
+  become: true
+  become_user: "{{ user.name }}"

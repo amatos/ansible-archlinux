@@ -1,5 +1,4 @@
 ---
-
 - ansible.builtin.import_tasks: fonts.yaml
   name: fonts
 

@@ -43,10 +43,13 @@ Either use your favorite aur helper, or install these by hand:
 Then download the playbook and make sure you adjust the values of the global
 config in `group_vars/all.yaml` to match your system stats. Then run it.
 
+n.b., the -K flag in the ansible-playbook command line tells ansible to prompt
+for the become (that is, sudo) password.
+
 ``` bash
 $ git clone -j8 https://github.com/amatos/ansible-archlinux.git
 $ cd ansible-archlinux/ansible
-$ ansible-playbook -i inventory/localhost playbook.yaml [--tags $LIMIT_TO_TAG]
+$ ansible-playbook -i inventory/localhost playbook.yaml [--tags $LIMIT_TO_TAG] -K
 ```
 
 Lean back and watch the installation.

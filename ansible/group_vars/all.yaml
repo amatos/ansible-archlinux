@@ -7,6 +7,15 @@
 ###
 system_type: desktop
 
+# Arch distribution
+# ====================
+# IMPORTANT:  Changing this from "arch" will override some settings below.
+# options:
+#   "arch", vanilla arch linux
+#   "cachyos", CachyOS
+###
+system_distribution: cachyos
+
 ##
 # Linux Kernel
 # ============
@@ -18,7 +27,7 @@ system_type: desktop
 #
 # Leave this blank for CachyOS or other systems where you don't want to specify a kernel.
 ##
-kernel: linux-zen
+kernel:
 
 ##
 # User configuration
@@ -97,32 +106,39 @@ dotfiles:
 ##
 # Install Keypassxc
 # =================
-# yes/no to installing keypassxc
+# true/false to installing keypassxc
 ##
 keepass: false
 
 ##
 # Install KDE
 # =================
-# yes/no to installing KDE Plasma and/or kde-pim.  kde-pim alone will install
+# true/false to installing KDE Plasma and/or kde-pim.  kde-pim alone will install
 # some parts of kde, but not all of plasma
 ##
 kde: true
-kdepim: false
+kdepim: true
+
+##
+# Install thunderbird
+# ===================
+# true/false to install thunderbird
+##
+thunderbird: false
 
 ##
 # Install gitkraken
 # =================
-# yes/no to installing GitKraken
+# true/false to installing GitKraken
 ##
 gitkraken: true
 
 ##
 # Install JetBrains IDEs?
 # =================
-# yes/no to installing CLion and IntelliJ
+# true/false to installing CLion and IntelliJ
 ##
-install_jetbrains: true
+install_jetbrains: false
 
 ##
 # Base package configuration
@@ -145,7 +161,6 @@ base_packages:
     - curl
     - darkman
     - dateutils
-    - firewalld
     - fish
     - fwupd
     - geoclue
@@ -176,7 +191,6 @@ base_packages:
     - subversion
     - sysstat
     - texinfo
-    - timeshift
     - tmux
     - variety
     - zsh
@@ -251,6 +265,7 @@ misc_packages:
     - pbzip2
     - pigz
     - pkgfile
+    - power-profiles-daemon
     - prison5
     - pstoedit
     - python-lsp-server
@@ -263,7 +278,6 @@ misc_packages:
     - starship
     - strace
     - tesseract-data-por
-    - tldr
     - udftools
     - unarchiver
     - unzip
@@ -271,6 +285,7 @@ misc_packages:
     - wget
     - xfsprogs
     - yaml-language-server
+    - exfatprogs
 
 ##
 # Misc. AUR packages
@@ -283,8 +298,9 @@ aur_packages:
     - hunspell-pt-br
     - perl-bundle-camelcade
     - perl-devel-camelcadedb
-    - tuned-ppd
     - winbox
+    - visual-studio-code-bin
+    - easyeffects
 
 ##
 # Gaming packages
@@ -295,7 +311,6 @@ gaming_packages:
     - heroic-games-launcher-bin
     - protonup-qt
     - reshade-shaders-git
-    - steam-hdr
     - steamtinkerlaunch
     - vkbasalt
     - vkbasalt-cli
@@ -309,7 +324,6 @@ gaming_packages:
     - lib32-mesa
     - lib32-nss
     - lib32-systemd
-    - lib32-vulkan-radeon
     - libva-mesa-driver
     - lutris
     - mangohud
@@ -317,6 +331,4 @@ gaming_packages:
     - sndio
     - steam
     - v4l2loopback-dkms
-    - vulkan-radeon
     - wf-recorder
-    - xf86-video-amdgpu

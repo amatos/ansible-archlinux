@@ -1,4 +1,3 @@
 ---
-
 - name: restart FirewallD
   ansible.builtin.service: name=firewalld.service state=restarted

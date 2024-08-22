@@ -1,9 +1,8 @@
 ---
-
 - name: install fonts
   pacman:
-    name: "{{ item }}"
-    state: present
+      name: "{{ item }}"
+      state: present
   with_items:
       - ttf-dejavu
       - ttf-liberation
@@ -19,12 +18,12 @@
 
 - name: install aur fonts
   kewlfft.aur.aur:
-    name:
-      - ttf-meslo-nerd-font-powerlevel10k
-      - apple-fonts
-      - nerd-fonts-sf-mono
-      - ttf-mac-fonts
-    use: yay
+      name:
+          - ttf-meslo-nerd-font-powerlevel10k
+          - apple-fonts
+          - nerd-fonts-sf-mono
+          - ttf-mac-fonts
+      use: yay
   become: true
   become_user: "{{ user.name }}"
   register: task_result

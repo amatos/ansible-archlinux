@@ -1,15 +1,14 @@
 ---
-
 - name: Copy my public key to temporary file
   ansible.builtin.copy:
-    src: mykey.asc
-    dest: /tmp/
+      src: mykey.asc
+      dest: /tmp/
   register: staged_my_key
 
 - name: Add my public key to my gpg keyring
   gpg_key:
-    file: /tmp/mykey.asc
-    trust: 5
+      file: /tmp/mykey.asc
+      trust: 5
   become: true
   become_user: "{{ user.name }}"
   when: staged_my_key
@@ -17,11 +16,11 @@
 
 - name: Remove my public key temp file
   ansible.builtin.file:
-    src: /tmp/mykey.asc
-    state: absent
+      src: /tmp/mykey.asc
+      state: absent
   when: imported_my_key
 
 - name: deploy gpg preexec file with corrected pinentry
   ansible.builtin.copy:
-    src: preexec
-    dest: /etc/pinentry/
+      src: preexec
+      dest: /etc/pinentry/
