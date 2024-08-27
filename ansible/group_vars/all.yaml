@@ -293,6 +293,8 @@ misc_packages:
     - xfsprogs
     - yaml-language-server
     - exfatprogs
+    - pacman-contrib
+    - pacutils
     - snapper
 
 ##
