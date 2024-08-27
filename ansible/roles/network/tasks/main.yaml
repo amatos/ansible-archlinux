@@ -27,8 +27,8 @@
     enabled: true
 
 - name: Add an Ethernet connection with static IP configuration
-    community.general.nmcli:
-    conn_name: home
+  community.general.nmcli:
+    conn_name: Wired connection 1
     ifname: enp7s0
     type: ethernet
     zone: home

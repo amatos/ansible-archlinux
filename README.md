@@ -39,6 +39,7 @@ Then install some pre-requisites from the AUR:
 Either use your favorite aur helper, or install these by hand:
 * ansible-gpg-key-git
 * ansible-collection-kewlfft-aur
+* ansible-collection-community-general
 
 Then download the playbook and make sure you adjust the values of the global
 config in `group_vars/all.yaml` to match your system stats. Then run it.
