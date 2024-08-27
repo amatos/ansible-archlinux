@@ -55,10 +55,10 @@ system:
     makepkg: true
     games: true
     bluetooth: true
-    locale: en_US.UTF-8
-    timezone: America/New_York
-    processor: amd
-    graphics_card: amd
+    locale: "en_US.UTF-8"
+    timezone: "America/New_York"
+    processor: "amd"
+    graphics_card: "amd"
     macspoof: false
 
 ##
