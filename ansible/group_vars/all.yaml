@@ -5,7 +5,7 @@
 #   "desktop", install additional items associated with a desktop environment
 #   "server", secure and simple install.
 ###
-system_type: desktop
+system_type: "desktop"
 
 # Arch distribution
 # ====================
@@ -14,7 +14,7 @@ system_type: desktop
 #   "arch", vanilla arch linux
 #   "cachyos", CachyOS
 ###
-system_distribution: cachyos
+system_distribution: "arch"
 
 ##
 # Linux Kernel
@@ -27,7 +27,7 @@ system_distribution: cachyos
 #
 # Leave this blank for CachyOS or other systems where you don't want to specify a kernel.
 ##
-kernel:
+kernel: "linux-zen"
 
 ##
 # User configuration
@@ -66,7 +66,7 @@ system:
 # ========================
 # ufw and firewalld are supported
 ##
-firewall: ufw
+firewall: "firewalld"
 
 ##
 # Use Oracle BPFTune
@@ -82,7 +82,7 @@ use_bpftune: true
 # ========================
 # refind and grub are supported
 ##
-bootloader: refind
+bootloader: "refind"
 
 ##
 # Connectivity configuration
