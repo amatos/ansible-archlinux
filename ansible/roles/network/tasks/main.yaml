@@ -26,6 +26,14 @@
     state: started
     enabled: true
 
+- name: Add an Ethernet connection with static IP configuration
+    community.general.nmcli:
+    conn_name: home
+    ifname: enp7s0
+    type: ethernet
+    zone: home
+    state: present
+
 - name: Enable systemd-resolved service
   ansible.builtin.service:
     name: systemd-resolved
@@ -70,3 +78,9 @@
     state: present
     regexp: '^hosts: mymachines resolve .*'
     line: 'hosts: mymachines mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] files myhostname dns'
+
+- name: Enable Avahi mdns service
+  ansible.builtin.service:
+    name: avahi-daemon
+    state: started
+    enabled: true
