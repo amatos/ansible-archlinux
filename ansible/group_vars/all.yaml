@@ -53,7 +53,7 @@ user:
 system:
     pacman: true
     makepkg: true
-    games: false
+    games: true
     bluetooth: true
     locale: en_US.UTF-8
     timezone: America/New_York
