@@ -10,6 +10,7 @@
   kewlfft.aur.aur:
     name:
       - steam-hdr
+      - steam-native-runtime
     use: yay
   when: system_distribution == "arch"
   become: true
