@@ -59,7 +59,7 @@ system:
     timezone: America/New_York
     processor: amd
     graphics_card: amd
-    macspoof: disabled
+    macspoof: false
 
 ##
 # Firewall configuration

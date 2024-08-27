@@ -29,7 +29,7 @@
 #    - { role: gnupg, tags: ["gnupg"] }
     - { role: jetbrains, tags: ["jetbrains"], when: install_jetbrains == true }
     - { role: keepass, tags: ["keepass"], when: keepass == true }
-    - { role: macspoof, tags: ["macspoof"], when: system.macspoof == "enabled" }
+    - { role: macspoof, tags: ["macspoof"], when: system.macspoof == true }
     - { role: mail, tags: ["mail"], when: system_type == "desktop" }
     - { role: messengers, tags: ["messengers"], when: system_type == "desktop" }
     - { role: photography, tags: ["photography"], when: system_type == "desktop" }
