@@ -79,7 +79,9 @@
       - kde-dev-utils
       - kde-inotify-survey
       - kdebugsettings
-      - kdeconnect
+      - qt6-connectivity
+      - kpeople
+      - libfakekey
       - kdegraphics-thumbnailers
       - kdenetwork-filesharing
       - kdenlive
@@ -168,6 +170,7 @@
   kewlfft.aur.aur:
       name:
           - plasma-gamemode-git
+          - kdeconnect-no-mdns
       use: yay
   when: system.games == true
   become: true
