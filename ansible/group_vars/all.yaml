@@ -293,6 +293,7 @@ misc_packages:
     - xfsprogs
     - yaml-language-server
     - exfatprogs
+    - snapper
 
 ##
 # Misc. AUR packages
@@ -308,6 +309,7 @@ aur_packages:
     - winbox
     - visual-studio-code-bin
     - easyeffects
+    - btrfsmaintenance
 
 ##
 # Gaming packages
