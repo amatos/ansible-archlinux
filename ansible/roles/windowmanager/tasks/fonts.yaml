@@ -21,6 +21,7 @@
       name:
           - ttf-meslo-nerd-font-powerlevel10k
           - apple-fonts
+          - subversion
           - nerd-fonts-sf-mono
           - ttf-mac-fonts
       use: yay
