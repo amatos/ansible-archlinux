@@ -296,6 +296,7 @@ misc_packages:
     - pacman-contrib
     - pacutils
     - snapper
+    - snap-pac
 
 ##
 # Misc. AUR packages
