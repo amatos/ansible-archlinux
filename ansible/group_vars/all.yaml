@@ -49,9 +49,11 @@ user:
 #   Option: "amd" will install amd drivers
 #   Option: "nvidia" will install nouveau because i will NEVER EVER touch those filthy nvidia drivers
 #                    if you wan't proprietary drivers follow the steps documented in the arch wiki.
+# pacoloco: Install custom pacoloco mirror
 ##
 system:
     pacman: true
+    pacoloco: false
     makepkg: true
     games: true
     bluetooth: true
