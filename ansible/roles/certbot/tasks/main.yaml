@@ -6,15 +6,58 @@
   with_items:
       - certbot
       - certbot-dns-luadns
-  when: letsencrypt == true
+  when: system.certbot == true
   register: task_result
   until: task_result is success
   retries: 10
   delay: 2
+
+- name: Create /etc/letsencrypt directory
+  ansible.builtin.file:
+      path: /etc/letsencrypt
+      state: directory
+      mode: "0755"
+      owner: root
+      group: root
+  register: created_letsencrypt_dir
 
 - name: Create /etc/letsencrypt/renewal-hooks/deploy/ directory
   ansible.builtin.file:
       path: /etc/letsencrypt/renewal-hooks/deploy/
       state: directory
       mode: "0755"
+      owner: root
+      group: root
   register: created_renewal_hooks_deploy_dir
+
+- name: Copy luadns API key
+  ansible.builtin.copy:
+      src: luadns.credentials
+      dest: /etc/letsencrypt/
+      mode: "0600"
+      owner: root
+      group: root
+
+- name: Copy cockpit deployment hook
+  ansible.builtin.copy:
+      src: 01-cockpit.sh
+      dest: /etc/letsencrypt/renewal-hooks/deploy/
+      mode: "0750"
+      owner: root
+      group: root
+
+- name: Copy postfix deployment hook
+  ansible.builtin.copy:
+      src: 10-postfix.sh
+      dest: /etc/letsencrypt/renewal-hooks/deploy/
+      mode: "0750"
+      owner: root
+      group: root
+
+- name: Copy syncthing deployment hook
+  ansible.builtin.copy:
+      src: 20-syncthing-alberth.sh
+      dest: /etc/letsencrypt/renewal-hooks/deploy/
+      mode: "0750"
+      owner: alberth
+      group: alberth
