@@ -140,7 +140,6 @@ install_jetbrains: false
 base_packages:
   - avahi
   - base-devel
-  - bc
   - bind
   - btop
   - chrony
@@ -152,13 +151,13 @@ base_packages:
   - coreutils
   - cronie
   - curl
-  - darkman
   - dateutils
   - fish
   - fwupd
   - geoclue
   - git
   - go
+  - jdk-openjdk
   - links
   - lsof
   - man-db
@@ -181,11 +180,9 @@ base_packages:
   - ruby
   - rust
   - strace
-  - subversion
   - sysstat
   - texinfo
   - tmux
-  - variety
   - zsh
 ##
 # Misc. packages
@@ -193,6 +190,7 @@ base_packages:
 ##
 misc_packages:
   - ansible-language-server
+  - ansible-lint
   - argyllcms
   - aria2
   - arj
@@ -200,12 +198,11 @@ misc_packages:
   - bash-completion
   - bash-language-server
   - bat
-  - beanshell
+  - bc
   - catdoc
   - ccache
   - cdrdao
   - cdrtools
-  - coin-or-mp
   - colord-sane
   - cowsay
   - ctags
@@ -213,6 +210,7 @@ misc_packages:
   - dosfstools
   - dvd+rw-tools
   - emovix
+  - exfatprogs
   - eza
   - f2fs-tools
   - fatresize
@@ -223,10 +221,6 @@ misc_packages:
   - geoipupdate
   - git-delta
   - graphviz
-  - gst-plugins-bad
-  - gst-plugins-good
-  - gst-plugins-ugly
-  - gtk4
   - gum
   - hunspell-en_us
   - inotify-tools
@@ -237,9 +231,8 @@ misc_packages:
   - libdvdcss
   - libgtop
   - libid3tag
-  - libmythes
+  - libsynctex
   - libwmf
-  - libwpg
   - lolcat
   - lrzip
   - lua-language-server
@@ -251,24 +244,29 @@ misc_packages:
   - ntfs-3g
   - opencv
   - openmp
-  - openrgb
   - opentimelineio
   - p7zip
+  - pacman-contrib
+  - pacutils
   - pbzip2
   - pigz
   - pkgfile
   - power-profiles-daemon
-  - prison5
   - pstoedit
   - python-lsp-server
   - python-setuptools
   - ruby-docs
   - sane-airscan
   - shellcheck
+  - snap-pac
+  - snapper
   - speech-dispatcher
   - sshfs
   - starship
   - strace
+  - subversion
+  - tesseract
+  - tesseract-data-eng
   - tesseract-data-por
   - udftools
   - unarchiver
@@ -277,13 +275,8 @@ misc_packages:
   - wget
   - xfsprogs
   - yaml-language-server
-  - exfatprogs
-  - pacman-contrib
-  - pacutils
-  - snapper
-  - snap-pac
   - yamlfmt
-  - ctags
+  - yamllint
 ##
 # Misc. AUR packages
 # ==============
@@ -294,10 +287,6 @@ aur_packages:
   - hunspell-pt-br
   - perl-bundle-camelcade
   - perl-devel-camelcadedb
-  - winbox
-  - visual-studio-code-bin
-  - easyeffects
-  - btrfsmaintenance
 ##
 # Gaming packages
 # ===============

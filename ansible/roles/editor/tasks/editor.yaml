@@ -17,9 +17,24 @@
   when: system_type == "desktop"
 - name: install Libre Office (fresh)
   pacman:
-    name: libreoffice-fresh
+    name: "{{ item }}"
     state: present
-  when: system_type == "desktop"
+  with_items:
+    - libreoffice-fresh
+    - beanshell
+    - coin-or-mp
+    - gst-plugins-base-libs
+    - libmythes
+    - libpaper
+    - libwpg
+    - pstoedit
+    - rhino
+    - sane
+  state: present
+  register: task_result
+  until: task_result is success
+  retries: 10
+  delay: 2
 - name: install VSCode
   kewlfft.aur.aur:
     name:

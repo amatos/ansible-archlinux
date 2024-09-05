@@ -3,14 +3,21 @@
     name: "{{ item }}"
     state: present
   with_items:
-    - variety
+    - btrfs-assistant
     - darkman
     - gst-plugins-bad
     - gst-plugins-good
     - gst-plugins-ugly
     - gtk4
+    - mupdf
+    - mupdf-tools
+    - openrgb
+    - prison5
     - trash-cli
-    - btrfs-assistant
+    - variety
+    - zathura-cb
+    - zathura-pdf-mupdf
+    - zathura-ps
   register: task_result
   until: task_result is success
   retries: 10
@@ -22,4 +29,8 @@
   become: true
   become_user: "{{ user.name }}"
   with_items:
+    - btrfsmaintenance
+    - easyeffects
     - raw-thumbnailer
+    - visual-studio-code-bin
+    - winbox

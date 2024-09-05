@@ -1,30 +1,27 @@
----
 - name: install fonts
   pacman:
-      name: "{{ item }}"
-      state: present
+    name: "{{ item }}"
+    state: present
   with_items:
-      - ttf-dejavu
-      - ttf-liberation
-      - ttf-droid
-      - noto-fonts-emoji
-      - fontconfig
-      - xorg-font-util
-      - ttf-font-awesome
+    - fontconfig
+    - noto-fonts-emoji
+    - ttf-dejavu
+    - ttf-droid
+    - ttf-font-awesome
+    - ttf-liberation
+    - xorg-font-util
   register: task_result
   until: task_result is success
   retries: 10
   delay: 2
-
 - name: install aur fonts
   kewlfft.aur.aur:
-      name:
-          - ttf-meslo-nerd-font-powerlevel10k
-          - apple-fonts
-          - subversion
-          - nerd-fonts-sf-mono
-          - ttf-mac-fonts
-      use: yay
+    name:
+      - apple-fonts
+      - nerd-fonts-sf-mono
+      - ttf-mac-fonts
+      - ttf-meslo-nerd-font-powerlevel10k
+    use: yay
   become: true
   become_user: "{{ user.name }}"
   register: task_result

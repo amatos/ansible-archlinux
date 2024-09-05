@@ -1,31 +1,29 @@
----
 - name: install i3 windowmanager and components
   pacman:
-      name: "{{ item }}"
-      state: present
+    name: "{{ item }}"
+    state: present
   with_items:
-      - xorg
-      - xorg-xinit
-      - i3-gaps
-      - i3lock
-      - i3status-rust
-      - dmenu
-      - feh
-      - dunst
-      - rofi
-      - compton
+    - compton
+    - dmenu
+    - dunst
+    - feh
+    - i3-gaps
+    - i3lock
+    - i3status-rust
+    - rofi
+    - xorg
+    - xorg-xinit
   register: task_result
   until: task_result is success
   retries: 10
   delay: 2
-
 - name: install i3lock fancy and glitchlock from aur
   kewlfft.aur.aur:
-      name:
-          - i3lock-fancy-dualmonitors-git
-          - glitchlock
-          - rofi-power-menu
-      use: yay
+    name:
+      - i3lock-fancy-dualmonitors-git
+      - glitchlock
+      - rofi-power-menu
+    use: yay
   become: true
   become_user: "{{ user.name }}"
   register: task_result
@@ -33,21 +31,19 @@
   retries: 10
   delay: 2
   with_items:
-
 - name: create i3wm configuration directory and util subdirectory
   ansible.builtin.file:
-      name: /home/{{ user.name }}/.i3/util
-      state: directory
-      owner: "{{ user.name }}"
-      group: "{{ user.group }}"
-
+    name: /home/{{ user.name }}/.i3/util
+    state: directory
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
 - name: copy X11 config
   ansible.builtin.copy:
-      src: "{{ item }}"
-      dest: /etc/X11/xorg.conf.d/
-      owner: root
-      group: root
+    src: "{{ item }}"
+    dest: /etc/X11/xorg.conf.d/
+    owner: root
+    group: root
   with_items:
-      - 00-keyboard.conf
-      - 50-mouse-acceleration.conf
-      - 50-mouse-deceleration.conf
+    - 00-keyboard.conf
+    - 50-mouse-acceleration.conf
+    - 50-mouse-deceleration.conf
