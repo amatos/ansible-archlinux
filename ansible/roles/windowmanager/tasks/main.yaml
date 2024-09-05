@@ -1,9 +1,10 @@
----
 - ansible.builtin.import_tasks: fonts.yaml
   name: fonts
-
 - ansible.builtin.import_tasks: kde.yaml
   name: kde
-
+  when: kde == true
+- ansible.builtin.import_tasks: kvantum.yaml
+  name: kvantum Qt6 theme engine
+  when: kde == true
 - ansible.builtin.import_tasks: common.yaml
   name: Common GUI packages

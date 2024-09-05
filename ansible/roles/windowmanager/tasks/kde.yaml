@@ -36,7 +36,6 @@
       - sddm
       - sddm-kcm
       - xdg-desktop-portal-kde
-  when: kde == true
   register: task_result
   until: task_result is success
   retries: 10
@@ -178,7 +177,6 @@
       - tokodon
       - xwaylandvideobridge
       - yakuake
-  when: kde == true
   register: task_result
   until: task_result is success
   retries: 10
