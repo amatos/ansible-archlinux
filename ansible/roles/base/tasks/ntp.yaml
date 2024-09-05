@@ -1,46 +1,39 @@
----
 - name: Install chrony (ntp) daemon
   pacman:
-      name: chrony
-      state: present
+    name: chrony
+    state: present
   register: install
   until: install is success
   retries: 10
   delay: 2
   notify: rkhunter propupdate
-
 - name: Configure ntp source
   ansible.builtin.copy: src=chrony.conf dest=/etc/
   notify:
-      - restart chrony
-
+    - restart chrony
 - name: Make sure chrony is stopped
   ansible.builtin.service:
-      name: chronyd
-      state: stopped
-      enabled: true
+    name: chronyd
+    state: stopped
+    enabled: true
   when: install is changed # noqa: no-handler
-
 - name: Start chrony back up
   ansible.builtin.service:
-      name: chronyd
-      state: started
-      enabled: true
+    name: chronyd
+    state: started
+    enabled: true
   when: install is changed # noqa: no-handler
-
 - name: Sync time to hwclock
   ansible.builtin.command: hwclock --systohc
   when: install is changed # noqa: no-handler
-
 - name: Set NetworkManager to update timesyncd time servers
   ansible.builtin.copy:
-      src: 10-update-timesyncd
-      dest: /etc/NetworkManager/dispatcher.d/10-update-timesyncd
+    src: 10-update-timesyncd
+    dest: /etc/NetworkManager/dispatcher.d/10-update-timesyncd
   register: updated_timesyncd
-
 - name: Start systemd-timesyncd back up
   ansible.builtin.service:
-      name: systemd-timesyncd
-      state: started
-      enabled: true
+    name: systemd-timesyncd
+    state: started
+    enabled: true
   when: updated_timesyncd

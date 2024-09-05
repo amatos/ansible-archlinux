@@ -1,27 +1,25 @@
----
 - name: install additional GUI packages common to all environments
   pacman:
-      name: "{{ item }}"
-      state: present
+    name: "{{ item }}"
+    state: present
   with_items:
-      - variety
-      - darkman
-      - gst-plugins-bad
-      - gst-plugins-good
-      - gst-plugins-ugly
-      - gtk4
-      - trash-cli
-      - btrfs-assistant
+    - variety
+    - darkman
+    - gst-plugins-bad
+    - gst-plugins-good
+    - gst-plugins-ugly
+    - gtk4
+    - trash-cli
+    - btrfs-assistant
   register: task_result
   until: task_result is success
   retries: 10
   delay: 2
-
 - name: install additional GUI packages common to all environments from aur
   kewlfft.aur.aur:
-      name: "{{ item }}"
-      use: yay
+    name: "{{ item }}"
+    use: yay
   become: true
   become_user: "{{ user.name }}"
   with_items:
-      - raw-thumbnailer
+    - raw-thumbnailer

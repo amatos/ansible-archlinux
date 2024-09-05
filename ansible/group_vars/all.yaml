@@ -6,7 +6,6 @@
 #   "server", secure and simple install.
 ###
 system_type: "desktop"
-
 # Arch distribution
 # ====================
 # IMPORTANT:  Changing this from "arch" will override some settings below.
@@ -15,7 +14,6 @@ system_type: "desktop"
 #   "cachyos", CachyOS
 ###
 system_distribution: "arch"
-
 ##
 # Linux Kernel
 # ============
@@ -28,16 +26,14 @@ system_distribution: "arch"
 # Leave this blank for CachyOS or other systems where you don't want to specify a kernel.
 ##
 kernel: "linux-zen"
-
 ##
 # User configuration
 # ==================
 ##
 user:
-    name: alberth
-    group: users
-    shell: /bin/fish
-
+  name: alberth
+  group: users
+  shell: /bin/fish
 ##
 # System configuration
 # ====================
@@ -52,24 +48,22 @@ user:
 # pacoloco: Install custom pacoloco mirror
 ##
 system:
-    pacman: true
-    pacoloco: false
-    makepkg: true
-    games: true
-    bluetooth: true
-    locale: "en_US.UTF-8"
-    timezone: "America/New_York"
-    processor: "amd"
-    graphics_card: "amd"
-    macspoof: false
-
+  pacman: true
+  pacoloco: false
+  makepkg: true
+  games: true
+  bluetooth: true
+  locale: "en_US.UTF-8"
+  timezone: "America/New_York"
+  processor: "amd"
+  graphics_card: "amd"
+  macspoof: false
 ##
 # Firewall configuration
 # ========================
 # ufw and firewalld are supported
 ##
 firewall: "firewalld"
-
 ##
 # Use Oracle BPFTune
 # ==================
@@ -78,28 +72,24 @@ firewall: "firewalld"
 # So, if this is enabled, we DO NOT apply custom sysctl parameters.
 ##
 use_bpftune: true
-
 ##
 # Bootloader configuration
 # ========================
 # refind and grub are supported
 ##
 bootloader: "refind"
-
 ##
 # Connectivity configuration
 # ==========================
 ##
 ssh:
-    port: 22
-    enable_sshd: true
-
+  port: 22
+  enable_sshd: true
 ##
 # Use systemd-resolved stub DNS resolver (and cache)
 # =================
 ##
 resolved_stub: true
-
 ##
 # Dotfile configuration
 # =====================
@@ -107,18 +97,16 @@ resolved_stub: true
 # Just set the installation flag to false to avoid an installation
 ##
 dotfiles:
-    installation: false
-    url: https://github.com/amatos/dotfiles.git
-    destination: .dotfiles
-    rcup_flags: -fx README.md
-
+  installation: false
+  url: https://github.com/amatos/dotfiles.git
+  destination: .dotfiles
+  rcup_flags: -fx README.md
 ##
 # Install Keypassxc
 # =================
 # true/false to installing keypassxc
 ##
 keepass: false
-
 ##
 # Install KDE
 # =================
@@ -127,222 +115,215 @@ keepass: false
 ##
 kde: true
 kdepim: true
-
 ##
 # Install thunderbird
 # ===================
 # true/false to install thunderbird
 ##
 thunderbird: false
-
 ##
 # Install gitkraken
 # =================
 # true/false to installing GitKraken
 ##
 gitkraken: true
-
 ##
 # Install JetBrains IDEs?
 # =================
 # true/false to installing CLion and IntelliJ
 ##
 install_jetbrains: false
-
 ##
 # Base package configuration
 # ==========================
 ##
 base_packages:
-    - avahi
-    - base-devel
-    - bc
-    - bind
-    - btop
-    - chrony
-    - cmake
-    - cockpit
-    - cockpit-packagekit
-    - cockpit-pcp
-    - cockpit-storaged
-    - coreutils
-    - cronie
-    - curl
-    - darkman
-    - dateutils
-    - fish
-    - fwupd
-    - geoclue
-    - git
-    - go
-    - links
-    - lsof
-    - man-db
-    - man-pages
-    - ninja
-    - nmap
-    - nodejs
-    - npm
-    - nss-mdns
-    - openssh
-    - pacman-contrib
-    - perl
-    - pkgstats
-    - python
-    - python-jmespath
-    - python-pipx
-    - reflector
-    - rkhunter
-    - rsync
-    - ruby
-    - rust
-    - strace
-    - subversion
-    - sysstat
-    - texinfo
-    - tmux
-    - variety
-    - zsh
-
+  - avahi
+  - base-devel
+  - bc
+  - bind
+  - btop
+  - chrony
+  - cmake
+  - cockpit
+  - cockpit-packagekit
+  - cockpit-pcp
+  - cockpit-storaged
+  - coreutils
+  - cronie
+  - curl
+  - darkman
+  - dateutils
+  - fish
+  - fwupd
+  - geoclue
+  - git
+  - go
+  - links
+  - lsof
+  - man-db
+  - man-pages
+  - ninja
+  - nmap
+  - nodejs
+  - npm
+  - nss-mdns
+  - openssh
+  - pacman-contrib
+  - perl
+  - pkgstats
+  - python
+  - python-jmespath
+  - python-pipx
+  - reflector
+  - rkhunter
+  - rsync
+  - ruby
+  - rust
+  - strace
+  - subversion
+  - sysstat
+  - texinfo
+  - tmux
+  - variety
+  - zsh
 ##
 # Misc. packages
 # ==============
 ##
-
 misc_packages:
-    - ansible-language-server
-    - argyllcms
-    - aria2
-    - arj
-    - atomicparsley
-    - bash-completion
-    - bash-language-server
-    - beanshell
-    - catdoc
-    - ccache
-    - cdrdao
-    - cdrtools
-    - coin-or-mp
-    - colord-sane
-    - cowsay
-    - ctags
-    - diff-so-fancy
-    - dosfstools
-    - dvd+rw-tools
-    - emovix
-    - eza
-    - f2fs-tools
-    - fatresize
-    - festival
-    - fortune-mod
-    - fzf
-    - gavl
-    - geoipupdate
-    - git-delta
-    - graphviz
-    - gst-plugins-bad
-    - gst-plugins-good
-    - gst-plugins-ugly
-    - gtk4
-    - gum
-    - hunspell-en_us
-    - inotify-tools
-    - jfsutils
-    - ladspa
-    - languagetool
-    - libappimage
-    - libdvdcss
-    - libgtop
-    - libid3tag
-    - libmythes
-    - libwmf
-    - libwpg
-    - lolcat
-    - lrzip
-    - lua-language-server
-    - lzop
-    - mediainfo
-    - mlocate
-    - movit
-    - nss-mdns
-    - ntfs-3g
-    - opencv
-    - openmp
-    - openrgb
-    - opentimelineio
-    - p7zip
-    - pbzip2
-    - pigz
-    - pkgfile
-    - power-profiles-daemon
-    - prison5
-    - pstoedit
-    - python-lsp-server
-    - python-setuptools
-    - ruby-docs
-    - sane-airscan
-    - shellcheck
-    - speech-dispatcher
-    - sshfs
-    - starship
-    - strace
-    - tesseract-data-por
-    - udftools
-    - unarchiver
-    - unzip
-    - vcdimager
-    - wget
-    - xfsprogs
-    - yaml-language-server
-    - exfatprogs
-    - pacman-contrib
-    - pacutils
-    - snapper
-    - snap-pac
-
+  - ansible-language-server
+  - argyllcms
+  - aria2
+  - arj
+  - atomicparsley
+  - bash-completion
+  - bash-language-server
+  - bat
+  - beanshell
+  - catdoc
+  - ccache
+  - cdrdao
+  - cdrtools
+  - coin-or-mp
+  - colord-sane
+  - cowsay
+  - ctags
+  - diff-so-fancy
+  - dosfstools
+  - dvd+rw-tools
+  - emovix
+  - eza
+  - f2fs-tools
+  - fatresize
+  - festival
+  - fortune-mod
+  - fzf
+  - gavl
+  - geoipupdate
+  - git-delta
+  - graphviz
+  - gst-plugins-bad
+  - gst-plugins-good
+  - gst-plugins-ugly
+  - gtk4
+  - gum
+  - hunspell-en_us
+  - inotify-tools
+  - jfsutils
+  - ladspa
+  - languagetool
+  - libappimage
+  - libdvdcss
+  - libgtop
+  - libid3tag
+  - libmythes
+  - libwmf
+  - libwpg
+  - lolcat
+  - lrzip
+  - lua-language-server
+  - lzop
+  - mediainfo
+  - mlocate
+  - movit
+  - nss-mdns
+  - ntfs-3g
+  - opencv
+  - openmp
+  - openrgb
+  - opentimelineio
+  - p7zip
+  - pbzip2
+  - pigz
+  - pkgfile
+  - power-profiles-daemon
+  - prison5
+  - pstoedit
+  - python-lsp-server
+  - python-setuptools
+  - ruby-docs
+  - sane-airscan
+  - shellcheck
+  - speech-dispatcher
+  - sshfs
+  - starship
+  - strace
+  - tesseract-data-por
+  - udftools
+  - unarchiver
+  - unzip
+  - vcdimager
+  - wget
+  - xfsprogs
+  - yaml-language-server
+  - exfatprogs
+  - pacman-contrib
+  - pacutils
+  - snapper
+  - snap-pac
+  - yamlfmt
+  - ctags
 ##
 # Misc. AUR packages
 # ==============
 ##
-
 aur_packages:
-    - ansible-gpg-key-git
-    - find-the-command
-    - hunspell-pt-br
-    - perl-bundle-camelcade
-    - perl-devel-camelcadedb
-    - winbox
-    - visual-studio-code-bin
-    - easyeffects
-    - btrfsmaintenance
-
+  - ansible-gpg-key-git
+  - find-the-command
+  - hunspell-pt-br
+  - perl-bundle-camelcade
+  - perl-devel-camelcadedb
+  - winbox
+  - visual-studio-code-bin
+  - easyeffects
+  - btrfsmaintenance
 ##
 # Gaming packages
 # ===============
 ##
-
 gaming_packages:
-    - heroic-games-launcher-bin
-    - protonup-qt
-    - reshade-shaders-git
-    - steamtinkerlaunch
-    - vkbasalt
-    - vkbasalt-cli
-    - lib32-vkbasalt
-    - gamemode
-    - gamescope
-    - goverlay
-    - lib32-dbus
-    - lib32-glu
-    - lib32-libcurl-compat
-    - lib32-mesa
-    - lib32-nss
-    - lib32-systemd
-    - libva-mesa-driver
-    - lutris
-    - mangohud
-    - mesa
-    - sndio
-    - steam
-    - v4l2loopback-dkms
-    - wf-recorder
+  - heroic-games-launcher-bin
+  - protonup-qt
+  - reshade-shaders-git
+  - steamtinkerlaunch
+  - vkbasalt
+  - vkbasalt-cli
+  - lib32-vkbasalt
+  - gamemode
+  - gamescope
+  - goverlay
+  - lib32-dbus
+  - lib32-glu
+  - lib32-libcurl-compat
+  - lib32-mesa
+  - lib32-nss
+  - lib32-systemd
+  - libva-mesa-driver
+  - lutris
+  - mangohud
+  - mesa
+  - sndio
+  - steam
+  - v4l2loopback-dkms
+  - wf-recorder
