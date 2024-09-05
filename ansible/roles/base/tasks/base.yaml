@@ -1,15 +1,15 @@
 - name: Pacman config setup
-  when: (system.pacman == true) and (system_distribution == "arch")
+  when: system.pacman == true
   ansible.builtin.copy:
     src: pacman.conf
     dest: /etc/
 - name: Adding pacoloco config file for hugin
-  when: (system.pacoloco == true) and (system_distribution == "arch")
+  when: system.pacoloco == true
   ansible.builtin.copy:
     src: pacoloco-huginn
     dest: /etc/pacman.d/pacoloco
 - name: Adding empty pacoloco config file
-  when: (system.pacoloco == true) and (system_distribution == "arch")
+  when: system.pacoloco == false
   ansible.builtin.copy:
     src: pacoloco-empty
     dest: /etc/pacman.d/pacoloco
