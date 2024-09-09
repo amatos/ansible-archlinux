@@ -1,10 +1,4 @@
----
 - name: Install calibre
   pacman:
-      name: calibre
-      state: present
-
-- name: Install evince
-  pacman:
-      name: evince
-      state: present
+    name: calibre
+    state: present
