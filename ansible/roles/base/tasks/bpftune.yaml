@@ -1,0 +1,7 @@
+- name: Install bpftune
+  kewlfft.aur.aur:
+    name:
+      - bpftune-git
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
