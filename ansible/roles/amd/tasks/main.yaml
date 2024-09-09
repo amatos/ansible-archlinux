@@ -11,3 +11,14 @@
     - rocm-smi-lib
     - rocminfo
     - hsa-rocr
+- name: Deploy power-dpm systemd service
+  ansible.builtin.copy:
+    src: power-dpm.service
+    dest: /usr/lib/systemd/system/
+  when: Deployed power-dpm systemd service
+- name: power-dpm systemd
+  ansible.builtin.systemd_service:
+    enabled: true
+    state: started
+    daemon_reload: true
+    name: power-pdm
