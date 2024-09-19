@@ -30,6 +30,7 @@
   ansible.builtin.copy:
     src: 10-update-timesyncd
     dest: /etc/NetworkManager/dispatcher.d/10-update-timesyncd
+    mode: "0755"
   register: updated_timesyncd
 - name: Start systemd-timesyncd back up
   ansible.builtin.service:
