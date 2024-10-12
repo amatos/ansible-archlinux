@@ -46,10 +46,11 @@ user:
 #   Option: "nvidia" will install nouveau because i will NEVER EVER touch those filthy nvidia drivers
 #                    if you wan't proprietary drivers follow the steps documented in the arch wiki.
 # pacoloco: Install custom pacoloco mirror
+# cockpit:  Install web management UI
 ##
 system:
   pacman: true
-  pacoloco: false
+  pacoloco: true
   makepkg: true
   cockpit: true
   games: true
