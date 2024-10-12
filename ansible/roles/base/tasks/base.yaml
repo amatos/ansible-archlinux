@@ -156,7 +156,7 @@
 - name: Deploy /boot pre hook
   ansible.builtin.copy:
     src: backup_boot_pre.hook
-    dest: /etc/pacman.d/hooks/95-backup_boot_pre.hook
+    dest: /etc/pacman.d/hooks/55-backup_boot_pre.hook
   when: created_pacman_hooks_dir
 - name: Deploy /boot post hook
   ansible.builtin.copy:
@@ -166,7 +166,7 @@
 - name: Deploy /boot pre hook
   ansible.builtin.copy:
     src: backup_efi_pre.hook
-    dest: /etc/pacman.d/hooks/95-backup_efi_pre.hook
+    dest: /etc/pacman.d/hooks/55-backup_efi_pre.hook
   when: created_pacman_hooks_dir
 - name: Deploy /efi post hook
   ansible.builtin.copy:
