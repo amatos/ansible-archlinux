@@ -81,6 +81,13 @@ use_bpftune: true
 ##
 bootloader: "refind"
 ##
+# Cryptdevice config
+# ========================
+# The device name of your luks device
+##
+#cryptdevice: /dev/nvmen1p2
+cryptdevice: false
+##
 # Connectivity configuration
 # ==========================
 ##
