@@ -5,7 +5,6 @@
     name:
       - ethtool
       - wpa_supplicant
-      - dhcpcd
       - nmap
       - iwd
       - networkmanager
