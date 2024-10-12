@@ -51,6 +51,7 @@ system:
   pacman: true
   pacoloco: false
   makepkg: true
+  cockpit: true
   games: true
   bluetooth: true
   locale: "en_US.UTF-8"
@@ -144,10 +145,6 @@ base_packages:
   - btop
   - chrony
   - cmake
-  - cockpit
-  - cockpit-packagekit
-  - cockpit-pcp
-  - cockpit-storaged
   - coreutils
   - cronie
   - curl

@@ -13,3 +13,5 @@
 - ansible.builtin.import_tasks: makepkg.yaml
   name: Local system customizations -- /etc/makepkg.conf
   when: (system.makepkg == true) and (system_distribution == "arch")
+- ansible.builtin.import_tasks: cockpit.yaml
+  name: cockpit
