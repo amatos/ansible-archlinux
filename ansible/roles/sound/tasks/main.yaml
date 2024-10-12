@@ -1,6 +1,6 @@
 ---
 - name: Install alsa-utils and pipewire tools
-  pacman:
+  community.general.pacman:
       name: "{{ item }}"
       state: present
   with_items:

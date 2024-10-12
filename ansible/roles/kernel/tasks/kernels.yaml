@@ -1,5 +1,5 @@
 - name: Install linux kernel and headers
-  pacman:
+  community.general.pacman:
       name:
           - linux
           - linux-headers
@@ -10,7 +10,7 @@
       - regenerate initramfs
 
 - name: Install linux-hardened and hardened headers
-  pacman:
+  community.general.pacman:
       name:
           - linux-hardened
           - linux-hardened-headers
@@ -21,7 +21,7 @@
       - regenerate initramfs
 
 - name: Install linux-zen and zen headers
-  pacman:
+  community.general.pacman:
       name:
           - linux-zen
           - linux-zen-headers

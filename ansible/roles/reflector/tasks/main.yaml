@@ -1,6 +1,6 @@
 ---
 - name: Install reflector
-  pacman:
+  community.general.pacman:
       name: reflector
       state: present
   register: task_result

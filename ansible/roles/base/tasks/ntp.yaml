@@ -1,5 +1,5 @@
 - name: Install chrony (ntp) daemon
-  pacman:
+  community.general.pacman:
     name: chrony
     state: present
   register: install

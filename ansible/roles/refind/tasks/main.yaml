@@ -1,6 +1,6 @@
 ---
 - name: Install rEFInd bootloader and tools
-  pacman:
+  community.general.pacman:
       name: refind
       state: present
   when: bootloader == "refind"

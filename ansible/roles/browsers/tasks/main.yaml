@@ -1,6 +1,6 @@
 ---
 - name: Install Firefox and Profile Sync Daemon
-  pacman:
+  community.general.pacman:
       name: firefox
       state: present
   tags:

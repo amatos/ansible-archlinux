@@ -1,5 +1,5 @@
 - name: install neovim
-  pacman:
+  community.general.pacman:
     name: neovim
     state: present
 - name: install Sublime Text
@@ -11,12 +11,12 @@
   become_user: "{{ user.name }}"
   when: system_type == "desktop"
 - name: install obsidian
-  pacman:
+  community.general.pacman:
     name: obsidian
     state: present
   when: system_type == "desktop"
 - name: install Libre Office (fresh)
-  pacman:
+  community.general.pacman:
     name: "{{ item }}"
     state: present
   with_items:

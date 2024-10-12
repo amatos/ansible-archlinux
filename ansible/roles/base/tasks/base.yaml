@@ -14,14 +14,14 @@
     src: pacoloco-empty
     dest: /etc/pacman.d/pacoloco
 - name: Update pacman package cache
-  pacman:
+  community.general.pacman:
     update_cache: true
   register: task_result
   until: task_result is success
   retries: 10
   delay: 2
 - name: Perform full system upgrade
-  pacman:
+  community.general.pacman:
     update_cache: true
     upgrade: true
   register: task_result
@@ -31,7 +31,7 @@
   notify:
     - rkhunter propupdate
 - name: Install base packages
-  pacman:
+  community.general.pacman:
     name: "{{ base_packages }}"
     state: present
   register: task_result
@@ -51,7 +51,7 @@
   retries: 10
   delay: 2
 - name: Install sbctl for easy secure boot management
-  pacman:
+  community.general.pacman:
     name:
       - sbctl
     state: present
@@ -60,7 +60,7 @@
   retries: 10
   delay: 2
 - name: Install microcode updates for intel (if necessary)
-  pacman:
+  community.general.pacman:
     name: intel-ucode
     state: present
   register: task_result
@@ -72,7 +72,7 @@
     - regenerate initramfs
   when: (system.processor == "intel") and (system_distribution == "arch")
 - name: Install microcode updates for amd (if necessary)
-  pacman:
+  community.general.pacman:
     name: amd-ucode
     state: present
   register: task_result
@@ -89,7 +89,7 @@
   ansible.builtin.service: name=sshd state=started enabled=true
   when: ssh.enable_sshd == true
 - name: Install misc packages
-  pacman:
+  community.general.pacman:
     name: "{{ misc_packages }}"
     state: present
   register: task_result
@@ -140,7 +140,7 @@
     dest: /etc/pacman.d/hooks/
   when: created_pacman_hooks_dir
 - name: Install pacman-contrib
-  pacman:
+  community.general.pacman:
     name:
       - pacman-contrib
     state: present

@@ -1,7 +1,7 @@
 ---
 
 - name: Install Thunderbird and Profile Sync Daemon
-  pacman:
+  community.general.pacman:
     name:
       - thunderbird
       - profile-sync-daemon

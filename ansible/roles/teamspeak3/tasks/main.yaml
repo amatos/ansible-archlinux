@@ -1,7 +1,7 @@
 ---
 
 - name: install teamspeak3 communication software
-  pacman:
+  community.general.pacman:
     name: teamspeak3
     state: present
   register: task_result

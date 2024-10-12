@@ -1,7 +1,7 @@
 ---
 
 - name: Install Syncthing
-  pacman:
+  community.general.pacman:
     name: "{{ item }}"
   with_items:
     - syncthing

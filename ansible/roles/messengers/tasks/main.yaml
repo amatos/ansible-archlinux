@@ -1,6 +1,6 @@
 ---
 - name: Install signal-desktop and discord
-  pacman:
+  community.general.pacman:
     name: "{{ item }}"
     state: present
   with_items:

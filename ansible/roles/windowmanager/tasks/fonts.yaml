@@ -1,5 +1,5 @@
 - name: install fonts
-  pacman:
+  community.general.pacman:
     name: "{{ item }}"
     state: present
   with_items:

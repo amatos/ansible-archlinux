@@ -1,6 +1,6 @@
 ---
 - name: Install ZSH with completion and syntax
-  pacman:
+  community.general.pacman:
     name: "{{ item }}"
     state: present
   with_items:

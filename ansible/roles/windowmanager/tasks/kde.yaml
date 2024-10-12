@@ -1,5 +1,5 @@
 - name: install KDE Plasma meta package
-  pacman:
+  community.general.pacman:
     name: "{{ item }}"
     state: present
   with_items:
@@ -40,7 +40,7 @@
   retries: 10
   delay: 2
 - name: install KDE PIM
-  pacman:
+  community.general.pacman:
     name: "{{ item }}"
     state: present
   with_items:
@@ -64,7 +64,7 @@
   retries: 10
   delay: 2
 - name: install KDE additions
-  pacman:
+  community.general.pacman:
     name: "{{ item }}"
     state: present
   with_items:

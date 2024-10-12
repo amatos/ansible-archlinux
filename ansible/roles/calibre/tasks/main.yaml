@@ -1,4 +1,4 @@
 - name: Install calibre
-  pacman:
+  community.general.pacman:
     name: calibre
     state: present
