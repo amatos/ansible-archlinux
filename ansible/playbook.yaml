@@ -30,6 +30,7 @@
     - {role: mail, tags: ["mail"], when: system_type == "desktop"}
     - {role: messengers, tags: ["messengers"], when: system_type == "desktop"}
     - {role: photography, tags: ["photography"], when: system_type == "desktop"}
+    - {role: qemu, tags: ["qemu"], install_qemu == true: ''}
     - {role: redshift, tags: ["redshift"], when: (kde == false) and (system_type == "desktop")}
     - {role: sound, tags: ["sound"], when: system_type == "desktop"}
     - {role: spotify, tags: ["spotify"], when: system_type == "desktop"}
