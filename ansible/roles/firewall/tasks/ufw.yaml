@@ -27,21 +27,27 @@
 #     rule: allow
 #     name: SSH
 #     delete: true
-- community.general.ufw:
+- name: Add ufw rule for syncthing
+  community.general.ufw:
     rule: allow
     name: syncthing
-- community.general.ufw:
+- name: Add ufw rule for mdns
+  community.general.ufw:
     rule: allow
     name: Bonjour
-- community.general.ufw:
+- name: Add ufw rule for KTorrent
+  community.general.ufw:
     rule: allow
     name: KTorrent
-- community.general.ufw:
+- name: Add ufw rule for VNC
+  community.general.ufw:
     rule: allow
     name: VNC
-- community.general.ufw:
+- name: Add ufw rule for qBittorrent
+  community.general.ufw:
     rule: allow
     name: qBittorrent
-- community.general.ufw:
+- name: Add ufw rule for syncthing-gui
+  community.general.ufw:
     rule: allow
     name: syncthing-gui
