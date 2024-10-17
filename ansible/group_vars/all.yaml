@@ -29,14 +29,14 @@ user:
 ##
 # System configuration
 # ====================
-# processor type:
+#
 # type:  ***IMPORTANT:  Setting this to server will override any desktop settings below***
 #   "desktop", install additional items associated with a desktop environment
 #   "server", secure and simple install.
 # processor:
 #   Option: "intel" will install microcode updates and configure the bootloader accordingly
 #   Option: "amd" will do the same for amd
-# graphics_card type:
+# graphics_card:
 #   Option: "intel" will install intel graphics drivers
 #   Option: "amd" will install amd drivers
 #   Option: "nvidia" will install nouveau because i will NEVER EVER touch those filthy nvidia drivers
