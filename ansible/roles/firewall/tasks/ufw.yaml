@@ -51,3 +51,13 @@
   community.general.ufw:
     rule: allow
     name: syncthing-gui
+- name: Allow all access to 15678/tcp
+  ufw:
+    rule: allow
+    port: 15678
+    proto: tcp
+- name: Allow all access to 15679/udp
+  ufw:
+    rule: allow
+    port: 15679
+    proto: udp

@@ -13,7 +13,7 @@
     path: /etc/pacman.conf
     append_newline: true
     prepend_newline: true
-    insertafter: "(?m)#[multilib]\n#Include = /etc/pacman.d/mirrorlist"
+    insertafter: "(?m)#\\[multilib\\]\n#Include = /etc/pacman.d/mirrorlist"
     marker: "# {mark} MULTILIB PREFERENCES ANSIBLE MANAGED BLOCK"
     block: |
       [multilib]
@@ -43,6 +43,7 @@
     marker: "# {mark} CHAOTIC-AUR ANSIBLE MANAGED BLOCK"
     block: |
       [chaotic-aur]
+      SigLevel = PackageRequired
       Include = /etc/pacman.d/chaotic-mirrorlist
   when: base_pacman_complete
   register: packages_ready
@@ -72,8 +73,71 @@
       - powerpill
   become: true
   become_user: "{{ user.name }}"
-  register: task_result
-  until: task_result is success
+  register: powerpill_installed
+  until: powerpill_installed is success
   retries: 10
   delay: 2
   when: packages_ready
+- name: Install pacserve
+  kewlfft.aur.aur:
+    name:
+      - pacserve
+  become: true
+  become_user: "{{ user.name }}"
+  register: pacserve_installed
+  until: pacserve_installed is success
+  retries: 10
+  delay: 2
+  when: packages_ready
+- name: Start pacserve
+  ansible.builtin.service:
+    name: pacserve.service
+    state: started
+    enabled: true
+  when: pacserve_installed
+  register: pacserved
+- name: Add pacserve to pacman.conf -- core
+  ansible.builtin.blockinfile:
+    path: /etc/pacman.conf
+    insertafter: "\\[core\\]"
+    marker: "# {mark} core ANSIBLE MANAGED BLOCK"
+    block: |
+      SigLevel = PackageRequired
+      Include = /etc/pacman.d/pacserve
+  when: pacserve_installed
+- name: Add pacserve to pacman.conf -- extra
+  ansible.builtin.blockinfile:
+    path: /etc/pacman.conf
+    insertafter: "\\[extra\\]"
+    marker: "# {mark} extra ANSIBLE MANAGED BLOCK"
+    block: |
+      SigLevel = PackageRequired
+      Include = /etc/pacman.d/pacserve
+  when: pacserve_installed
+- name: Add pacserve to pacman.conf -- multilib
+  ansible.builtin.blockinfile:
+    path: /etc/pacman.conf
+    insertafter: "\\[multilib\\]"
+    marker: "# {mark} multilib ANSIBLE MANAGED BLOCK"
+    block: |
+      SigLevel = PackageRequired
+      Include = /etc/pacman.d/pacserve
+  when: pacserve_installed
+- name: Update pacserved.conf to use mdns
+  ansible.builtin.blockinfile:
+    path: /etc/pacserve/pacserve.service.conf
+    append_newline: true
+    prepend_newline: true
+    insertafter: "PACSERVE_ARGS=\"--multicast\""
+    marker: "# {mark} ANSIBLE MANAGED BLOCK"
+    block: |
+      PACSERVE_ARGS="--multicast --avahi"
+  when: pacserved
+  notify:
+    - restart pacserve
+- name: Update powerpill config to use pacserve
+  ansible.builtin.replace:
+    path: /etc/powerpill/powerpill.json
+    regexp: '(?m)"pacserve": {\n    "server": null\n  },'
+    replace: '"pacserve": {\n    "server": "http://localhost:15678"\n  },'
+  when: (powerpill_installed and pacserve_installed)

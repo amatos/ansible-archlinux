@@ -39,3 +39,13 @@
     - syncthing-relay
     - terraria
     - upnp-client
+- name: Adding pacserve ports to home zone rules
+  ansible.posix.firewalld:
+    zone: home
+    port: "{{ item }}"
+    permanent: true
+    state: enabled
+  with_items:
+    - 15678/tcp
+    - 15679/udp
+  when: pacserved

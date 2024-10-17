@@ -4,3 +4,5 @@
   ansible.builtin.service: name=ntpd state=restarted
 - name: restart chrony
   ansible.builtin.service: name=chronyd state=restarted
+- name: restart pacserve
+  ansible.builtin.service: name=pacserve state=restarted
