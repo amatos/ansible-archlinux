@@ -1,0 +1,78 @@
+- name: Update pacman.conf to print color, ILoveCandy, and use 9 parallel downloads
+  ansible.builtin.blockinfile:
+    path: /etc/pacman.conf
+    insertafter: "# Misc options"
+    block: |
+      Color
+      ILoveCandy
+      ParallelDownloads = 9
+    marker: "# {mark} MISC OPTIONS ANSIBLE MANAGED BLOCK"
+  register: base_pacman_part1
+- name: Update pacman.conf to enable multilib
+  ansible.builtin.blockinfile:
+    path: /etc/pacman.conf
+    append_newline: true
+    prepend_newline: true
+    insertafter: "(?m)#[multilib]\n#Include = /etc/pacman.d/mirrorlist"
+    marker: "# {mark} MULTILIB PREFERENCES ANSIBLE MANAGED BLOCK"
+    block: |
+      [multilib]
+      Include = /etc/pacman.d/mirrorlist
+  when: base_pacman_part1
+  register: base_pacman_complete
+- name: Register chaotic-aur key
+  ansible.builtin.command: pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+  register: got_chaotic_key
+- name: Sign chaotic-aur key
+  ansible.builtin.command: pacman-key --lsign-key 3056513887B78AEB
+  when: got_chaotic_key
+  register: signed_chaotic_key
+- name: Get chaotic-aur keyring
+  ansible.builtin.command: pacman --noconfirm -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
+  when: signed_chaotic_key
+  register: got_chaotic_keyring
+- name: Get chaotic-aur mirrorlist
+  ansible.builtin.command: pacman --noconfirm -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+  when: got_chaotic_keyring
+- name: Update pacman.conf to include chaotic-aur
+  ansible.builtin.blockinfile:
+    path: /etc/pacman.conf
+    append_newline: true
+    prepend_newline: true
+    insertafter: "EOF"
+    marker: "# {mark} CHAOTIC-AUR ANSIBLE MANAGED BLOCK"
+    block: |
+      [chaotic-aur]
+      Include = /etc/pacman.d/chaotic-mirrorlist
+  when: base_pacman_complete
+  register: packages_ready
+- name: Update pacman package cache
+  community.general.pacman:
+    update_cache: true
+  register: task_result
+  until: task_result is success
+  retries: 10
+  delay: 2
+  when: packages_ready
+- name: Install yay as aur helper
+  kewlfft.aur.aur:
+    name:
+      - yay
+  become: true
+  become_user: "{{ user.name }}"
+  register: task_result
+  until: task_result is success
+  retries: 10
+  delay: 2
+  when: packages_ready
+- name: Install powerpill
+  kewlfft.aur.aur:
+    name:
+      - powerpill
+  become: true
+  become_user: "{{ user.name }}"
+  register: task_result
+  until: task_result is success
+  retries: 10
+  delay: 2
+  when: packages_ready

@@ -1,6 +1,9 @@
 - ansible.builtin.import_tasks: userconfig.yaml
   name: userconfig
   when: system_distribution == "arch"
+- ansible.builtin.import_tasks: pacman.yaml
+  name: pacman
+  when: system_distribution == "arch"
 - ansible.builtin.import_tasks: base.yaml
   name: base
 - ansible.builtin.import_tasks: ntp.yaml

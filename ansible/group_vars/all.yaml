@@ -46,7 +46,7 @@ user:
 ##
 system:
   pacman: true
-  pacoloco: true
+  pacoloco: false
   makepkg: true
   cockpit: true
   games: true

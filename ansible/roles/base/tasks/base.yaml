@@ -1,25 +1,3 @@
-- name: Pacman config setup
-  when: system.pacman == true
-  ansible.builtin.copy:
-    src: pacman.conf
-    dest: /etc/
-- name: Adding pacoloco config file for hugin
-  when: system.pacoloco == true
-  ansible.builtin.copy:
-    src: pacoloco-huginn
-    dest: /etc/pacman.d/pacoloco
-- name: Adding empty pacoloco config file
-  when: system.pacoloco == false
-  ansible.builtin.copy:
-    src: pacoloco-empty
-    dest: /etc/pacman.d/pacoloco
-- name: Update pacman package cache
-  community.general.pacman:
-    update_cache: true
-  register: task_result
-  until: task_result is success
-  retries: 10
-  delay: 2
 - name: Perform full system upgrade
   community.general.pacman:
     update_cache: true
@@ -28,6 +6,7 @@
   until: task_result is success
   retries: 10
   delay: 2
+  when: packages_ready
   notify:
     - rkhunter propupdate
 - name: Install base packages
@@ -38,18 +17,9 @@
   until: task_result is success
   retries: 10
   delay: 2
+  when: packages_ready
   notify:
     - rkhunter propupdate
-- name: Install yay as aur helper
-  kewlfft.aur.aur:
-    name:
-      - yay
-  become: true
-  become_user: "{{ user.name }}"
-  register: task_result
-  until: task_result is success
-  retries: 10
-  delay: 2
 - name: Install sbctl for easy secure boot management
   community.general.pacman:
     name:
@@ -59,6 +29,7 @@
   until: task_result is success
   retries: 10
   delay: 2
+  when: packages_ready
 - name: Install microcode updates for intel (if necessary)
   community.general.pacman:
     name: intel-ucode
@@ -70,7 +41,7 @@
   notify:
     - update grub
     - regenerate initramfs
-  when: (system.processor == "intel") and (system_distribution == "arch")
+  when: (packages_ready and ((system.processor == "intel") and (system_distribution == "arch")))
 - name: Install microcode updates for amd (if necessary)
   community.general.pacman:
     name: amd-ucode
@@ -82,7 +53,7 @@
   notify:
     - update grub
     - regenerate initramfs
-  when: (system.processor == "amd") and (system_distribution == "arch")
+  when: (packages_ready and ((system.processor == "amd") and (system_distribution == "arch")))
 - name: Enable cronie server
   ansible.builtin.service: name=cronie state=started enabled=true
 - name: Enable ssh server
@@ -96,6 +67,7 @@
   until: task_result is success
   retries: 10
   delay: 2
+  when: packages_ready
   notify:
     - rkhunter propupdate
 - name: Install misc AUR packages
@@ -109,6 +81,7 @@
   until: task_result is success
   retries: 10
   delay: 2
+  when: packages_ready
   notify:
     - rkhunter propupdate
 - name: Configure sysctl
@@ -144,12 +117,14 @@
     name:
       - pacman-contrib
     state: present
-  register: task_result
-  until: task_result is success
+  register: pacman_contrib_ready
+  until: pacman_contrib_ready is success
   retries: 10
   delay: 2
+  when: packages_ready
 - name: Enable and start paccache to clean pacman caches
   ansible.builtin.service:
     name: paccache.timer
     enabled: true
     state: started
+  when: pacman_contrib_ready
