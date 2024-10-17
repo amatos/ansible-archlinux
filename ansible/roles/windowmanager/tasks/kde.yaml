@@ -190,7 +190,7 @@
 - name: amd-specific gaming items
   kewlfft.aur.aur:
     name:
-      - kdeconnect-no-mdns
+      - kdeconnect
       - plasma-gamemode-git
     use: yay
   when: system.games == true
