@@ -1,14 +1,13 @@
----
-
 - name: Install photography tools
   community.general.pacman:
+    executable: powerpill
     name: "{{ item }}"
     state: present
   with_items:
-      - gimp
-      - darktable
-      - rawtherapee
-      - shotwell
+    - gimp
+    - darktable
+    - rawtherapee
+    - shotwell
   register: task_result
   until: task_result is success
   retries: 10

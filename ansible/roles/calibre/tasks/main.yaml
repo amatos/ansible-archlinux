@@ -1,4 +1,5 @@
 - name: Install calibre
   community.general.pacman:
+    executable: powerpill
     name: calibre
     state: present

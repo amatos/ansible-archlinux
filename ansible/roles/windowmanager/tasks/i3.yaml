@@ -1,5 +1,6 @@
 - name: install i3 windowmanager and components
   community.general.pacman:
+    executable: powerpill
     name: "{{ item }}"
     state: present
   with_items:

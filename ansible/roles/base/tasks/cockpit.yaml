@@ -1,5 +1,6 @@
 - name: Install Cockpit
   community.general.pacman:
+    executable: powerpill
     name:
       - cockpit
       - cockpit-packagekit

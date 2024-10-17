@@ -1,36 +1,31 @@
----
 - name: Install rEFInd bootloader and tools
   community.general.pacman:
-      name: refind
-      state: present
+    executable: powerpill
+    name: refind
+    state: present
   when: bootloader == "refind"
-
 - name: Get boot device UUID
   shell: "blkid -s UUID -o value {{ root_device }}"
   register: refind_root_uuid
-
 - name: Get swap device UUID
   shell: 'cat /etc/fstab | grep swap | cut -f 1 -d " "'
   register: refind_swap_uuid
-
 - name: Populate kernel command line root file
   ansible.builtin.template:
-      src: refind_linux.conf.j2
-      dest: /boot/refind_linux.conf
+    src: refind_linux.conf.j2
+    dest: /boot/refind_linux.conf
   become: true
   when:
-      - refind_root_uuid
-      - refind_swap_uuid
-
+    - refind_root_uuid
+    - refind_swap_uuid
 - name: Create /etc/pacman.d/hooks/ directory
   ansible.builtin.file:
-      path: /etc/pacman.d/hooks/
-      state: directory
-      mode: "0755"
+    path: /etc/pacman.d/hooks/
+    state: directory
+    mode: "0755"
   register: created_pacmand_hooks_dir
-
 - name: Deploy refind hook
   ansible.builtin.copy:
-      src: refind.hook
-      dest: /etc/pacman.d/hooks/
+    src: refind.hook
+    dest: /etc/pacman.d/hooks/
   when: created_pacmand_hooks_dir

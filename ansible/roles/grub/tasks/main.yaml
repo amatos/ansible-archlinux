@@ -1,5 +1,6 @@
----
-
 - name: Install grub bootloader and tools
-  community.general.pacman: name=grub state=present
+  community.general.pacman:
+    executable: powerpill
+    name: grub
+    state: present
   when: bootloader == "grub"

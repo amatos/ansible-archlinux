@@ -1,5 +1,6 @@
 - name: Perform full system upgrade
   community.general.pacman:
+    executable: powerpill
     update_cache: true
     upgrade: true
   register: task_result
@@ -11,6 +12,7 @@
     - rkhunter propupdate
 - name: Install base packages
   community.general.pacman:
+    executable: powerpill
     name: "{{ base_packages }}"
     state: present
   register: task_result
@@ -22,6 +24,7 @@
     - rkhunter propupdate
 - name: Install sbctl for easy secure boot management
   community.general.pacman:
+    executable: powerpill
     name:
       - sbctl
     state: present
@@ -32,6 +35,7 @@
   when: packages_ready
 - name: Install microcode updates for intel (if necessary)
   community.general.pacman:
+    executable: powerpill
     name: intel-ucode
     state: present
   register: task_result
@@ -44,6 +48,7 @@
   when: (packages_ready and ((system.processor == "intel") and (system_distribution == "arch")))
 - name: Install microcode updates for amd (if necessary)
   community.general.pacman:
+    executable: powerpill
     name: amd-ucode
     state: present
   register: task_result
@@ -61,6 +66,7 @@
   when: ssh.enable_sshd == true
 - name: Install misc packages
   community.general.pacman:
+    executable: powerpill
     name: "{{ misc_packages }}"
     state: present
   register: task_result
@@ -114,6 +120,7 @@
   when: created_pacman_hooks_dir
 - name: Install pacman-contrib
   community.general.pacman:
+    executable: powerpill
     name:
       - pacman-contrib
     state: present

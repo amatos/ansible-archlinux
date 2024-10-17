@@ -1,5 +1,6 @@
 - name: Install chrony (ntp) daemon
   community.general.pacman:
+    executable: powerpill
     name: chrony
     state: present
   register: install

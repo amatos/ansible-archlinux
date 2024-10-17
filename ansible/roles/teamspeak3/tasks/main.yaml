@@ -1,7 +1,6 @@
----
-
 - name: install teamspeak3 communication software
   community.general.pacman:
+    executable: powerpill
     name: teamspeak3
     state: present
   register: task_result

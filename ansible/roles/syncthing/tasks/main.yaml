@@ -1,5 +1,6 @@
 - name: Install Syncthing
   community.general.pacman:
+    executable: powerpill
     name: "{{ item }}"
   with_items:
     - syncthing

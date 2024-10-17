@@ -1,56 +1,47 @@
 - name: Install ufw
   community.general.pacman:
-      name: ufw
-      state: present
-
+    executable: powerpill
+    name: ufw
+    state: present
 - name: Enable and start ufw
   ansible.builtin.service:
-      name: ufw.service
-      enabled: true
-      state: started
-
+    name: ufw.service
+    enabled: true
+    state: started
 - name: Allow all access from RFC1918 networks to this host
   community.general.ufw:
-      rule: allow
-      src: "{{ item }}"
+    rule: allow
+    src: "{{ item }}"
   loop:
-      - 10.0.0.0/8
-      - 172.16.0.0/12
-      - 192.168.0.0/16
-
+    - 10.0.0.0/8
+    - 172.16.0.0/12
+    - 192.168.0.0/16
 # Allow SSH. (Note that as ufw manages its own state, simply removing
 # a rule=allow task can leave those ports exposed. Either use delete=true
 # or a separate state=reset task.  See example)
 - community.general.ufw:
-      rule: allow
-      name: SSH
-
+    rule: allow
+    name: SSH
 # - name: Delete SSH rule
 #   community.general.ufw:
 #     rule: allow
 #     name: SSH
 #     delete: true
-
 - community.general.ufw:
-      rule: allow
-      name: syncthing
-
+    rule: allow
+    name: syncthing
 - community.general.ufw:
-      rule: allow
-      name: Bonjour
-
+    rule: allow
+    name: Bonjour
 - community.general.ufw:
-      rule: allow
-      name: KTorrent
-
+    rule: allow
+    name: KTorrent
 - community.general.ufw:
-      rule: allow
-      name: VNC
-
+    rule: allow
+    name: VNC
 - community.general.ufw:
-      rule: allow
-      name: qBittorrent
-
+    rule: allow
+    name: qBittorrent
 - community.general.ufw:
-      rule: allow
-      name: syncthing-gui
+    rule: allow
+    name: syncthing-gui

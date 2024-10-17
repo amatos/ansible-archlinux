@@ -1,7 +1,6 @@
----
-
 - name: Install Thunderbird and Profile Sync Daemon
   community.general.pacman:
+    executable: powerpill
     name:
       - thunderbird
       - profile-sync-daemon
@@ -11,7 +10,6 @@
   until: task_result is success
   retries: 10
   delay: 2
-
 - name: install profile-sync-daemon-thunderbird from AUR
   kewlfft.aur.aur:
     name:
@@ -21,7 +19,6 @@
   become: true
   become_user: "{{ user.name }}"
   notify: thunderbird psd restart
-
 - name: Start Profile Sync Daemon
   ansible.builtin.service:
     name: psd

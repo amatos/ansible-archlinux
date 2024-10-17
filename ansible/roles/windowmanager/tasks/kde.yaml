@@ -1,5 +1,6 @@
 - name: install KDE Plasma meta package
   community.general.pacman:
+    executable: powerpill
     name: "{{ item }}"
     state: present
   with_items:
@@ -41,6 +42,7 @@
   delay: 2
 - name: install KDE PIM
   community.general.pacman:
+    executable: powerpill
     name: "{{ item }}"
     state: present
   with_items:
@@ -65,6 +67,7 @@
   delay: 2
 - name: install KDE additions
   community.general.pacman:
+    executable: powerpill
     name: "{{ item }}"
     state: present
   with_items:
