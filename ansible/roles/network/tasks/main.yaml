@@ -24,7 +24,7 @@
 - name: Add an Ethernet connection with static IP configuration
   community.general.nmcli:
     conn_name: Wired connection 1
-    ifname: enp7s0
+    ifname: "{{ ansible_default_ipv4.interface }}"
     type: ethernet
     zone: home
     state: present
