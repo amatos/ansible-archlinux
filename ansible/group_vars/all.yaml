@@ -143,6 +143,12 @@ gitkraken: true
 ##
 install_jetbrains: false
 ##
+# Install QEMU
+# =================
+# true/false to installing QEMU, virt-manager, and samba
+##
+install_qemu: true
+##
 # Base package configuration
 # ==========================
 ##
