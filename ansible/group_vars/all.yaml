@@ -192,6 +192,8 @@ base_packages:
   - texinfo
   - tmux
   - zsh
+  - udisks2
+  - udisks2-btrfs
 ##
 # Misc. packages
 # ==============
@@ -285,6 +287,8 @@ misc_packages:
   - yaml-language-server
   - yamlfmt
   - yamllint
+  - github-cli
+  - atuin
 ##
 # Misc. AUR packages
 # ==============
