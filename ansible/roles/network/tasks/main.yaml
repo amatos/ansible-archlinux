@@ -1,5 +1,3 @@
----
-
 - name: Install network tools
   ansible.builtin.package:
     name:
@@ -18,13 +16,11 @@
   delay: 2
   notify:
     - rkhunter propupdate
-
 - name: Enable NetworkManager service
   ansible.builtin.service:
     name: NetworkManager
     state: started
     enabled: true
-
 - name: Add an Ethernet connection with static IP configuration
   community.general.nmcli:
     conn_name: Wired connection 1
@@ -32,21 +28,18 @@
     type: ethernet
     zone: home
     state: present
-
 - name: Enable systemd-resolved service
   ansible.builtin.service:
     name: systemd-resolved
     state: started
     enabled: true
   register: resolved
-
 - name: deploy disable_mdns
   ansible.builtin.copy:
     src: 1-disable_mdns.conf
     dest: /etc/systemd/resolved.conf.d/
   notify:
     - restart resolved
-
 - name: deploy stub dns
   ansible.builtin.copy:
     src: 10-stub-dns.conf
@@ -54,14 +47,12 @@
   when: resolved_stub == true
   notify:
     - restart resolved
-
 - name: switch to systemd-resolved stub dns resolver -- removing resolv.conf
   ansible.builtin.file:
     path: /etc/resolv.conf
     state: absent
   register: removed_resolv
   when: resolved
-
 - name: switch to systemd-resolved stub dns resolver -- replacing resolv.conf with symlink
   ansible.builtin.file:
     src: /var/run/systemd/resolve/stub-resolv.conf
@@ -70,14 +61,12 @@
     group: root
     state: link
   when: removed_resolv
-
 - name: Update nsswitch.conf
   ansible.builtin.lineinfile:
     path: /etc/nsswitch.conf
     state: present
     regexp: '^hosts: mymachines resolve .*'
     line: 'hosts: mymachines mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] files myhostname dns'
-
 - name: Enable Avahi mdns service
   ansible.builtin.service:
     name: avahi-daemon
