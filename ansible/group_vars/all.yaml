@@ -1,11 +1,3 @@
-# Server or Desktop
-# ====================
-# IMPORTANT:  Setting this to server will override any desktop settings below
-# options:
-#   "desktop", install additional items associated with a desktop environment
-#   "server", secure and simple install.
-###
-system_type: "desktop"
 # Arch distribution
 # ====================
 # IMPORTANT:  Changing this from "arch" will override some settings below.
@@ -38,6 +30,10 @@ user:
 # System configuration
 # ====================
 # processor type:
+# type:  ***IMPORTANT:  Setting this to server will override any desktop settings below***
+#   "desktop", install additional items associated with a desktop environment
+#   "server", secure and simple install.
+# processor:
 #   Option: "intel" will install microcode updates and configure the bootloader accordingly
 #   Option: "amd" will do the same for amd
 # graphics_card type:
@@ -60,6 +56,7 @@ system:
   processor: "amd"
   graphics_card: "amd"
   macspoof: false
+  type: "desktop"
 ##
 # Firewall configuration
 # ========================

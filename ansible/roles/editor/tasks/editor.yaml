@@ -9,12 +9,12 @@
     use: yay
   become: true
   become_user: "{{ user.name }}"
-  when: system_type == "desktop"
+  when: system.type == "desktop"
 - name: install obsidian
   community.general.pacman:
     name: obsidian
     state: present
-  when: system_type == "desktop"
+  when: system.type == "desktop"
 - name: install Libre Office (fresh)
   community.general.pacman:
     name: "{{ item }}"
@@ -39,6 +39,6 @@
     name:
       - visual-studio-code-bin
     use: yay
-  when: system_type == "desktop"
+  when: system.type == "desktop"
   become: true
   become_user: "{{ user.name }}"
