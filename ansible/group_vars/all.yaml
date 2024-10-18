@@ -57,6 +57,32 @@ system:
   graphics_card: "amd"
   macspoof: false
   type: "desktop"
+############# Desktop Envionment Settings ####################
+####                                                      ####
+####                                                      ####
+##
+# Install KDE
+# =================
+# true/false to installing KDE Plasma and/or kde-pim.  kde-pim alone will install
+# some parts of kde, but not all of plasma
+##
+kde: false
+kdepim: false
+##
+# Install Hyprland
+# ================
+# true/false to install Hyprland
+##
+hyprland: false
+##
+# Install Hyprland
+# ================
+# true/false to install Hyprland
+##
+gnome: true
+####                                                      ####
+####                                                      ####
+##############################################################
 ##
 # Firewall configuration
 # ========================
@@ -113,14 +139,6 @@ dotfiles:
 # true/false to installing keypassxc
 ##
 keepass: false
-##
-# Install KDE
-# =================
-# true/false to installing KDE Plasma and/or kde-pim.  kde-pim alone will install
-# some parts of kde, but not all of plasma
-##
-kde: true
-kdepim: true
 ##
 # Install thunderbird
 # ===================

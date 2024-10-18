@@ -6,5 +6,11 @@
 - ansible.builtin.import_tasks: kvantum.yaml
   name: kvantum Qt6 theme engine
   when: kde == true
+- ansible.builtin.import_tasks: hyprland.yaml
+  name: hyprland
+  when: hyprland == true
+- ansible.builtin.import_tasks: gnome.yaml
+  name: gnome
+  when: gnome == true
 - ansible.builtin.import_tasks: common.yaml
   name: Common GUI packages

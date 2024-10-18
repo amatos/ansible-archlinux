@@ -31,7 +31,7 @@
     - {role: messengers, tags: ["messengers"], when: system.type == "desktop"}
     - {role: photography, tags: ["photography"], when: system.type == "desktop"}
     - {role: qemu, tags: ["qemu"], when: install_qemu == true}
-    - {role: redshift, tags: ["redshift"], when: (kde == false) and (system.type == "desktop")}
+    - {role: redshift, tags: ["redshift"], when: (((kde == false) or (hyprland == false)) or (gnome == false)) and (system.type == "desktop")}
     - {role: sound, tags: ["sound"], when: system.type == "desktop"}
     - {role: spotify, tags: ["spotify"], when: system.type == "desktop"}
     - {role: syncthing, tags: ["syncthing"]}
