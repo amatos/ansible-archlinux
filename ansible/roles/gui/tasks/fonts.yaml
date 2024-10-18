@@ -22,6 +22,7 @@
       - nerd-fonts-sf-mono
       - ttf-mac-fonts
       - ttf-meslo-nerd-font-powerlevel10k
+      - otf-font-awesome
     use: yay
   become: true
   become_user: "{{ user.name }}"

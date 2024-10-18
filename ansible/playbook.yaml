@@ -16,7 +16,7 @@
     - {role: refind, tags: ["refind"], when: bootloader == "refind"}
     - {role: shell, tags: ["shell"]}
     - {role: terminal, tags: ["terminal"], when: system.type == "desktop"}
-    - {role: windowmanager, tags: ["windowmanager"], when: system.type == "desktop"}
+    - {role: gui, tags: ["gui"], when: system.type == "desktop"}
     - {role: 1password, tags: ["1password"], when: system.type == "desktop"}
     - {role: amd, tags: ["amd"], when: system.processor == "amd"}
     - {role: browsers, tags: ["browsers"], when: system.type == "desktop"}
