@@ -22,6 +22,7 @@
   register: base_pacman_complete
 - name: Register chaotic-aur key
   ansible.builtin.command: pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+  when: enable_chaotic
   register: got_chaotic_key
 - name: Sign chaotic-aur key
   ansible.builtin.command: pacman-key --lsign-key 3056513887B78AEB
@@ -45,7 +46,7 @@
       [chaotic-aur]
       SigLevel = PackageRequired
       Include = /etc/pacman.d/chaotic-mirrorlist
-  when: base_pacman_complete
+  when: (base_pacman_complete AND enable_chaotic)
   register: packages_ready
 - name: Update pacman package cache
   community.general.pacman:

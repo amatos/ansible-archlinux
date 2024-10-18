@@ -84,6 +84,12 @@ gnome: true
 ####                                                      ####
 ##############################################################
 ##
+# Enable chaotic-aur
+# ==================
+# true/false
+##
+enable_chaotic: false
+##
 # Firewall configuration
 # ========================
 # ufw and firewalld are supported
