@@ -49,3 +49,11 @@
     dest: /etc/mkinitcpio.conf.d/mkinitcpio-override.conf
   notify:
     - regenerate initramfs
+- name: Firmware
+  community.general.pacman:
+    name:
+      - linux-firmware
+      - sof-firmware
+    state: present
+  notify:
+    - regenerate initramfs

@@ -1,9 +1,13 @@
 - name: Install printing tools
-  ansible.builtin.package:
-    name:
+  community.general.pacman:
+    name: "{{ item }}"
+    with_items:
       - cups
       - cups-pk-helper
     state: present
+  until: cups_installed is success
+  retries: 2
+  delay: 2
   register: cups_installed
 - name: Enable cups service
   ansible.builtin.service:
