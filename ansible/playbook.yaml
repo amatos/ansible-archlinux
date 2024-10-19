@@ -11,3 +11,4 @@
     - {role: refind, tags: ["refind"], when: bootloader == "refind"}
     - {role: macspoof, tags: ["macspoof"], when: system.macspoof == true}
     - {role: printing, tags: ["printing"]}
+    - {role: desktop, tags: ["desktop"], when: (system.type == "desktop")}

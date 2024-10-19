@@ -1,0 +1,24 @@
+- name: Install alsa-utils and pipewire tools
+  community.general.pacman:
+    executable: powerpill
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - alsa-utils
+    - pipewire
+    - pipewire-pulse
+    - pipewire-alsa
+    - pavucontrol
+    - pipewire-roc
+    - pipewire-v4l2
+  when: system_distribution == "arch"
+  register: task_result
+  until: task_result is success
+  retries: 2
+  delay: 2
+- name: create directory for pulse
+  ansible.builtin.file:
+    path: "/home/{{ user.name }}/.config/pulse"
+    state: directory
+    owner: "{{ user.name }}"
+  when: system_distribution == "arch"

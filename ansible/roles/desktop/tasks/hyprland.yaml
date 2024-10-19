@@ -1,0 +1,74 @@
+- name: Install Hyprland
+  kewlfft.aur.aur:
+    name:
+      - aquamarine-git
+      - dunst
+      - evince
+      - grim
+      - hyprcursor-git
+      - hypridle-git
+      - hyprland-git
+      - hyprlang-git
+      - hyprlock-git
+      - hyprpaper-git
+      - hyprpicker-git
+      - hyprutils-git
+      - hyprwayland-scanner-git
+      - otf-font-awesome
+      - qt5-wayland
+      - qt6-wayland
+      - slurp
+      - waybar
+      - xdg-desktop-portal-gtk
+      - xdg-desktop-portal-hyprland-git
+      - hyprsysteminfo-git
+      - hyprpolkitagent-git
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
+- name: Install Thunar file manager
+  kewlfft.aur.aur:
+    name:
+      - thunar
+      - catfish
+      - gvfs
+      - tumbler
+      - thunar-volman
+      - thunar-archive-plugin
+      - thunar-media-tags-plugin
+      - zeitgeist
+      - ffmpegthumbnails
+      - libgsf
+      - libgepub
+      - file-roller
+      - engrampa
+      - xarchiver
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
+- name: Install gnome stuff
+  kewlfft.aur.aur:
+    name:
+      - gnome-text-editor
+      - pavucontrol
+      - gnome-control-center
+      - gnome-system-monitor
+      - gvfs-nfs
+      - gvfs-onedrive
+      - gvfs-smb
+      - nautilus
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
+- name: Install additional Hyprland tools
+  kewlfft.aur.aur:
+    name:
+      - wofi
+      - greetd
+      - greetd-regreet-git
+      - cliphist
+      - fuzzel
+      - anyrun-git
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"

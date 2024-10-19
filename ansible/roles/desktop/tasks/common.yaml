@@ -1,0 +1,12 @@
+- name: install common "desktop" cli tools
+  kewlfft.aur.aur:
+    name: "{{ desktop_cli }}"
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
+- name: install common "desktop" GUI tools
+  kewlfft.aur.aur:
+    name: "{{ desktop_gui }}"
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
