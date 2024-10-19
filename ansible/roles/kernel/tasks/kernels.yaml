@@ -1,33 +1,27 @@
 - name: Install linux kernel and headers
   community.general.pacman:
-    executable: powerpill
     name:
       - linux
       - linux-headers
     state: present
   when: (kernel == "linux") and (system_distribution == "arch")
   notify:
-    - update grub
     - regenerate initramfs
 - name: Install linux-hardened and hardened headers
   community.general.pacman:
-    executable: powerpill
     name:
       - linux-hardened
       - linux-hardened-headers
     state: present
   when: (kernel == "linux-hardened") and (system_distribution == "arch")
   notify:
-    - update grub
     - regenerate initramfs
 - name: Install linux-zen and zen headers
   community.general.pacman:
-    executable: powerpill
     name:
       - linux-zen
       - linux-zen-headers
     state: present
   when: (kernel == "linux-zen") and (system_distribution == "arch")
   notify:
-    - update grub
     - regenerate initramfs

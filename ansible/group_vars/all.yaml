@@ -1,4 +1,4 @@
-# Arch distribution
+# Arch de minimis distribution
 # ====================
 # IMPORTANT:  Changing this from "arch" will override some settings below.
 # options:
@@ -54,11 +54,8 @@ user:
 ##
 system:
   pacman: true
-  pacoloco: false
   makepkg: true
   cockpit: false
-  games: false
-  bluetooth: false
   locale: "en_US.UTF-8"
   timezone: "America/New_York"
   processor: "amd"
@@ -104,14 +101,6 @@ enable_chaotic: false
 ##
 firewall: "firewalld"
 ##
-# Use Oracle BPFTune
-# ==================
-# Oracle's auto-tuning daemon reacts to system needs and adjusts sysctl tunings automatically.
-# BUT, any user-set sysctl will make bpftune ignore recommendations for that parameter,
-# So, if this is enabled, we DO NOT apply custom sysctl parameters.
-##
-use_bpftune: false
-##
 # Bootloader configuration
 # ========================
 # refind and grub are supported
@@ -137,54 +126,13 @@ ssh:
 ##
 resolved_stub: true
 ##
-# Dotfile configuration
-# =====================
-# Choose whether custom dotfiles should be installed or not
-# Just set the installation flag to false to avoid an installation
-##
-dotfiles:
-  installation: false
-  url: https://github.com/amatos/dotfiles.git
-  destination: .dotfiles
-  rcup_flags: -fx README.md
-##
-# Install Keypassxc
-# =================
-# true/false to installing keypassxc
-##
-keepass: false
-##
-# Install thunderbird
-# ===================
-# true/false to install thunderbird
-##
-thunderbird: false
-##
-# Install gitkraken
-# =================
-# true/false to installing GitKraken
-##
-gitkraken: false
-##
-# Install JetBrains IDEs?
-# =================
-# true/false to installing CLion and IntelliJ
-##
-install_jetbrains: false
-##
-# Install QEMU
-# =================
-# true/false to installing QEMU, virt-manager, and samba
-##
-install_qemu: false
-##
 # Base package configuration
 # ==========================
 ##
 minimal_packages:
-  - sbctl
   - avahi
   - base-devel
+  - bash
   - bind
   - ccache
   - chrony
@@ -212,141 +160,10 @@ minimal_packages:
   - python-pipx
   - reflector
   - rsync
+  - sbctl
   - strace
   - sysstat
   - texinfo
   - udisks2
   - udisks2-btrfs
   - zsh
-##
-# Misc. packages
-# ==============
-##
-misc_packages:
-  - cmake
-  - geoclue
-  - jdk-openjdk
-  - nmap
-  - perl
-  - ruby
-  - tmux
-  - ansible-language-server
-  - ansible-lint
-  - argyllcms
-  - arj
-  - atomicparsley
-  - bash-completion
-  - bash-language-server
-  - bat
-  - bc
-  - catdoc
-  - cdrdao
-  - cdrtools
-  - colord-sane
-  - cowsay
-  - ctags
-  - diff-so-fancy
-  - dosfstools
-  - dvd+rw-tools
-  - emovix
-  - exfatprogs
-  - eza
-  - f2fs-tools
-  - fatresize
-  - festival
-  - fortune-mod
-  - fzf
-  - gavl
-  - geoipupdate
-  - git-delta
-  - graphviz
-  - gum
-  - hunspell-en_us
-  - inotify-tools
-  - jfsutils
-  - ladspa
-  - languagetool
-  - libappimage
-  - libdvdcss
-  - libgtop
-  - libid3tag
-  - libsynctex
-  - libwmf
-  - lolcat
-  - lrzip
-  - lua-language-server
-  - lzop
-  - mediainfo
-  - mlocate
-  - movit
-  - nss-mdns
-  - ntfs-3g
-  - opencv
-  - openmp
-  - opentimelineio
-  - p7zip
-  - power-profiles-daemon
-  - pstoedit
-  - python-lsp-server
-  - python-setuptools
-  - ruby-docs
-  - sane-airscan
-  - shellcheck
-  - snap-pac
-  - snapper
-  - speech-dispatcher
-  - sshfs
-  - starship
-  - tesseract
-  - tesseract-data-eng
-  - tesseract-data-por
-  - udftools
-  - unarchiver
-  - unzip
-  - vcdimager
-  - wget
-  - xfsprogs
-  - yaml-language-server
-  - yamlfmt
-  - yamllint
-  - github-cli
-  - atuin
-##
-# Misc. AUR packages
-# ==============
-##
-aur_packages:
-  - ansible-gpg-key-git
-  - find-the-command
-  - hunspell-pt-br
-  - perl-bundle-camelcade
-  - perl-devel-camelcadedb
-##
-# Gaming packages
-# ===============
-##
-gaming_packages:
-  - heroic-games-launcher-bin
-  - protonup-qt
-  - reshade-shaders-git
-  - steamtinkerlaunch
-  - vkbasalt
-  - vkbasalt-cli
-  - lib32-vkbasalt
-  - gamemode
-  - gamescope
-  - goverlay
-  - lib32-dbus
-  - lib32-glu
-  - lib32-libcurl-compat
-  - lib32-mesa
-  - lib32-nss
-  - lib32-systemd
-  - libva-mesa-driver
-  - lutris
-  - mangohud
-  - mesa
-  - sndio
-  - steam
-  - v4l2loopback-dkms
-  - wf-recorder

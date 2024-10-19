@@ -1,6 +1,5 @@
 - name: Install ufw
   community.general.pacman:
-    executable: powerpill
     name: ufw
     state: present
 - name: Enable and start ufw
@@ -35,29 +34,3 @@
   community.general.ufw:
     rule: allow
     name: Bonjour
-- name: Add ufw rule for KTorrent
-  community.general.ufw:
-    rule: allow
-    name: KTorrent
-- name: Add ufw rule for VNC
-  community.general.ufw:
-    rule: allow
-    name: VNC
-- name: Add ufw rule for qBittorrent
-  community.general.ufw:
-    rule: allow
-    name: qBittorrent
-- name: Add ufw rule for syncthing-gui
-  community.general.ufw:
-    rule: allow
-    name: syncthing-gui
-- name: Allow all access to 15678/tcp
-  ufw:
-    rule: allow
-    port: 15678
-    proto: tcp
-- name: Allow all access to 15679/udp
-  ufw:
-    rule: allow
-    port: 15679
-    proto: udp

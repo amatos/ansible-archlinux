@@ -1,6 +1,5 @@
 - ansible.builtin.import_tasks: kernels.yaml
   name: kernels
-  when: system_distribution == "arch"
 - name: Get boot device UUID
   shell: "blkid -s UUID -o value {{ root_device }}"
   register: root_uuid

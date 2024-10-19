@@ -1,33 +1,16 @@
 - name: Install network tools
-  ansible.builtin.package:
+  community.general.pacman:
     name:
       - ethtool
       - wpa_supplicant
-      - nmap
       - iwd
       - networkmanager
-      - network-manager-applet
-      - networkmanager-openconnect
-      - networkmanager-openvpn
     state: present
-  register: task_result
-  until: task_result is success
-  retries: 10
-  delay: 2
-  notify:
-    - rkhunter propupdate
 - name: Enable NetworkManager service
   ansible.builtin.service:
     name: NetworkManager
     state: started
     enabled: true
-- name: Add an Ethernet connection with static IP configuration
-  community.general.nmcli:
-    conn_name: Wired connection 1
-    ifname: "{{ ansible_default_ipv4.interface }}"
-    type: ethernet
-    zone: home
-    state: present
 - name: Enable systemd-resolved service
   ansible.builtin.service:
     name: systemd-resolved
@@ -72,3 +55,15 @@
     name: avahi-daemon
     state: started
     enabled: true
+- name: Set NetworkManager to update timesyncd time servers
+  ansible.builtin.copy:
+    src: 10-update-timesyncd
+    dest: /etc/NetworkManager/dispatcher.d/10-update-timesyncd
+    mode: "0755"
+  register: updated_timesyncd
+- name: Start systemd-timesyncd back up
+  ansible.builtin.service:
+    name: systemd-timesyncd
+    state: started
+    enabled: true
+  when: updated_timesyncd

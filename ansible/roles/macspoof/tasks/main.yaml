@@ -1,10 +1,7 @@
 - name: Install macchanger
   community.general.pacman:
-    executable: powerpill
     name: macchanger
     state: present
-  notify:
-    - rkhunter propupdate
 - name: Create systemd unit for macchanger
   ansible.builtin.copy: src=macspoof@.service dest=/etc/systemd/system/
 - name: Enable macspoof for all interfaces

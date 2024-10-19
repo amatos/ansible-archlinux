@@ -1,14 +1,17 @@
 - name: Install rEFInd bootloader and tools
   community.general.pacman:
-    executable: powerpill
     name: refind
     state: present
   when: bootloader == "refind"
+  register: refind_pkg_installed
+- name: Install refind to EFI
+  ansible.builtin.command: refind-install --yes
+  when: refind_pkg_installed
 - name: Get boot device UUID
   shell: "blkid -s UUID -o value {{ root_device }}"
   register: refind_root_uuid
 - name: Get swap device UUID
-  shell: 'cat /etc/fstab | grep swap | cut -f 1 -d " "'
+  shell: 'cat /etc/fstab | grep swap | grep UUID | cut -f 1 -d " "'
   register: refind_swap_uuid
 - name: Populate kernel command line root file
   ansible.builtin.template:
