@@ -1,0 +1,11 @@
+- name: Create systemd/user.conf drop-in directory
+  ansible.builtin.file:
+    path: /etc/systemd/user.conf.d
+    state: directory
+    mode: "0755"
+  register: userconfd_dropin
+- name: deploy user.conf dropin file
+  ansible.builtin.copy:
+    src: custom-user.conf
+    dest: /etc/systemd/user.conf.d
+  when: userconfd_dropin

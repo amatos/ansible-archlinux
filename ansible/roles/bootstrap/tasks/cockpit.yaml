@@ -1,0 +1,9 @@
+- name: Install Cockpit
+  community.general.pacman:
+    name:
+      - cockpit
+      - cockpit-packagekit
+      - cockpit-pcp
+      - cockpit-storaged
+    state: present
+  when: (system.cockpit == true )

@@ -1,6 +1,0 @@
-- name: Install keepassxc
-  community.general.pacman:
-    executable: powerpill
-    name: keepassxc
-    state: present
-  when: keepass == "yes"

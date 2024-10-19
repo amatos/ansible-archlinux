@@ -1,0 +1,26 @@
+- name: Update pacman.conf to print color, ILoveCandy, and use 9 parallel downloads
+  ansible.builtin.blockinfile:
+    path: /etc/pacman.conf
+    insertafter: "# Misc options"
+    block: |
+      Color
+      ILoveCandy
+      ParallelDownloads = 9
+    marker: "# {mark} MISC OPTIONS ANSIBLE MANAGED BLOCK"
+  register: base_pacman_part1
+- name: Update pacman.conf to enable multilib
+  ansible.builtin.blockinfile:
+    path: /etc/pacman.conf
+    append_newline: true
+    prepend_newline: true
+    insertafter: "(?m)#\\[multilib\\]\n#Include = /etc/pacman.d/mirrorlist"
+    marker: "# {mark} MULTILIB PREFERENCES ANSIBLE MANAGED BLOCK"
+    block: |
+      [multilib]
+      Include = /etc/pacman.d/mirrorlist
+  when: base_pacman_part1
+  register: base_pacman_complete
+- name: Update pacman package cache
+  community.general.pacman:
+    update_cache: true
+  when: base_pacman_complete

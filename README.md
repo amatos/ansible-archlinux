@@ -50,6 +50,7 @@ for the become (that is, sudo) password.
 ``` bash
 $ git clone -j8 https://github.com/amatos/ansible-archlinux.git
 $ cd ansible-archlinux/ansible
+$ ansible-galaxy collection add kewlfft.aur
 $ ansible-playbook -i inventory/localhost playbook.yaml [--tags $LIMIT_TO_TAG] -K
 ```
 

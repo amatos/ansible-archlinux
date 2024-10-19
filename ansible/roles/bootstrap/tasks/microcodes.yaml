@@ -1,0 +1,10 @@
+- name: Install microcode updates for intel (if necessary)
+  community.general.pacman:
+    name: intel-ucode
+    state: present
+  when: (system.processor == "intel")
+- name: Install microcode updates for amd (if necessary)
+  community.general.pacman:
+    name: amd-ucode
+    state: present
+  when: (system.processor == "amd")

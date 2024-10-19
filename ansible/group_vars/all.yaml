@@ -21,18 +21,26 @@ kernel: "linux-zen"
 ##
 # User configuration
 # ==================
+# Pretty self-explanatory.
+# name: The user id
+# shell: Name of the desired shell (bash/zsh/fish)
+# 
 ##
 user:
   name: alberth
-  group: users
-  shell: /bin/fish
+  shell: fish
 ##
 # System configuration
 # ====================
-#
 # type:  ***IMPORTANT:  Setting this to server will override any desktop settings below***
 #   "desktop", install additional items associated with a desktop environment
 #   "server", secure and simple install.
+#   "minimal", The minimal required options
+#     - kernel
+#     - base OS
+#     - My preferred minimal toolkit
+#     - firewall
+#     - networking
 # processor:
 #   Option: "intel" will install microcode updates and configure the bootloader accordingly
 #   Option: "amd" will do the same for amd
@@ -48,15 +56,15 @@ system:
   pacman: true
   pacoloco: false
   makepkg: true
-  cockpit: true
-  games: true
-  bluetooth: true
+  cockpit: false
+  games: false
+  bluetooth: false
   locale: "en_US.UTF-8"
   timezone: "America/New_York"
   processor: "amd"
   graphics_card: "amd"
   macspoof: false
-  type: "desktop"
+  type: "minimal"
 ############# Desktop Envionment Settings ####################
 ####                                                      ####
 ####                                                      ####
@@ -79,7 +87,7 @@ hyprland: false
 # ================
 # true/false to install Hyprland
 ##
-gnome: true
+gnome: false
 ####                                                      ####
 ####                                                      ####
 ##############################################################
@@ -102,7 +110,7 @@ firewall: "firewalld"
 # BUT, any user-set sysctl will make bpftune ignore recommendations for that parameter,
 # So, if this is enabled, we DO NOT apply custom sysctl parameters.
 ##
-use_bpftune: true
+use_bpftune: false
 ##
 # Bootloader configuration
 # ========================
@@ -156,7 +164,7 @@ thunderbird: false
 # =================
 # true/false to installing GitKraken
 ##
-gitkraken: true
+gitkraken: false
 ##
 # Install JetBrains IDEs?
 # =================
@@ -168,65 +176,63 @@ install_jetbrains: false
 # =================
 # true/false to installing QEMU, virt-manager, and samba
 ##
-install_qemu: true
+install_qemu: false
 ##
 # Base package configuration
 # ==========================
 ##
-base_packages:
+minimal_packages:
+  - sbctl
   - avahi
   - base-devel
   - bind
-  - btop
+  - ccache
   - chrony
-  - cmake
   - coreutils
   - cronie
   - curl
   - dateutils
   - fish
   - fwupd
-  - geoclue
   - git
-  - go
-  - jdk-openjdk
   - links
   - lsof
   - man-db
   - man-pages
-  - ninja
-  - nmap
-  - nodejs
-  - npm
   - nss-mdns
   - openssh
   - pacman-contrib
-  - perl
+  - pacutils
+  - pbzip2
+  - pigz
+  - pkgfile
   - pkgstats
   - python
   - python-jmespath
   - python-pipx
   - reflector
-  - rkhunter
   - rsync
-  - ruby
-  - rust
   - strace
   - sysstat
   - texinfo
-  - tmux
-  - zsh
   - udisks2
   - udisks2-btrfs
+  - zsh
 ##
 # Misc. packages
 # ==============
 ##
 misc_packages:
+  - cmake
+  - geoclue
+  - jdk-openjdk
+  - nmap
+  - perl
+  - ruby
+  - tmux
   - ansible-language-server
   - ansible-lint
   - argyllcms
-  - aria2
   - arj
   - atomicparsley
   - bash-completion
@@ -234,7 +240,6 @@ misc_packages:
   - bat
   - bc
   - catdoc
-  - ccache
   - cdrdao
   - cdrtools
   - colord-sane
@@ -280,11 +285,6 @@ misc_packages:
   - openmp
   - opentimelineio
   - p7zip
-  - pacman-contrib
-  - pacutils
-  - pbzip2
-  - pigz
-  - pkgfile
   - power-profiles-daemon
   - pstoedit
   - python-lsp-server
@@ -297,8 +297,6 @@ misc_packages:
   - speech-dispatcher
   - sshfs
   - starship
-  - strace
-  - subversion
   - tesseract
   - tesseract-data-eng
   - tesseract-data-por

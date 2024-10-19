@@ -1,0 +1,10 @@
+- name: Enable ssh server
+  ansible.builtin.service:
+    name: sshd
+    state: started
+    enabled: true
+  when: ssh.enable_sshd == true
+- name: Start pkgfile-update.timer
+  ansible.builtin.systemd_service:
+    name: pkgfile-update.timer
+    enabled: true

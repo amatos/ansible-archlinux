@@ -1,9 +1,0 @@
----
-- name: Install JetBrains tools (IntelliJ, CLion)
-  kewlfft.aur.aur:
-      name: "{{ item }}"
-      use: yay
-  with_items:
-      - jetbrains-toolbox
-  become: true
-  become_user: "{{ user.name }}"
