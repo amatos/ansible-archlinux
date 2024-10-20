@@ -4,20 +4,33 @@
     state: started
     enabled: true
   when: ssh.enable_sshd == true
+  register: ssh_started
 
 - name: Start pkgfile-update.timer
   ansible.builtin.systemd_service:
     name: pkgfile-update.timer
     enabled: true
+  register: pkgfile_update_started
 
 - name: Enable and start paccache to clean pacman caches
   ansible.builtin.service:
     name: paccache.timer
     enabled: true
     state: started
+  register: paccache_started
 
 - name: Start chrony
   ansible.builtin.service:
     name: chronyd
     state: started
     enabled: true
+  register: chrony_started
+
+- debug:
+    msg: All services started.
+  register: services_started
+  when:
+    - ssh_started
+    - pkgfile_update_started
+    - paccache_started
+    - chrony_started

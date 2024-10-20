@@ -33,6 +33,7 @@
   when:
     - commented_out
     - inserted_changes
+  register: pacman_ready
 
 - name: Enable a sytemd timer unit for reflector to run periodically
   ansible.builtin.systemd_service:

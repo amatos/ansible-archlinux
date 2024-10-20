@@ -13,3 +13,4 @@
     createhome: true
     home: /home/{{ user.name }}
   when: user.name is defined
+  register: user_created

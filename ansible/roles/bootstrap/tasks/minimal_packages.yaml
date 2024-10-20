@@ -6,3 +6,4 @@
   until: task_result is success
   retries: 2
   delay: 2
+  register: minimal_packages_deployed

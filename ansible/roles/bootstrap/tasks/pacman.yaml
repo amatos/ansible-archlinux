@@ -27,3 +27,4 @@
   community.general.pacman:
     update_cache: true
   when: base_pacman_complete
+  register: pacman_ready

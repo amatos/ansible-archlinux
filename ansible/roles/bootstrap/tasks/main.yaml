@@ -1,13 +1,11 @@
 - ansible.builtin.import_tasks: create_user.yaml
   name: Create User Account
-  register: user_created
 
 - ansible.builtin.import_tasks: reflector.yaml
   name: Install and run reflector to update mirrors
-  register: reflector_enabled
+
 - ansible.builtin.import_tasks: minimal_packages.yaml
   name: Install minimal required packages
-  register: minimal_packages_deployed
   when: pacman_ready
 
 - ansible.builtin.import_tasks: microcodes.yaml
@@ -26,7 +24,6 @@
 
 - ansible.builtin.import_tasks: pacman.yaml
   name: Configure pacman
-  register: pacman_ready
 
 - ansible.builtin.import_tasks: ntp.yaml
   name: Configure ntp

@@ -1,7 +1,9 @@
 - name: Sync time to hwclock
-  ansible.builtin.command: hwclock --systohc
+  ansible.builtin.shell: hwclock --systohc
 
 - name: Configure ntp source
-  ansible.builtin.copy: src=chrony.conf dest=/etc/
+  ansible.builtin.copy:
+    src: chrony.conf
+    dest: /etc/
   notify:
     - restart chrony
