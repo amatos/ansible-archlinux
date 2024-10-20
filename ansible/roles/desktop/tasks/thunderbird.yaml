@@ -5,7 +5,6 @@
       - thunderbird
       - profile-sync-daemon
     state: present
-  when: thunderbird
   register: task_result
   until: task_result is success
   retries: 10
@@ -16,7 +15,6 @@
     name:
       - profile-sync-daemon-thunderbird
     use: yay
-  when: thunderbird
   become: true
   become_user: "{{ user.name }}"
 
@@ -26,6 +24,5 @@
     scope: user
     state: started
     enabled: true
-  when: thunderbird
   become: true
   become_user: "{{ user.name }}"
