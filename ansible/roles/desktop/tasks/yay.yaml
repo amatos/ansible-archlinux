@@ -1,19 +1,10 @@
-- name: install Powerpill
-  community.general.pacman:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - powerpill
-  register: deployed_powerpill
-  until: deployed_powerpill is success
-  retries: 2
-  delay: 2
 - name: Create yay config directory
   ansible.builtin.file:
     path: /home/{{ user.name }}/.config/yay/
     state: directory
     mode: "0755"
   register: created_yay_configdir
+
 - name: Populate yay config file
   ansible.builtin.template:
     src: yay.config.json.j2
