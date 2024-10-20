@@ -18,6 +18,17 @@
   become_user: "{{ user.name }}"
   notify: browser psd restart
 
+- name: Install Librewolf from AUR
+  kewlfft.aur.aur:
+    name:
+      - librewolf-bin
+      - profile-sync-daemon-librewolf
+      - librewolf-extension-darkreader
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
+  notify: browser psd restart
+
 - name: Start Profile Sync Daemon back up
   ansible.builtin.service:
     name: psd
