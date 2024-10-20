@@ -1,50 +1,65 @@
-- ansible.builtin.import_tasks: powerpill_and_yay.yaml
-  name: Deploy Powerpill and Yay configuration
-  register: deployed_powerpill_and_yay
-- ansible.builtin.import_tasks: hyprland.yaml
-  name: hyprland
-  when: ( hyprland == true AND deployed_powerpill_and_yay )
-- ansible.builtin.import_tasks: gnome.yaml
-  name: gnome
-  when: ( gnome == true AND deployed_powerpill_and_yay )
-- ansible.builtin.import_tasks: kde.yaml
-  name: kde
-  when: ( kde == true AND deployed_powerpill_and_yay )
-- ansible.builtin.import_tasks: bluetooth.yaml
-  name: bluetooth
-  when: deployed_powerpill_and_yay
-- ansible.builtin.import_tasks: fonts.yaml
-  name: Install fonts
-  when: deployed_powerpill_and_yay
-- ansible.builtin.import_tasks: common.yaml
-  name: Install common "Desktop" items
-  when: deployed_powerpill_and_yay
-- ansible.builtin.import_tasks: audio.yaml
-  name: Install ALSA and pipewire tools
-- ansible.builtin.import_tasks: browser.yaml
-  name: Install web browsers
-  when: deployed_powerpill_and_yay
-- ansible.builtin.import_tasks: editors.yaml
-  name: Install text editors and Libre Office
-  when: deployed_powerpill_and_yay
-- ansible.builtin.import_tasks: games.yaml
-  name: Install Steam and other gaming packages
-  when: deployed_powerpill_and_yay
-- ansible.builtin.import_tasks: gitkraken.yaml
-  name: Install gitkraken
-  when: deployed_powerpill_and_yay
-- ansible.builtin.import_tasks: thunderbird.yaml
-  name: Install Thunderbird
-  when: deployed_powerpill_and_yay
-- ansible.builtin.import_tasks: messengers.yaml
-  name: Install messenger tools
-  when: deployed_powerpill_and_yay
-- ansible.builtin.import_tasks: graphics_editing.yaml
-  name: Install graphics editing tools
-  when: deployed_powerpill_and_yay
-- ansible.builtin.import_tasks: qemu.yaml
-  name: Install qemu and kvm virtualization tools
-  when: deployed_powerpill_and_yay
-- ansible.builtin.import_tasks: syncthing.yaml
-  name: Install syncthing
-  when: deployed_powerpill_and_yay
+- name: Deploy Yay configuration
+  ansible.builtin.import_tasks: yay.yaml
+  register: deployed_yay_config
+
+- name: AMD GPU libraries and drivers
+  ansible.builtin.import_tasks: amdgpu.yaml
+  when: system.graphics_card == "amd"
+
+- name: Gnome
+  ansible.builtin.import_tasks: gnome.yaml
+  when: gnome
+
+- name: KDE
+  ansible.builtin.import_tasks: kde.yaml
+  when: kde
+
+- name: Hyprland
+  ansible.builtin.import_tasks: hyprland.yaml
+  when: hyprland
+
+- name: Cosmic
+  ansible.builtin.import_tasks: cosmic.yaml
+  when: cosmic
+
+- name: Bluetooth
+  ansible.builtin.import_tasks: bluetooth.yaml
+
+- name: Install fonts
+  ansible.builtin.import_tasks: fonts.yaml
+
+- name: Install common "Desktop" items
+  ansible.builtin.import_tasks: common.yaml
+
+- name: Install 1Password
+  ansible.builtin.import_tasks: 1password.yaml
+
+- name: Install ALSA and pipewire tools
+  ansible.builtin.import_tasks: audio.yaml
+
+- name: Install web browsers
+  ansible.builtin.import_tasks: browser.yaml
+
+- name: Install text editors and Libre Office
+  ansible.builtin.import_tasks: editors.yaml
+
+- name: Install Steam and other gaming packages
+  ansible.builtin.import_tasks: games.yaml
+
+- name: Install gitkraken
+  ansible.builtin.import_tasks: gitkraken.yaml
+
+- name: Install Thunderbird
+  ansible.builtin.import_tasks: thunderbird.yaml
+
+- name: Install messenger tools
+  ansible.builtin.import_tasks: messengers.yaml
+
+- name: Install graphics editing tools
+  ansible.builtin.import_tasks: graphics_editing.yaml
+
+- name: Install qemu and kvm virtualization tools
+  ansible.builtin.import_tasks: qemu.yaml
+
+- name: Install syncthing
+  ansible.builtin.import_tasks: syncthing.yaml
