@@ -3,7 +3,7 @@
     name: sshd
     state: started
     enabled: true
-  when: ssh.enable_sshd == true
+  when: ssh.enable_sshd
   register: ssh_started
 
 - name: Start pkgfile-update.timer
