@@ -10,7 +10,8 @@
   until: task_result is success
   retries: 10
   delay: 2
-- name: install profile-sync-daemon-thunderbird from AUR
+
+- name: Install profile-sync-daemon-thunderbird from AUR
   kewlfft.aur.aur:
     name:
       - profile-sync-daemon-thunderbird
@@ -18,7 +19,7 @@
   when: thunderbird == true
   become: true
   become_user: "{{ user.name }}"
-  notify: thunderbird psd restart
+
 - name: Start Profile Sync Daemon
   ansible.builtin.service:
     name: psd

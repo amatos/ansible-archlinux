@@ -1,4 +1,4 @@
-- name: install gnome
+- name: Install gnome
   community.general.pacman:
     executable: powerpill
     name: "{{ item }}"
@@ -16,6 +16,7 @@
   until: gnome_installed is success
   retries: 2
   delay: 2
+
 - name: Gnome items from aur
   kewlfft.aur.aur:
     name:
@@ -31,10 +32,12 @@
   until: task_result is success
   retries: 2
   delay: 2
+
 - name: Enable gdm service
   ansible.builtin.service:
     name: gdm
     enabled: true
   when: gnome_installed
+
 - name: Enable gnome shell extensions
   ansible.builtin.command: gsettings set org.gnome.shell disable-user-extensions false

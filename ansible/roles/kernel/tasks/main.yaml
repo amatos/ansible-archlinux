@@ -1,54 +1,64 @@
 - ansible.builtin.import_tasks: kernels.yaml
   name: kernels
+
 - name: Get boot device UUID
-  shell: "blkid -s UUID -o value {{ root_device }}"
+  ansible.builtin.shell: "blkid -s UUID -o value {{ root_device }}"
   register: root_uuid
+
 - name: Get swap device UUID
-  shell: 'cat /etc/fstab | grep swap | cut -f 1 -d " "'
+  ansible.builtin.shell: 'cat /etc/fstab | grep swap | grep "UUID" | cut -f 1'
   register: swap_uuid
+
 - name: Create /etc/cmdline.d directory
   ansible.builtin.file:
     path: /etc/cmdline.d
     state: directory
     mode: "0755"
   register: created_cmdline
+
 - name: Populate kernel command line root file
   ansible.builtin.template:
     src: root.conf.j2
     dest: /etc/cmdline.d/root.conf
   notify:
-    - regenerate initramfs
+    - Regenerate initramfs
+
 - name: Populate kernel command line resume file
   ansible.builtin.template:
     src: resume.conf.j2
     dest: /etc/cmdline.d/resume.conf
   notify:
-    - regenerate initramfs
+    - Regenerate initramfs
+
 - name: Populate kernel command line plymouth file
   ansible.builtin.copy:
     src: plymouth.conf
     dest: /etc/cmdline.d
   notify:
-    - regenerate initramfs
+    - Regenerate initramfs
+
 - name: Populate kernel command line amd file
   ansible.builtin.copy:
     src: amd.conf
     dest: /etc/cmdline.d
   when: system.processor == "amd"
   notify:
-    - regenerate initramfs
+    - Regenerate initramfs
+
 - name: Populate kernel command line kernel file
   ansible.builtin.copy:
     src: kernel.conf
     dest: /etc/cmdline.d
   notify:
-    - regenerate initramfs
-- name: Push mkinitcpio configuration and regenerate initramfs
+    - Regenerate initramfs
+
+- name: Push mkinitcpio configuration and Regenerate initramfs
   ansible.builtin.template:
     src: mkinitcpio.conf.j2
     dest: /etc/mkinitcpio.conf.d/mkinitcpio-override.conf
   notify:
-    - regenerate initramfs
+    - Regenerate initramfs
+
 - name: Firmware
   community.general.pacman:
     name:
@@ -56,4 +66,4 @@
       - sof-firmware
     state: present
   notify:
-    - regenerate initramfs
+    - Regenerate initramfs

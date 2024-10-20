@@ -1,4 +1,4 @@
-- name: Install Cockpit
+- name: Deploy Cockpit
   community.general.pacman:
     name:
       - cockpit

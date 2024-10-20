@@ -8,6 +8,7 @@
       ParallelDownloads = 9
     marker: "# {mark} MISC OPTIONS ANSIBLE MANAGED BLOCK"
   register: base_pacman_part1
+
 - name: Update pacman.conf to enable multilib
   ansible.builtin.blockinfile:
     path: /etc/pacman.conf
@@ -19,7 +20,9 @@
       [multilib]
       Include = /etc/pacman.d/mirrorlist
   when: base_pacman_part1
+
   register: base_pacman_complete
+
 - name: Update pacman package cache
   community.general.pacman:
     update_cache: true

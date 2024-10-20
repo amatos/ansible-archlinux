@@ -1,4 +1,4 @@
-- name: install QEMU package
+- name: Install QEMU package
   community.general.pacman:
     executable: powerpill
     name: "{{ item }}"
@@ -10,13 +10,15 @@
   with_items:
     - qemu-full
     - virt-manager
+
 - name: Install VirtIO drivers
   kewlfft.aur.aur:
     name: "virtio-win"
     use: yay
   become: true
   become_user: "{{ user.name }}"
-- name: install samba package
+
+- name: Install samba package
   community.general.pacman:
     executable: powerpill
     name: "samba"
@@ -25,22 +27,26 @@
   until: task_result is success
   retries: 10
   delay: 2
-- name: adding existing user '{{ user.name }}' to group libvirt
+
+- name: Adding existing user '{{ user.name }}' to group libvirt
   user:
     name: '{{ user.name }}'
     groups: libvirt
-    append: yes
+    append: true
+
 - name: Enable libvirtd service
   ansible.builtin.service:
     name: libvirtd.service
     state: started
     enabled: true
+
 - name: Update nsswitch.conf
   ansible.builtin.lineinfile:
     path: /etc/nsswitch.conf
     state: present
     regexp: '^hosts: mymachines resolve .*'
     line: 'hosts: files libvirt libvirt_guest myhostname dns'
+
 - name: Update nsswitch.conf
   ansible.builtin.lineinfile:
     path: /etc/nsswitch.conf

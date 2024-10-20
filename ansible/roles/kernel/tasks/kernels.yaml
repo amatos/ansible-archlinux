@@ -6,7 +6,8 @@
     state: present
   when: (kernel == "linux") and (system_distribution == "arch")
   notify:
-    - regenerate initramfs
+    - Regenerate initramfs
+
 - name: Install linux-hardened and hardened headers
   community.general.pacman:
     name:
@@ -15,7 +16,8 @@
     state: present
   when: (kernel == "linux-hardened") and (system_distribution == "arch")
   notify:
-    - regenerate initramfs
+    - Regenerate initramfs
+
 - name: Install linux-zen and zen headers
   community.general.pacman:
     name:
@@ -24,4 +26,4 @@
     state: present
   when: (kernel == "linux-zen") and (system_distribution == "arch")
   notify:
-    - regenerate initramfs
+    - Regenerate initramfs

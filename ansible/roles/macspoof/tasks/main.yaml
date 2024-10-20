@@ -2,8 +2,10 @@
   community.general.pacman:
     name: macchanger
     state: present
+
 - name: Create systemd unit for macchanger
   ansible.builtin.copy: src=macspoof@.service dest=/etc/systemd/system/
+
 - name: Enable macspoof for all interfaces
   ansible.builtin.service: name=macspoof@{{ item }}.service enabled=true
   with_items:

@@ -1,22 +1,22 @@
 - name: Set timezone to system.timezone
-  timezone: name={{ system.timezone }}
+  community.general.timezone: name={{ system.timezone }}
 
 - name: Ensure the locale system.locale exists
-  locale_gen: name={{ system.locale }} state=present
+  community.general.locale_gen: name={{ system.locale }} state=present
 
 - name: update /etc/vconsole.conf
   ansible.builtin.blockinfile:
       path: /etc/vconsole.conf
       append_newline: true
-      create: yes
+      create: true
       block: |
           KEYMAP=us
 
-- name: update /etc/locale.conf
+- name: Update /etc/locale.conf
   ansible.builtin.blockinfile:
       path: /etc/locale.conf
       append_newline: true
-      create: yes
+      create: true
       block: |
           LANG={{ system.locale }}
 

@@ -6,36 +6,42 @@
       - iwd
       - networkmanager
     state: present
+
 - name: Enable NetworkManager service
   ansible.builtin.service:
     name: NetworkManager
     state: started
     enabled: true
+
 - name: Enable systemd-resolved service
   ansible.builtin.service:
     name: systemd-resolved
     state: started
     enabled: true
   register: resolved
-- name: deploy disable_mdns
+
+- name: Deploy disable_mdns
   ansible.builtin.copy:
     src: 1-disable_mdns.conf
     dest: /etc/systemd/resolved.conf.d/
   notify:
-    - restart resolved
-- name: deploy stub dns
+    - Restart resolved
+
+- name: Deploy stub dns
   ansible.builtin.copy:
     src: 10-stub-dns.conf
     dest: /etc/systemd/resolved.conf.d/
-  when: resolved_stub == true
+  when: resolved_stub
   notify:
-    - restart resolved
+    - Restart resolved
+
 - name: switch to systemd-resolved stub dns resolver -- removing resolv.conf
   ansible.builtin.file:
     path: /etc/resolv.conf
     state: absent
   register: removed_resolv
   when: resolved
+
 - name: switch to systemd-resolved stub dns resolver -- replacing resolv.conf with symlink
   ansible.builtin.file:
     src: /var/run/systemd/resolve/stub-resolv.conf
@@ -44,23 +50,27 @@
     group: root
     state: link
   when: removed_resolv
+
 - name: Update nsswitch.conf
   ansible.builtin.lineinfile:
     path: /etc/nsswitch.conf
     state: present
     regexp: '^hosts: mymachines resolve .*'
     line: 'hosts: mymachines mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] files myhostname dns'
+
 - name: Enable Avahi mdns service
   ansible.builtin.service:
     name: avahi-daemon
     state: started
     enabled: true
+
 - name: Set NetworkManager to update timesyncd time servers
   ansible.builtin.copy:
     src: 10-update-timesyncd
     dest: /etc/NetworkManager/dispatcher.d/10-update-timesyncd
     mode: "0755"
   register: updated_timesyncd
+
 - name: Start systemd-timesyncd back up
   ansible.builtin.service:
     name: systemd-timesyncd

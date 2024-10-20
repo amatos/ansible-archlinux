@@ -7,6 +7,7 @@
   retries: 2
   delay: 2
   when: (system.processor == "intel")
+
 - name: Install microcode updates for amd (if necessary)
   community.general.pacman:
     name: amd-ucode

@@ -2,11 +2,13 @@
   community.general.pacman:
     name: ufw
     state: present
+
 - name: Enable and start ufw
   ansible.builtin.service:
     name: ufw.service
     enabled: true
     state: started
+
 - name: Allow all access from RFC1918 networks to this host
   community.general.ufw:
     rule: allow
@@ -15,10 +17,13 @@
     - 10.0.0.0/8
     - 172.16.0.0/12
     - 192.168.0.0/16
+
 # Allow SSH. (Note that as ufw manages its own state, simply removing
 # a rule=allow task can leave those ports exposed. Either use delete=true
 # or a separate state=reset task.  See example)
-- community.general.ufw:
+
+- name: Add SSH
+  community.general.ufw:
     rule: allow
     name: SSH
 # - name: Delete SSH rule
@@ -26,10 +31,12 @@
 #     rule: allow
 #     name: SSH
 #     delete: true
+
 - name: Add ufw rule for syncthing
   community.general.ufw:
     rule: allow
     name: syncthing
+
 - name: Add ufw rule for mdns
   community.general.ufw:
     rule: allow

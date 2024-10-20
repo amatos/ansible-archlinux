@@ -1,4 +1,4 @@
-- name: install Sublime Text
+- name: Install Sublime Text
   kewlfft.aur.aur:
     name:
       - sublime-text-4
@@ -6,13 +6,15 @@
   become: true
   become_user: "{{ user.name }}"
   when: system.type == "desktop"
-- name: install obsidian
+
+- name: Install obsidian
   community.general.pacman:
     executable: powerpill
     name: obsidian
     state: present
   when: system.type == "desktop"
-- name: install Libre Office (fresh)
+
+- name: Install Libre Office (fresh)
   community.general.pacman:
     executable: powerpill
     name: "{{ item }}"
@@ -32,7 +34,8 @@
   until: task_result is success
   retries: 2
   delay: 2
-- name: install VSCode
+
+- name: Install VSCode
   kewlfft.aur.aur:
     name:
       - visual-studio-code-bin
@@ -40,7 +43,8 @@
   when: system.type == "desktop"
   become: true
   become_user: "{{ user.name }}"
-- name: install Zed
+
+- name: Install Zed
   kewlfft.aur.aur:
     name:
       - zed

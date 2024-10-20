@@ -1,4 +1,3 @@
----
-- name: regenerate initramfs
+- name: Regenerate initramfs
   shell: "mkinitcpio -P"
   become: true

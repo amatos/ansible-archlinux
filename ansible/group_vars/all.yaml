@@ -6,6 +6,7 @@
 #   "cachyos", CachyOS
 ###
 system_distribution: "arch"
+
 ##
 # Linux Kernel
 # ============
@@ -18,17 +19,19 @@ system_distribution: "arch"
 # Leave this blank for CachyOS or other systems where you don't want to specify a kernel.
 ##
 kernel: "linux-zen"
+
 ##
 # User configuration
 # ==================
 # Pretty self-explanatory.
 # name: The user id
 # shell: Name of the desired shell (bash/zsh/fish)
-# 
+#
 ##
 user:
   name: alberth
   shell: fish
+
 ##
 # System configuration
 # ====================
@@ -62,50 +65,57 @@ system:
   graphics_card: "amd"
   macspoof: false
   type: "minimal"
+
 ############# Desktop Envionment Settings ####################
 ####                                                      ####
 ####                                                      ####
 ##
 # Install KDE
-# =================
+# ===========
 # true/false to installing KDE Plasma and/or kde-pim.  kde-pim alone will install
 # some parts of kde, but not all of plasma
 ##
 kde: false
 kdepim: false
+
 ##
 # Install Hyprland
 # ================
 # true/false to install Hyprland
 ##
 hyprland: false
+
 ##
-# Install Hyprland
-# ================
+# Install Gnome
+# =============
 # true/false to install Hyprland
 ##
 gnome: false
 ####                                                      ####
 ####                                                      ####
 ##############################################################
+
 ##
 # Enable chaotic-aur
 # ==================
 # true/false
 ##
 enable_chaotic: false
+
 ##
 # Firewall configuration
 # ========================
 # ufw and firewalld are supported
 ##
 firewall: "firewalld"
+
 ##
 # Bootloader configuration
 # ========================
 # refind and grub are supported
 ##
 bootloader: "refind"
+
 ##
 # Cryptdevice config
 # ========================
@@ -113,6 +123,7 @@ bootloader: "refind"
 ##
 #cryptdevice: /dev/nvmen1p2
 cryptdevice: false
+
 ##
 # Connectivity configuration
 # ==========================
@@ -120,11 +131,13 @@ cryptdevice: false
 ssh:
   port: 22
   enable_sshd: true
+
 ##
 # Use systemd-resolved stub DNS resolver (and cache)
 # =================
 ##
 resolved_stub: true
+
 ##
 # Base package configuration
 # ==========================

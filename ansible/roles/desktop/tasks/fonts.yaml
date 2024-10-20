@@ -1,4 +1,4 @@
-- name: install fonts
+- name: Install fonts
   kewlfft.aur.aur:
     name:
       - apple-fonts

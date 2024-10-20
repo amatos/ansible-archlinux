@@ -60,6 +60,7 @@
     use: yay
   become: true
   become_user: "{{ user.name }}"
+
 - name: Install additional Hyprland tools
   kewlfft.aur.aur:
     name:

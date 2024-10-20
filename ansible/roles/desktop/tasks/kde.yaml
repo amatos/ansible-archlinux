@@ -1,4 +1,4 @@
-- name: install KDE Plasma meta package
+- name: Install KDE Plasma meta package
   community.general.pacman:
     executable: powerpill
     name: "{{ item }}"
@@ -40,7 +40,8 @@
   until: task_result is success
   retries: 2
   delay: 2
-- name: install KDE PIM
+
+- name: Install KDE PIM
   community.general.pacman:
     executable: powerpill
     name: "{{ item }}"
@@ -65,7 +66,8 @@
   until: task_result is success
   retries: 2
   delay: 2
-- name: install KDE additions
+
+- name: Install KDE additions
   community.general.pacman:
     executable: powerpill
     name: "{{ item }}"
@@ -184,7 +186,8 @@
   until: task_result is success
   retries: 2
   delay: 2
-- name: deploy sddm wayland configuration file
+
+- name: Deploy sddm wayland configuration file
   ansible.builtin.copy:
     src: 10-wayland.conf
     dest: /etc/sddm.conf.d/
@@ -193,7 +196,8 @@
     name: sddm
     state: started
     enabled: true
-- name: amd-specific gaming items
+
+- name: Amd-specific gaming items
   kewlfft.aur.aur:
     name:
       - plasma-gamemode-git
