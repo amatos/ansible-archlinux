@@ -26,26 +26,28 @@
     use: yay
   become: true
   become_user: "{{ user.name }}"
-- name: Install Thunar file manager
-  kewlfft.aur.aur:
-    name:
-      - thunar
-      - catfish
-      - gvfs
-      - tumbler
-      - thunar-volman
-      - thunar-archive-plugin
-      - thunar-media-tags-plugin
-      - zeitgeist
-      - ffmpegthumbnails
-      - libgsf
-      - libgepub
-      - file-roller
-      - engrampa
-      - xarchiver
-    use: yay
-  become: true
-  become_user: "{{ user.name }}"
+
+# - name: Install Thunar file manager
+#   kewlfft.aur.aur:
+#     name:
+#       - thunar
+#       - catfish
+#       - gvfs
+#       - tumbler
+#       - thunar-volman
+#       - thunar-archive-plugin
+#       - thunar-media-tags-plugin
+#       - zeitgeist
+#       - ffmpegthumbnails
+#       - libgsf
+#       - libgepub
+#       - file-roller
+#       - engrampa
+#       - xarchiver
+#     use: yay
+#   become: true
+#   become_user: "{{ user.name }}"
+
 - name: Install gnome stuff
   kewlfft.aur.aur:
     name:
