@@ -2,9 +2,6 @@
   kewlfft.aur.aur:
     name:
       - aquamarine-git
-      - dunst
-      - evince
-      - grim
       - hyprcursor-git
       - hypridle-git
       - hyprland-git
@@ -14,11 +11,6 @@
       - hyprpicker-git
       - hyprutils-git
       - hyprwayland-scanner-git
-      - otf-font-awesome
-      - qt5-wayland
-      - qt6-wayland
-      - slurp
-      - waybar
       - xdg-desktop-portal-gtk
       - xdg-desktop-portal-hyprland-git
       - hyprsysteminfo-git
@@ -59,6 +51,7 @@
       - gvfs-onedrive
       - gvfs-smb
       - nautilus
+      - evince
     use: yay
   become: true
   become_user: "{{ user.name }}"
@@ -67,11 +60,16 @@
   kewlfft.aur.aur:
     name:
       - wofi
+      - dunst
       - greetd
       - greetd-regreet-git
-      - cliphist
+      - grim
       - fuzzel
       - anyrun-git
+      - qt5-wayland
+      - qt6-wayland
+      - slurp
+      - waybar
     use: yay
   become: true
   become_user: "{{ user.name }}"
