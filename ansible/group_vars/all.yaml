@@ -300,6 +300,8 @@ desktop_cli:
   - yamlfmt
   - yamllint
   - tmux
+  - libqalculate
+  - gnuplot
 
 desktop_gui:
   - btrfs-assistant
@@ -317,6 +319,8 @@ desktop_gui:
   - spotify
   - alacritty
   - kitty
+  - qalculate-gtk
+  - solaar
 
 ##
 # Gaming packages
