@@ -36,22 +36,23 @@
   ansible.builtin.template:
     src: refind_linux.conf.j2
     dest: /boot/refind_linux.conf
-    perms: 0644
+    mode: '0644'
   become: true
   when:
     - refind_root_uuid
     - refind_swap_uuid
+    - not uki
 
 - name: Create /etc/pacman.d/hooks/ directory
   ansible.builtin.file:
     path: /etc/pacman.d/hooks/
     state: directory
-    mode: "0755"
+    mode: '0755'
   register: created_pacmand_hooks_dir
 
 - name: Deploy refind hook
   ansible.builtin.copy:
     src: refind.hook
     dest: /etc/pacman.d/hooks/
-    perms: 0644
+    mode: '0644'
   when: created_pacmand_hooks_dir

@@ -5,6 +5,6 @@
   ansible.builtin.copy:
     src: chrony.conf
     dest: /etc/
-    perms: 0644
+    perms: '0644'
   notify:
     - restart chrony
