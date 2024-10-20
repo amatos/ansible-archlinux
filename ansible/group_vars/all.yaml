@@ -298,7 +298,6 @@ desktop_gui:
 gaming_packages:
   - heroic-games-launcher-bin
   - protonup-qt
-  - reshade-shaders-git
   - steamtinkerlaunch
   - vkbasalt
   - vkbasalt-cli
