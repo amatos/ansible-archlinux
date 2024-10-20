@@ -1,4 +1,4 @@
-- name: browser psd restart
+- name: Browser psd restart
   ansible.builtin.service:
       name: psd
       state: restarted
@@ -6,3 +6,18 @@
       enabled: true
   become: true
   become_user: "{{ user.name }}"
+
+- name: Install hyprshade
+  ansible.builtin.command:
+    cmd: hyprshare install
+  become: true
+  become_user: "{{ user.name }}"
+  register: hyprshade_installed
+
+- name: Start hyprshade
+  ansible.builtin.systemd_service:
+    name: hyprshade.timer
+    state: started
+    enabled: true
+    scope: user
+  when: hyprshade_installed

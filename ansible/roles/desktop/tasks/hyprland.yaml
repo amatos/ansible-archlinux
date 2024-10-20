@@ -59,17 +59,48 @@
 - name: Install additional Hyprland tools
   kewlfft.aur.aur:
     name:
-      - wofi
+      - anyrun-git
+      - bibata-cursor-git
+      - brightnessctl
+      - cliphist
       - dunst
+      - fuzzel
       - greetd
       - greetd-regreet-git
       - grim
-      - fuzzel
-      - anyrun-git
+      - grimshot
+      - nordzy-hyprcursors
+      - pamixer
       - qt5-wayland
       - qt6-wayland
       - slurp
+      - sweet-cursors-hyprcursor-git
+      - walker-bin
       - waybar
+      - webcord-bin
+      - wofi
+      - xwaylandvideobridge-git
+      - blueberry
+      - nm-applet
+      - udiskie
+      - udiskie-systemd-git
+      - wlogout
     use: yay
   become: true
   become_user: "{{ user.name }}"
+
+- name: Install hyprshade
+  kewlfft.aur.aur:
+    name:
+      - hyprshade
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
+  notify: Install hyprshade
+
+- name: Deploy hyprshade config
+  ansible.builtin.file:
+    path: /usr/share/hyprshade/examples/config.toml
+    state: ~/.config/hypr/hyprshade.toml
+    mode: '0644'
+  notify: Start hyprshade
