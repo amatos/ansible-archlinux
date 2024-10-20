@@ -31,7 +31,6 @@
 - ansible.builtin.import_tasks: services.yaml
   name: Enable and start services
   when: minimal_packages_deployed
-  register: services_started
 
 - ansible.builtin.import_tasks: ntp.yaml
   name: Configure ntp
