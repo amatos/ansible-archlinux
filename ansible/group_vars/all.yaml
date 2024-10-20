@@ -21,6 +21,14 @@ system_distribution: "arch"
 kernel: "linux-zen"
 
 ##
+# UKI: Unified Kernel Image
+# =========================
+# Generate a UKI image instead of a classic image?
+# true/false
+##
+uki: true
+
+##
 # User configuration
 # ==================
 # Pretty self-explanatory.

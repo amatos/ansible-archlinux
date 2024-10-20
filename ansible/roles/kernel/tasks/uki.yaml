@@ -1,0 +1,86 @@
+- name: Find UEFI partition
+  ansible.builtin.shell: 'cat /etc/fstab |grep efi | grep UUID | cut -f 2'
+  register: uefi_path
+
+- name: Create UEFI/EFI/Linux
+  ansible.builtin.file:
+    path: "{{ uefi_path.stdout | replace(' ', '') }}/EFI/Linux"
+    state: directory
+    mode: '0755'
+
+- name: Enable default UKI image
+  ansible.builtin.lineinfile:
+    path: "/etc/mkinitcpio.d/{{ kernel }}.preset"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - { regexp: '^default_image=', line: '#default_image="/boot/initramfs-{{ kernel }}.img"' }
+    - { regexp: '^#default_uki=', line: 'default_uki="{{ uefi_path.stdout | replace(" ", "") }}/EFI/Linux/arch-{{ kernel }}.efi"' }
+    - { regexp: '^#default_options=', line: 'default_options="--splash /usr/share/systemd/bootctl/splash-arch.bmp"' }
+    - { regexp: '^fallback_image=', line: '#fallback_image=#default_image="/boot/initramfs-{{ kernel }}-fallback.img"' }
+    - { regexp: '^#fallback_uki=', line: 'fallback_uki="{{ uefi_path.stdout | replace(" ", "") }}/EFI/Linux/arch-{{ kernel }}-fallback.efi"' }
+    - { regexp: '^#fallback_options=', line: 'fallback_options="-S autodetect"' }
+
+- name: Get boot device UUID
+  ansible.builtin.shell: "blkid -s UUID -o value {{ root_device }}"   # noqa: no-handler
+  register: root_uuid
+
+- name: Get swap device UUID
+  ansible.builtin.shell: 'cat /etc/fstab | grep swap | grep "UUID" | cut -f 1'   # noqa: no-handler
+  register: swap_uuid
+
+- name: Create /etc/cmdline.d directory
+  ansible.builtin.file:
+    path: /etc/cmdline.d
+    state: directory
+    mode: "0755"
+  register: created_cmdline
+
+- name: Populate kernel command line root file
+  ansible.builtin.template:
+    src: root.conf.j2
+    dest: /etc/cmdline.d/root.conf
+    mode: '0644'
+  notify:
+    - Regenerate initramfs
+
+- name: Populate kernel command line resume file
+  ansible.builtin.template:
+    src: resume.conf.j2
+    dest: /etc/cmdline.d/resume.conf
+    mode: '0644'
+  notify:
+    - Regenerate initramfs
+
+- name: Populate kernel command line plymouth file
+  ansible.builtin.copy:
+    src: plymouth.conf
+    dest: /etc/cmdline.d
+    mode: '0644'
+  notify:
+    - Regenerate initramfs
+
+- name: Populate kernel command line amd file
+  ansible.builtin.copy:
+    src: amd.conf
+    dest: /etc/cmdline.d
+    mode: '0644'
+  when: system.processor == "amd"
+  notify:
+    - Regenerate initramfs
+
+- name: Populate kernel command line kernel file
+  ansible.builtin.copy:
+    src: kernel.conf
+    dest: /etc/cmdline.d
+    mode: '0644'
+  notify:
+    - Regenerate initramfs
+
+- name: Remove old image
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - "/boot/initramfs-{{ kernel }}.img"
+    - "/boot/initramfs-{{ kernel }}-fallback.img"
