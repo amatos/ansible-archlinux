@@ -37,8 +37,7 @@ user:
 # ====================
 # type:  ***IMPORTANT:  Setting this to server will override any desktop settings below***
 #   "desktop", install additional items associated with a desktop environment
-#   "server", secure and simple install.
-#   "minimal", The minimal required options
+#   "minimal", or "", The minimal required options
 #     - kernel
 #     - base OS
 #     - My preferred minimal toolkit
@@ -58,7 +57,7 @@ user:
 system:
   pacman: true
   makepkg: true
-  cockpit: false
+  cockpit: true
   locale: "en_US.UTF-8"
   timezone: "America/New_York"
   processor: "amd"
