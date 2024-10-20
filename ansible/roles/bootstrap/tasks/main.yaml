@@ -25,10 +25,6 @@
 - ansible.builtin.import_tasks: pacman.yaml
   name: Configure pacman
 
-- ansible.builtin.import_tasks: ntp.yaml
-  name: Configure ntp
-  when: (minimal_packages_deployed AND services_started)
-
 - ansible.builtin.import_tasks: userconf_dropin.yaml
   name: Deploy userconf dropin files
 
@@ -36,3 +32,7 @@
   name: Enable and start services
   when: minimal_packages_deployed
   register: services_started
+
+- ansible.builtin.import_tasks: ntp.yaml
+  name: Configure ntp
+  when: ((minimal_packages_deployed) and (services_started))
