@@ -98,6 +98,13 @@ hyprland: false
 # true/false to install Hyprland
 ##
 gnome: false
+
+##
+# Install Cosmic
+# ==============
+# true/false to install Hyprland
+##
+cosmic: false
 ####                                                      ####
 ####                                                      ####
 ##############################################################
