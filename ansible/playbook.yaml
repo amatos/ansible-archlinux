@@ -3,35 +3,12 @@
   connection: local
   become: true
   roles:
-    - {role: network, tags: ["network"]}
-    - {role: reflector, tags: ["reflector"]}
+    - {role: bootstrap, tags: ["bootstrap"]}
     - {role: kernel, tags: ["kernel"]}
-    - {role: base, tags: ["base"]}
-    - {role: bluetooth, tags: ["bluetooth"], when: (system.type == "desktop") and (system.bluetooth == true)}
-    - {role: dotfiles, tags: ["dotfiles"]}
-    - {role: editor, tags: ["editor"]}
+    - {role: network, tags: ["network"]}
     - {role: firewall, tags: ["firewall"]}
-    - {role: printing, tags: ["printing"]}
     - {role: grub, tags: ["grub"], when: bootloader == "grub"}
     - {role: refind, tags: ["refind"], when: bootloader == "refind"}
-    - {role: shell, tags: ["shell"]}
-    - {role: terminal, tags: ["terminal"], when: system.type == "desktop"}
-    - {role: gui, tags: ["gui"], when: system.type == "desktop"}
-    - {role: 1password, tags: ["1password"], when: system.type == "desktop"}
-    - {role: amd, tags: ["amd"], when: system.processor == "amd"}
-    - {role: browsers, tags: ["browsers"], when: system.type == "desktop"}
-    - {role: calibre, tags: ["calibre"], when: system.type == "desktop"}
-    - {role: games, tags: ["games"], when: (system.type == "desktop") and (system.games == true)}
-    - {role: gitkraken, tags: ["gitkraken"], when: (system.type == "desktop") and (gitkraken == true)}
-    #    - { role: gnupg, tags: ["gnupg"] }
-    - {role: jetbrains, tags: ["jetbrains"], when: install_jetbrains == true}
-    - {role: keepass, tags: ["keepass"], when: keepass == true}
-    - {role: macspoof, tags: ["macspoof"], when: system.macspoof == true}
-    - {role: mail, tags: ["mail"], when: system.type == "desktop"}
-    - {role: messengers, tags: ["messengers"], when: system.type == "desktop"}
-    - {role: photography, tags: ["photography"], when: system.type == "desktop"}
-    - {role: qemu, tags: ["qemu"], when: install_qemu == true}
-    - {role: redshift, tags: ["redshift"], when: (((kde == false) or (hyprland == false)) or (gnome == false)) and (system.type == "desktop")}
-    - {role: sound, tags: ["sound"], when: system.type == "desktop"}
-    - {role: spotify, tags: ["spotify"], when: system.type == "desktop"}
-    - {role: syncthing, tags: ["syncthing"]}
+    - {role: macspoof, tags: ["macspoof"], when: system.macspoof}
+    - {role: printing, tags: ["printing"]}
+    - {role: desktop, tags: ["desktop"], when: (system.type == "desktop")}

@@ -1,8 +1,7 @@
----
-- ansible.builtin.import_tasks: ufw.yaml
-  name: ufw
+- name: Deploy UFW
+  ansible.builtin.import_tasks: ufw.yaml
   when: firewall == "ufw"
 
-- ansible.builtin.import_tasks: firewalld.yaml
-  name: firewalld
+- name: Deploy firewalld
+  ansible.builtin.import_tasks: firewalld.yaml
   when: firewall == "firewalld"

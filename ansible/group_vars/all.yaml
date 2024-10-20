@@ -1,4 +1,4 @@
-# Arch distribution
+# Arch de minimis distribution
 # ====================
 # IMPORTANT:  Changing this from "arch" will override some settings below.
 # options:
@@ -6,6 +6,7 @@
 #   "cachyos", CachyOS
 ###
 system_distribution: "arch"
+
 ##
 # Linux Kernel
 # ============
@@ -18,21 +19,38 @@ system_distribution: "arch"
 # Leave this blank for CachyOS or other systems where you don't want to specify a kernel.
 ##
 kernel: "linux-zen"
+
+##
+# UKI: Unified Kernel Image
+# =========================
+# Generate a UKI image instead of a classic image?
+# true/false
+##
+uki: true
+
 ##
 # User configuration
 # ==================
+# Pretty self-explanatory.
+# name: The user id
+# shell: Name of the desired shell (bash/zsh/fish)
+#
 ##
 user:
   name: alberth
-  group: users
-  shell: /bin/fish
+  shell: fish
+
 ##
 # System configuration
 # ====================
-#
 # type:  ***IMPORTANT:  Setting this to server will override any desktop settings below***
 #   "desktop", install additional items associated with a desktop environment
-#   "server", secure and simple install.
+#   "minimal", or "", The minimal required options
+#     - kernel
+#     - base OS
+#     - My preferred minimal toolkit
+#     - firewall
+#     - networking
 # processor:
 #   Option: "intel" will install microcode updates and configure the bootloader accordingly
 #   Option: "amd" will do the same for amd
@@ -46,69 +64,65 @@ user:
 ##
 system:
   pacman: true
-  pacoloco: false
   makepkg: true
   cockpit: true
-  games: true
-  bluetooth: true
   locale: "en_US.UTF-8"
   timezone: "America/New_York"
   processor: "amd"
   graphics_card: "amd"
   macspoof: false
-  type: "desktop"
+  type: "minimal"
+
 ############# Desktop Envionment Settings ####################
 ####                                                      ####
 ####                                                      ####
 ##
 # Install KDE
-# =================
+# ===========
 # true/false to installing KDE Plasma and/or kde-pim.  kde-pim alone will install
 # some parts of kde, but not all of plasma
 ##
 kde: false
 kdepim: false
+
 ##
 # Install Hyprland
 # ================
 # true/false to install Hyprland
 ##
 hyprland: false
+
 ##
-# Install Hyprland
-# ================
+# Install Gnome
+# =============
 # true/false to install Hyprland
 ##
-gnome: true
+gnome: false
 ####                                                      ####
 ####                                                      ####
 ##############################################################
+
 ##
 # Enable chaotic-aur
 # ==================
 # true/false
 ##
 enable_chaotic: false
+
 ##
 # Firewall configuration
 # ========================
 # ufw and firewalld are supported
 ##
 firewall: "firewalld"
-##
-# Use Oracle BPFTune
-# ==================
-# Oracle's auto-tuning daemon reacts to system needs and adjusts sysctl tunings automatically.
-# BUT, any user-set sysctl will make bpftune ignore recommendations for that parameter,
-# So, if this is enabled, we DO NOT apply custom sysctl parameters.
-##
-use_bpftune: true
+
 ##
 # Bootloader configuration
 # ========================
 # refind and grub are supported
 ##
 bootloader: "refind"
+
 ##
 # Cryptdevice config
 # ========================
@@ -116,6 +130,7 @@ bootloader: "refind"
 ##
 #cryptdevice: /dev/nvmen1p2
 cryptdevice: false
+
 ##
 # Connectivity configuration
 # ==========================
@@ -123,120 +138,77 @@ cryptdevice: false
 ssh:
   port: 22
   enable_sshd: true
+
 ##
 # Use systemd-resolved stub DNS resolver (and cache)
 # =================
 ##
 resolved_stub: true
-##
-# Dotfile configuration
-# =====================
-# Choose whether custom dotfiles should be installed or not
-# Just set the installation flag to false to avoid an installation
-##
-dotfiles:
-  installation: false
-  url: https://github.com/amatos/dotfiles.git
-  destination: .dotfiles
-  rcup_flags: -fx README.md
-##
-# Install Keypassxc
-# =================
-# true/false to installing keypassxc
-##
-keepass: false
-##
-# Install thunderbird
-# ===================
-# true/false to install thunderbird
-##
-thunderbird: false
-##
-# Install gitkraken
-# =================
-# true/false to installing GitKraken
-##
-gitkraken: true
-##
-# Install JetBrains IDEs?
-# =================
-# true/false to installing CLion and IntelliJ
-##
-install_jetbrains: false
-##
-# Install QEMU
-# =================
-# true/false to installing QEMU, virt-manager, and samba
-##
-install_qemu: true
+
 ##
 # Base package configuration
 # ==========================
 ##
-base_packages:
+minimal_packages:
   - avahi
   - base-devel
+  - bash
   - bind
-  - btop
+  - ccache
   - chrony
-  - cmake
   - coreutils
   - cronie
   - curl
   - dateutils
   - fish
   - fwupd
-  - geoclue
   - git
-  - go
-  - jdk-openjdk
   - links
   - lsof
   - man-db
   - man-pages
-  - ninja
-  - nmap
-  - nodejs
-  - npm
+  - neovim
   - nss-mdns
   - openssh
   - pacman-contrib
-  - perl
+  - pacutils
+  - pbzip2
+  - pigz
+  - pkgfile
   - pkgstats
   - python
   - python-jmespath
   - python-pipx
   - reflector
-  - rkhunter
   - rsync
-  - ruby
-  - rust
+  - sbctl
   - strace
   - sysstat
   - texinfo
-  - tmux
-  - zsh
   - udisks2
   - udisks2-btrfs
+  - zsh
+
 ##
-# Misc. packages
+# "Desktop" cli and gui packages
 # ==============
 ##
-misc_packages:
+desktop_cli:
+  - ansible-gpg-key-git
   - ansible-language-server
   - ansible-lint
   - argyllcms
-  - aria2
   - arj
   - atomicparsley
+  - atuin
   - bash-completion
   - bash-language-server
   - bat
   - bc
   - catdoc
-  - ccache
   - cdrdao
   - cdrtools
+  - cmake
   - colord-sane
   - cowsay
   - ctags
@@ -249,15 +221,21 @@ misc_packages:
   - f2fs-tools
   - fatresize
   - festival
+  - find-the-command
   - fortune-mod
   - fzf
   - gavl
+  - geoclue
   - geoipupdate
   - git-delta
+  - github-cli
+  - go
   - graphviz
   - gum
   - hunspell-en_us
+  - hunspell-pt-br
   - inotify-tools
+  - jdk-openjdk
   - jfsutils
   - ladspa
   - languagetool
@@ -274,22 +252,24 @@ misc_packages:
   - mediainfo
   - mlocate
   - movit
-  - nss-mdns
+  - ninja
+  - nmap
+  - nodejs
+  - npm
   - ntfs-3g
   - opencv
   - openmp
   - opentimelineio
   - p7zip
-  - pacman-contrib
-  - pacutils
-  - pbzip2
-  - pigz
-  - pkgfile
-  - power-profiles-daemon
+  - perl
+  - perl-bundle-camelcade
+  - perl-devel-camelcadedb
   - pstoedit
   - python-lsp-server
   - python-setuptools
+  - ruby
   - ruby-docs
+  - rust
   - sane-airscan
   - shellcheck
   - snap-pac
@@ -302,6 +282,7 @@ misc_packages:
   - tesseract
   - tesseract-data-eng
   - tesseract-data-por
+  - trash-cli
   - udftools
   - unarchiver
   - unzip
@@ -311,18 +292,25 @@ misc_packages:
   - yaml-language-server
   - yamlfmt
   - yamllint
-  - github-cli
-  - atuin
-##
-# Misc. AUR packages
-# ==============
-##
-aur_packages:
-  - ansible-gpg-key-git
-  - find-the-command
-  - hunspell-pt-br
-  - perl-bundle-camelcade
-  - perl-devel-camelcadedb
+  - tmux
+
+desktop_gui:
+  - btrfs-assistant
+  - btrfsmaintenance
+  - easyeffects
+  - gst-plugin-pipewire
+  - gst-plugins-bad
+  - gst-plugins-good
+  - gst-plugins-ugly
+  - gtk4
+  - openrgb
+  - power-profiles-daemon
+  - raw-thumbnailer
+  - variety
+  - spotify
+  - alacritty
+  - kitty
+
 ##
 # Gaming packages
 # ===============
@@ -330,7 +318,6 @@ aur_packages:
 gaming_packages:
   - heroic-games-launcher-bin
   - protonup-qt
-  - reshade-shaders-git
   - steamtinkerlaunch
   - vkbasalt
   - vkbasalt-cli

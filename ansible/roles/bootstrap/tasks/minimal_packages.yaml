@@ -1,0 +1,8 @@
+- name: Install minimal OS base packages
+  community.general.pacman:
+    name: "{{ minimal_packages }}"
+    state: present
+  register: minimal_packages_deployed
+  until: minimal_packages_deployed is success
+  retries: 2
+  delay: 2

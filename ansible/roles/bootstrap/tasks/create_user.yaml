@@ -1,0 +1,16 @@
+- name: Ensure the user "{{ user.name }}" exists
+  ansible.builtin.user:
+    name: "{{ user.name }}"
+    shell: "/usr/bin/{{ user.shell }}"
+    groups:
+      - users
+      - wheel
+      - network
+      - lock
+      - uucp
+    append: true
+    system: false
+    createhome: true
+    home: /home/{{ user.name }}
+  when: user.name is defined
+  register: user_created

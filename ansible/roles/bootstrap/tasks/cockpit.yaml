@@ -1,0 +1,13 @@
+- name: Deploy Cockpit
+  community.general.pacman:
+    name:
+      - cockpit
+      - cockpit-packagekit
+      - cockpit-pcp
+      - cockpit-storaged
+    state: present
+  register: task_result
+  until: task_result is success
+  retries: 2
+  delay: 2
+  when: system.cockpit

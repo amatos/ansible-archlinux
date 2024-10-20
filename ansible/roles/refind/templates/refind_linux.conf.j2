@@ -1,2 +1,2 @@
-"Boot using default options"     "root=UUID={{ refind_root_uuid.stdout }} rootflags=subvol=@ rw resume={{ refind_swap_uuid.stdout }} amd_pstate=active splash"
-"Boot using to single-user mode"     "root=UUID={{ refind_root_uuid.stdout }} rootflags=subvol=@ rw resume={{ refind_swap_uuid.stdout }} amd_pstate=active splash single"
+"Boot using default options"     "root=UUID={{ refind_root_uuid.stdout }} rootflags=subvol=@ rw resume={{ refind_swap_uuid.stdout }} {{ boot_additional_parameters }}"
+"Boot using to single-user mode"     "root=UUID={{ refind_root_uuid.stdout }} rootflags=subvol=@ rw resume={{ refind_swap_uuid.stdout }} {{ boot_additional_parameters }} single"

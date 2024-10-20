@@ -1,0 +1,7 @@
+- name: Install GitKraken
+  kewlfft.aur.aur:
+    name:
+      - gitkraken
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"

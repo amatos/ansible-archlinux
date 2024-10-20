@@ -1,0 +1,34 @@
+- name: Set timezone to system.timezone
+  community.general.timezone: name={{ system.timezone }}
+
+- name: Ensure the locale system.locale exists
+  community.general.locale_gen: name={{ system.locale }} state=present
+
+- name: update /etc/vconsole.conf
+  ansible.builtin.blockinfile:
+      path: /etc/vconsole.conf
+      append_newline: true
+      create: true
+      block: |
+          KEYMAP=us
+
+- name: Update /etc/locale.conf
+  ansible.builtin.blockinfile:
+      path: /etc/locale.conf
+      append_newline: true
+      create: true
+      block: |
+          LANG={{ system.locale }}
+
+- name: Update /etc/locale.gen
+  ansible.builtin.lineinfile:
+      path: /etc/locale.gen
+      state: present
+      regexp: "^#en_US.UTF-8 UTF-8"
+      line: "en_US.UTF-8 UTF-8"
+  register: updated_locale
+
+- name: Run locale-gen
+  ansible.builtin.command: "/usr/bin/locale-gen"
+  when: updated_locale
+  become: true

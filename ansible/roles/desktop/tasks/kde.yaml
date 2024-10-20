@@ -1,0 +1,211 @@
+- name: Install KDE Plasma meta package
+  community.general.pacman:
+    executable: powerpill
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - bluedevil
+    - breeze-gtk
+    - discover
+    - drkonqi
+    - kde-gtk-config
+    - kdeplasma-addons
+    - kgamma
+    - kinfocenter
+    - krdp
+    - kscreen
+    - ksshaskpass
+    - kwallet-pam
+    - kwrited
+    - ocean-sound-theme
+    - oxygen
+    - oxygen-sounds
+    - plasma-browser-integration
+    - plasma-desktop
+    - plasma-disks
+    - plasma-firewall
+    - plasma-nm
+    - plasma-pa
+    - plasma-systemmonitor
+    - plasma-thunderbolt
+    - plasma-vault
+    - plasma-welcome
+    - plasma-workspace-wallpapers
+    - powerdevil
+    - print-manager
+    - sddm
+    - sddm-kcm
+    - xdg-desktop-portal-kde
+  register: task_result
+  until: task_result is success
+  retries: 2
+  delay: 2
+
+- name: Install KDE PIM
+  community.general.pacman:
+    executable: powerpill
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - akonadi-calendar-tools
+    - akonadiconsole
+    - akregator
+    - grantlee-editor
+    - itinerary
+    - kaddressbook
+    - kalarm
+    - kdepim-addons
+    - kleopatra
+    - kmail
+    - kontact
+    - korganizer
+    - merkuro
+    - zanshin
+  when: kdepim
+  register: task_result
+  until: task_result is success
+  retries: 2
+  delay: 2
+
+- name: Install KDE additions
+  community.general.pacman:
+    executable: powerpill
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - alligator
+    - appmenu-gtk-module
+    - ark
+    - audiocd-kio
+    - breeze-plymouth
+    - colord-kde
+    - dolphin
+    - dolphin-plugins
+    - dragon
+    - elisa
+    - ffmpegthumbs
+    - filelight
+    - flatpak-kcm
+    - ghostwriter
+    - gnuchess
+    - gwenview
+    - isoimagewriter
+    - juk
+    - k3b
+    - kalk
+    - kamera
+    - kamoso
+    - kapptemplate
+    - kasts
+    - kate
+    - kbackup
+    - kcachegrind
+    - kcalc
+    - kcharselect
+    - kclock
+    - kcolorchooser
+    - kcron
+    - kde-dev-scripts
+    - kde-dev-utils
+    - kde-inotify-survey
+    - kdeconnect
+    - kdebugsettings
+    - kdegraphics-thumbnailers
+    - kdenetwork-filesharing
+    - kdenlive
+    - kdesdk-kio
+    - kdesdk-thumbnailers
+    - kdf
+    - kdialog
+    - kdiff3
+    - keditbookmarks
+    - kfind
+    - kgpg
+    - khelpcenter
+    - kimageformats
+    - kimagemapeditor
+    - kio-admin
+    - kio-extras
+    - kio-gdrive
+    - kio-zeroconf
+    - kirigami-gallery
+    - kjournald
+    - kmag
+    - kmahjongg
+    - kmines
+    - kmousetool
+    - kmouth
+    - knights
+    - koko
+    - kolf
+    - kolourpaint
+    - kompare
+    - kongress
+    - konsole
+    - kontrast
+    - konversation
+    - kpeople
+    - krdc
+    - krecorder
+    - krfb
+    - kruler
+    - ksystemlog
+    - kteatime
+    - ktimer
+    - ktorrent
+    - ktrip
+    - kwalletmanager
+    - kwave
+    - kweather
+    - libfakekey
+    - lokalize
+    - markdownpart
+    - meld
+    - neochat
+    - okteta
+    - okular
+    - partitionmanager
+    - plasma-sdk
+    - plymouth-kcm
+    - poxml
+    - qt6-connectivity
+    - qt6-tools
+    - skanlite
+    - skanpage
+    - spectacle
+    - svgpart
+    - sweeper
+    - system-config-printer
+    - tesseract-data-eng
+    - tokodon
+    - xwaylandvideobridge
+    - yakuake
+    - darkman
+    - prison5
+  register: task_result
+  until: task_result is success
+  retries: 2
+  delay: 2
+
+- name: Deploy sddm wayland configuration file
+  ansible.builtin.copy:
+    src: 10-wayland.conf
+    dest: /etc/sddm.conf.d/
+- name: Enable sddm service
+  ansible.builtin.service:
+    name: sddm
+    state: started
+    enabled: true
+
+- name: Amd-specific gaming items
+  kewlfft.aur.aur:
+    name:
+      - plasma-gamemode-git
+    use: yay
+  when: ((system.type == "desktop") and (graphics_card == "amd"))
+  become: true
+  become_user: "{{ user.name }}"
+  register: task_result
+  until: task_result is success
+  retries: 2
+  delay: 2

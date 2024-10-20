@@ -1,52 +1,28 @@
-- ansible.builtin.import_tasks: kernels.yaml
-  name: kernels
-  when: system_distribution == "arch"
-- name: Get boot device UUID
-  shell: "blkid -s UUID -o value {{ root_device }}"
-  register: root_uuid
-- name: Get swap device UUID
-  shell: 'cat /etc/fstab | grep swap | cut -f 1 -d " "'
-  register: swap_uuid
-- name: Create /etc/cmdline.d directory
-  ansible.builtin.file:
-    path: /etc/cmdline.d
-    state: directory
-    mode: "0755"
-  register: created_cmdline
-- name: Populate kernel command line root file
-  ansible.builtin.template:
-    src: root.conf.j2
-    dest: /etc/cmdline.d/root.conf
-  notify:
-    - regenerate initramfs
-- name: Populate kernel command line resume file
-  ansible.builtin.template:
-    src: resume.conf.j2
-    dest: /etc/cmdline.d/resume.conf
-  notify:
-    - regenerate initramfs
-- name: Populate kernel command line plymouth file
-  ansible.builtin.copy:
-    src: plymouth.conf
-    dest: /etc/cmdline.d
-  notify:
-    - regenerate initramfs
-- name: Populate kernel command line amd file
-  ansible.builtin.copy:
-    src: amd.conf
-    dest: /etc/cmdline.d
-  when: system.processor == "amd"
-  notify:
-    - regenerate initramfs
-- name: Populate kernel command line kernel file
-  ansible.builtin.copy:
-    src: kernel.conf
-    dest: /etc/cmdline.d
-  notify:
-    - regenerate initramfs
-- name: Push mkinitcpio configuration and regenerate initramfs
+- name: Install kernel
+  ansible.builtin.import_tasks: kernels.yaml
+
+- name: Configure Unified Kernel Image (uki)
+  ansible.builtin.import_tasks: uki.yaml
+  when: uki
+
+- name: Push mkinitcpio configuration
   ansible.builtin.template:
     src: mkinitcpio.conf.j2
     dest: /etc/mkinitcpio.conf.d/mkinitcpio-override.conf
+    mode: '0644'
   notify:
-    - regenerate initramfs
+    - Regenerate initramfs
+
+- name: Firmware
+  community.general.pacman:
+    name:
+      - linux-firmware
+      - sof-firmware
+    state: present
+  notify:
+    - Regenerate initramfs
+
+- name: Run mkinitcpio
+  ansible.builtin.command: "mkinitcpio -P"
+  become: true
+  register: output

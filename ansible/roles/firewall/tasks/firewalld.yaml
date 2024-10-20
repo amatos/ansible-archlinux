@@ -1,13 +1,14 @@
 - name: Install firewalld
   community.general.pacman:
-    executable: powerpill
     name: firewalld
     state: present
+
 - name: Enable and start FirewallD
   ansible.builtin.service:
     name: firewalld.service
     enabled: true
     state: started
+
 - name: Change network for interfaces to "Home"
   ansible.posix.firewalld:
     zone: home
@@ -18,6 +19,7 @@
     - "{{ ansible_interfaces }}"
   when: item != 'lo'
   notify: restart FirewallD
+
 - name: Updating home zone rules
   ansible.posix.firewalld:
     zone: home
@@ -30,22 +32,8 @@
     - samba-client
     - dhcpv6-client
     - cockpit
-    - factorio
     - ipsec
-    - steam-streaming
-    - stellaris
     - syncthing
     - syncthing-gui
     - syncthing-relay
-    - terraria
     - upnp-client
-- name: Adding pacserve ports to home zone rules
-  ansible.posix.firewalld:
-    zone: home
-    port: "{{ item }}"
-    permanent: true
-    state: enabled
-  with_items:
-    - 15678/tcp
-    - 15679/udp
-  when: pacserved

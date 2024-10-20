@@ -1,0 +1,54 @@
+- name: Install Sublime Text
+  kewlfft.aur.aur:
+    name:
+      - sublime-text-4
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
+  when: system.type == "desktop"
+
+- name: Install obsidian
+  community.general.pacman:
+    executable: powerpill
+    name: obsidian
+    state: present
+  when: system.type == "desktop"
+
+- name: Install Libre Office (fresh)
+  community.general.pacman:
+    executable: powerpill
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - libreoffice-fresh
+    - beanshell
+    - coin-or-mp
+    - gst-plugins-base-libs
+    - libmythes
+    - libpaper
+    - libwpg
+    - pstoedit
+    - rhino
+    - sane
+  register: task_result
+  until: task_result is success
+  retries: 2
+  delay: 2
+
+- name: Install VSCode
+  kewlfft.aur.aur:
+    name:
+      - visual-studio-code-bin
+    use: yay
+  when: system.type == "desktop"
+  become: true
+  become_user: "{{ user.name }}"
+
+- name: Install Zed
+  kewlfft.aur.aur:
+    name:
+      - zed
+    use: yay
+  when: system.type == "desktop"
+  become: true
+  become_user: "{{ user.name }}"

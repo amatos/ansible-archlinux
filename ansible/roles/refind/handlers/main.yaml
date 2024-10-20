@@ -1,4 +1,0 @@
----
-- name: update grub
-  ansible.builtin.command: refind-install --yes
-  when: bootloader == "refind"

@@ -1,0 +1,16 @@
+- name: Pacman install steam, lutris, and associated tools
+  kewlfft.aur.aur:
+    name: "{{ item }}"
+    use: yay
+  with_items: "{{ gaming_packages }}"
+  become: true
+  become_user: "{{ user.name }}"
+- name: Arch-specific gaming items
+  kewlfft.aur.aur:
+    name:
+      - steam-hdr
+      - steam-native-runtime
+    use: yay
+  when: system_distribution == "arch"
+  become: true
+  become_user: "{{ user.name }}"
