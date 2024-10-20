@@ -10,12 +10,28 @@
   when: refind_pkg_installed
 
 - name: Get boot device UUID
-  ansible.builtin.shell: "blkid -s UUID -o value {{ root_device }}"
+  ansible.builtin.command: "blkid -s UUID -o value {{ root_device }}"
   register: refind_root_uuid
 
 - name: Get swap device UUID
   ansible.builtin.shell: 'cat /etc/fstab | grep swap | grep UUID | cut -f 1'
   register: refind_swap_uuid
+
+- name: Generate boot additional parameters
+  ansible.builtin.set_fact:
+    boot_additional_parameters: "{{ common_boot | join(' ') }}"
+
+- name: Generate AMD boot additional parameters for AMD graphics
+  ansible.builtin.set_fact:
+    amd_additional_params: "{{ common_boot + amd_boot }}"
+  when: system.graphics_card == "amd"
+  register: combined_common_and_amd
+
+- name: Combine AMD boot parameters
+  ansible.builtin.set_fact:
+    boot_additional_parameters: "{{ amd_additional_params | join(' ') }}"
+  when: combined_common_and_amd
+
 - name: Populate kernel command line root file
   ansible.builtin.template:
     src: refind_linux.conf.j2

@@ -1,0 +1,9 @@
+common_boot:
+  - zswap.enabled=0
+  - nowatchdog
+  - splash
+  - quiet
+
+amd_boot:
+  - amd_pstate=active
+  - amdgpu.dc=1
