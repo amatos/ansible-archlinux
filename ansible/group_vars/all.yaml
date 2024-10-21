@@ -236,6 +236,7 @@ desktop_cli:
   - geoipupdate
   - git-delta
   - github-cli
+  - gnuplot
   - go
   - graphviz
   - gum
@@ -250,6 +251,7 @@ desktop_cli:
   - libdvdcss
   - libgtop
   - libid3tag
+  - libqalculate
   - libsynctex
   - libwmf
   - lolcat
@@ -283,14 +285,20 @@ desktop_cli:
   - snapper
   - speech-dispatcher
   - sshfs
+  - sshoot
+  - sshoot
+  - sshuttle
+  - sshuttle
   - starship
   - strace
   - subversion
   - tesseract
   - tesseract-data-eng
   - tesseract-data-por
+  - tmux
   - trash-cli
   - udftools
+  - udiskie
   - unarchiver
   - unzip
   - vcdimager
@@ -299,11 +307,9 @@ desktop_cli:
   - yaml-language-server
   - yamlfmt
   - yamllint
-  - tmux
-  - libqalculate
-  - gnuplot
 
 desktop_gui:
+  - alacritty
   - btrfs-assistant
   - btrfsmaintenance
   - easyeffects
@@ -312,41 +318,42 @@ desktop_gui:
   - gst-plugins-good
   - gst-plugins-ugly
   - gtk4
+  - kitty
+  - meld
   - openrgb
   - power-profiles-daemon
-  - raw-thumbnailer
-  - variety
-  - spotify
-  - alacritty
-  - kitty
   - qalculate-gtk
+  - raw-thumbnailer
   - solaar
+  - solaar
+  - spotify
+  - variety
 
 ##
 # Gaming packages
 # ===============
 ##
 gaming_packages:
-  - heroic-games-launcher-bin
-  - protonup-qt
-  - steamtinkerlaunch
-  - vkbasalt
-  - vkbasalt-cli
-  - lib32-vkbasalt
   - gamemode
   - gamescope
   - goverlay
+  - heroic-games-launcher-bin
   - lib32-dbus
   - lib32-glu
   - lib32-libcurl-compat
   - lib32-mesa
   - lib32-nss
   - lib32-systemd
+  - lib32-vkbasalt
   - libva-mesa-driver
   - lutris
   - mangohud
   - mesa
+  - protonup-qt
   - sndio
   - steam
+  - steamtinkerlaunch
   - v4l2loopback-dkms
+  - vkbasalt
+  - vkbasalt-cli
   - wf-recorder
