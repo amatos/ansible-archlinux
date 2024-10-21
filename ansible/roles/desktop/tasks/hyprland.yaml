@@ -9,8 +9,6 @@
       - hyprlock
       - hyprpaper
       - hyprpicker
-      - hyprpolkitagent
-      - hyprsysteminfo
       - hyprutils
       - hyprwayland-scanner
       - xdg-desktop-portal-gtk
@@ -47,6 +45,7 @@
       - gnome-control-center
       - gnome-system-monitor
       - gnome-text-editor
+      - polkit-gnome
       - gvfs-nfs
       - gvfs-onedrive
       - gvfs-smb
@@ -60,6 +59,7 @@
   kewlfft.aur.aur:
     name:
       - anyrun-git
+      - aylurs-gtk-shell
       - bibata-cursor-git
       - blueberry
       - brightnessctl
@@ -74,7 +74,6 @@
       - lf
       - mako
       - nm-applet
-      - nordzy-hyprcursors
       - pamixer
       - qt5-wayland
       - qt6-wayland
@@ -105,11 +104,3 @@
     use: yay
   become: true
   become_user: "{{ user.name }}"
-  notify: Install hyprshade
-
-- name: Deploy hyprshade config
-  ansible.builtin.file:
-    path: /usr/share/hyprshade/examples/config.toml
-    state: ~/.config/hypr/hyprshade.toml
-    mode: '0644'
-  notify: Start hyprshade
