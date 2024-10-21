@@ -1,7 +1,7 @@
 initrd_mods: "crc32c btrfs usbhid xhci_hcd"
 initrd_bin: "/usr/bin/btrfs"
 initrd_files: ""
-initrd_hooks: "base systemd keyboard autodetect modconf microcode kms sd-vconsole sd-encrypt block filesystems fsck resume"
+initrd_hooks: "base systemd keyboard plymouth autodetect modconf microcode kms sd-vconsole sd-encrypt block filesystems fsck resume"
 initrd_compression: "zstd"
 initrd_compression_options: "-c -T{{ ansible_processor_nproc }} -"
 root_device: "{{ ansible_mounts|json_query('[?mount == `/`].device') |first }}"
