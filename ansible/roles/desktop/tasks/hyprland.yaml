@@ -51,6 +51,7 @@
       - gvfs-smb
       - nautilus
       - pavucontrol
+      - seahorse-nautilus
     use: yay
   become: true
   become_user: "{{ user.name }}"
@@ -64,7 +65,6 @@
       - blueberry
       - brightnessctl
       - cliphist
-      - dunst
       - fuzzel
       - greetd
       - greetd-regreet-git

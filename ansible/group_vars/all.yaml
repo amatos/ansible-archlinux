@@ -63,6 +63,7 @@ user:
 # cockpit:  Install web management UI
 ##
 system:
+  hostname: ""
   pacman: true
   makepkg: true
   cockpit: true
@@ -71,7 +72,7 @@ system:
   processor: "amd"
   graphics_card: "amd"
   macspoof: false
-  type: "minimal"
+  type: "desktop"
 
 ############# Desktop Envionment Settings ####################
 ####                                                      ####
@@ -90,7 +91,7 @@ kdepim: false
 # ================
 # true/false to install Hyprland
 ##
-hyprland: false
+hyprland: true
 
 ##
 # Install Gnome
@@ -201,6 +202,7 @@ minimal_packages:
 # ==============
 ##
 desktop_cli:
+  - espanso-wayland-git
   - ansible-gpg-key-git
   - ansible-language-server
   - ansible-lint
@@ -307,9 +309,11 @@ desktop_cli:
   - yaml-language-server
   - yamlfmt
   - yamllint
+  - neovim-catppuccin-git
 
 desktop_gui:
   - alacritty
+  - mpv
   - btrfs-assistant
   - btrfsmaintenance
   - easyeffects
@@ -328,6 +332,7 @@ desktop_gui:
   - solaar
   - spotify
   - variety
+  - qbittorrent
 
 ##
 # Gaming packages
