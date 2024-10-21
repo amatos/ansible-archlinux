@@ -1,20 +1,20 @@
 - name: Install Hyprland
   kewlfft.aur.aur:
     name:
-      - aquamarine-git
-      - hyprcursor-git
-      - hypridle-git
-      - hyprland-git
-      - hyprlang-git
-      - hyprlock-git
-      - hyprpaper-git
-      - hyprpicker-git
-      - hyprutils-git
-      - hyprwayland-scanner-git
+      - aquamarine
+      - hyprcursor
+      - hypridle
+      - hyprland
+      - hyprlang
+      - hyprlock
+      - hyprpaper
+      - hyprpicker
+      - hyprpolkitagent
+      - hyprsysteminfo
+      - hyprutils
+      - hyprwayland-scanner
       - xdg-desktop-portal-gtk
-      - xdg-desktop-portal-hyprland-git
-      - hyprsysteminfo-git
-      - hyprpolkitagent-git
+      - xdg-desktop-portal-hyprland
     use: yay
   become: true
   become_user: "{{ user.name }}"
@@ -43,15 +43,15 @@
 - name: Install gnome stuff
   kewlfft.aur.aur:
     name:
-      - gnome-text-editor
-      - pavucontrol
+      - evince
       - gnome-control-center
       - gnome-system-monitor
+      - gnome-text-editor
       - gvfs-nfs
       - gvfs-onedrive
       - gvfs-smb
       - nautilus
-      - evince
+      - pavucontrol
     use: yay
   become: true
   become_user: "{{ user.name }}"
@@ -61,6 +61,7 @@
     name:
       - anyrun-git
       - bibata-cursor-git
+      - blueberry
       - brightnessctl
       - cliphist
       - dunst
@@ -69,22 +70,30 @@
       - greetd-regreet-git
       - grim
       - grimshot
+      - jaq
+      - lf
+      - mako
+      - nm-applet
       - nordzy-hyprcursors
       - pamixer
       - qt5-wayland
       - qt6-wayland
       - slurp
+      - swaybg
+      - swayidle
+      - swaylock-effects
       - sweet-cursors-hyprcursor-git
+      - udiskie
+      - udiskie-systemd-git
       - walker-bin
       - waybar
       - webcord-bin
+      - wf-recorder
+      - wl-clipboard
+      - wlogout
       - wofi
       - xwaylandvideobridge-git
-      - blueberry
-      - nm-applet
-      - udiskie
-      - udiskie-systemd-git
-      - wlogout
+      - yad
     use: yay
   become: true
   become_user: "{{ user.name }}"
