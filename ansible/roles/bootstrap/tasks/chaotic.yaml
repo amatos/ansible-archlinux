@@ -1,0 +1,22 @@
+- name: Update pacman.conf to add chaotic-aur
+  ansible.builtin.blockinfile:
+    path: /etc/pacman.conf
+    append_newline: true
+    prepend_newline: true
+    insertafter: "EOF"
+    marker: "# {mark} Chaotic ANSIBLE MANAGED BLOCK"
+    block: |
+      [chaotic-aur]
+      Include = /etc/pacman.d/chaotic-mirrorlist
+
+- name: Get chaotic key
+  ansible.builtin.command: "pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com"
+
+- name: Add chaotic key
+  ansible.builtin.command: "pacman-key --lsign-key 3056513887B78AEB"
+
+- name: Add chaotic keyring
+  ansible.builtin.command: "pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'"
+
+- name: Add chaotic mirrorlist
+  ansible.builtin.command: "pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'"

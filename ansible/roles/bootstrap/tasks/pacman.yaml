@@ -43,6 +43,10 @@
   when: base_pacman_part3
   register: base_pacman_complete
 
+- name: Update pacman.conf to add chaotic-aur
+  ansible.builtin.import_tasks: chaotic.yaml
+  when: enable_chaotic
+
 - name: Update pacman package cache
   community.general.pacman:
     update_cache: true
