@@ -1,37 +1,37 @@
-- ansible.builtin.import_tasks: create_user.yaml
-  name: Create User Account
+- name: Create User Account
+  ansible.builtin.import_tasks: create_user.yaml
 
-- ansible.builtin.import_tasks: reflector.yaml
-  name: Install and run reflector to update mirrors
+- name: Install and run reflector to update mirrors
+  ansible.builtin.import_tasks: reflector.yaml
 
-- ansible.builtin.import_tasks: minimal_packages.yaml
-  name: Install minimal required packages
+- name: Install minimal required packages
+  ansible.builtin.import_tasks: minimal_packages.yaml
   when: pacman_ready
 
-- ansible.builtin.import_tasks: microcodes.yaml
-  name: Install architecture microcodes
+- name: Install architecture microcodes
+  ansible.builtin.import_tasks: microcodes.yaml
   when: pacman_ready
 
-- ansible.builtin.import_tasks: cockpit.yaml
-  name: Install Cockpit web-based management
+- name: Install Cockpit web-based management
+  ansible.builtin.import_tasks: cockpit.yaml
   when: minimal_packages_deployed
 
-- ansible.builtin.import_tasks: locale.yaml
-  name: Configure OS locale
+- name: Configure OS locale
+  ansible.builtin.import_tasks: locale.yaml
 
-- ansible.builtin.import_tasks: makepkg.yaml
-  name: Deploy makepkg dropins
+- name: Deploy makepkg dropins
+  ansible.builtin.import_tasks: makepkg.yaml
 
-- ansible.builtin.import_tasks: pacman.yaml
-  name: Configure pacman
+- name: Configure pacman
+  ansible.builtin.import_tasks: pacman.yaml
 
-- ansible.builtin.import_tasks: userconf_dropin.yaml
-  name: Deploy userconf dropin files
+- name: Deploy userconf dropin files
+  ansible.builtin.import_tasks: userconf_dropin.yaml
 
 - ansible.builtin.import_tasks: services.yaml
   name: Enable and start services
   when: minimal_packages_deployed
 
-- ansible.builtin.import_tasks: ntp.yaml
-  name: Configure ntp
+- name: Configure ntp
+  ansible.builtin.import_tasks: ntp.yaml
   when: ((minimal_packages_deployed) and (services_started))
