@@ -26,7 +26,7 @@ kernel: "linux-zen"
 # Generate a UKI image instead of a classic image?
 # true/false
 ##
-uki: true
+uki: false
 
 ##
 # User configuration
@@ -196,13 +196,13 @@ minimal_packages:
   - udisks2
   - udisks2-btrfs
   - zsh
+  - btop
 
 ##
 # "Desktop" cli and gui packages
 # ==============
 ##
 desktop_cli:
-  - espanso-wayland-git
   - ansible-gpg-key-git
   - ansible-language-server
   - ansible-lint
@@ -217,6 +217,8 @@ desktop_cli:
   - catdoc
   - cdrdao
   - cdrtools
+  - chezmoi
+  - chezmoi_modify_manager
   - cmake
   - colord-sane
   - cowsay
@@ -225,6 +227,7 @@ desktop_cli:
   - dosfstools
   - dvd+rw-tools
   - emovix
+  - espanso-wayland-git
   - exfatprogs
   - eza
   - f2fs-tools
@@ -263,6 +266,7 @@ desktop_cli:
   - mediainfo
   - mlocate
   - movit
+  - neovim-catppuccin-git
   - ninja
   - nmap
   - nodejs
@@ -288,8 +292,6 @@ desktop_cli:
   - speech-dispatcher
   - sshfs
   - sshoot
-  - sshoot
-  - sshuttle
   - sshuttle
   - starship
   - strace
@@ -309,7 +311,6 @@ desktop_cli:
   - yaml-language-server
   - yamlfmt
   - yamllint
-  - neovim-catppuccin-git
 
 desktop_gui:
   - alacritty
@@ -329,8 +330,6 @@ desktop_gui:
   - qalculate-gtk
   - raw-thumbnailer
   - solaar
-  - solaar
-  - spotify
   - variety
   - qbittorrent
 
