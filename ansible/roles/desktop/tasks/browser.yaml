@@ -6,7 +6,7 @@
   tags:
     - firefox
     - profile-sync-daemon
-  notify: browser psd restart
+  notify: Browser psd restart
 
 - name: Install Brave from AUR
   kewlfft.aur.aur:
@@ -16,7 +16,7 @@
     use: yay
   become: true
   become_user: "{{ user.name }}"
-  notify: browser psd restart
+  notify: Browser psd restart
 
 - name: Install Librewolf from AUR
   kewlfft.aur.aur:
@@ -27,7 +27,7 @@
     use: yay
   become: true
   become_user: "{{ user.name }}"
-  notify: browser psd restart
+  notify: Browser psd restart
 
 - name: Start Profile Sync Daemon back up
   ansible.builtin.service:
