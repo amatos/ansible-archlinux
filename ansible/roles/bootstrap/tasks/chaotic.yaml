@@ -7,6 +7,7 @@
     marker: "# {mark} Chaotic ANSIBLE MANAGED BLOCK"
     block: |
       [chaotic-aur]
+      SigLevel = PackageRequired
       Include = /etc/pacman.d/chaotic-mirrorlist
 
 - name: Get chaotic key
@@ -14,9 +15,8 @@
 
 - name: Add chaotic key
   ansible.builtin.command: "pacman-key --lsign-key 3056513887B78AEB"
+# - name: Add chaotic keyring
+#   ansible.builtin.shell: "pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'"
 
-- name: Add chaotic keyring
-  ansible.builtin.command: "pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'"
-
-- name: Add chaotic mirrorlist
-  ansible.builtin.command: "pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'"
+# - name: Add chaotic mirrorlist
+#   ansible.builtin.shell: "pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'"
