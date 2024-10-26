@@ -98,7 +98,7 @@ hyprland: true
 # =============
 # true/false to install Hyprland
 ##
-gnome: false
+gnome: true
 
 ##
 # Install Cosmic
@@ -197,6 +197,7 @@ minimal_packages:
   - udisks2-btrfs
   - zsh
   - btop
+  - wireless-regdb
 
 ##
 # "Desktop" cli and gui packages
@@ -204,6 +205,7 @@ minimal_packages:
 ##
 desktop_cli:
   - ansible-gpg-key-git
+  - fprintd
   - ansible-language-server
   - ansible-lint
   - argyllcms
@@ -267,6 +269,8 @@ desktop_cli:
   - mlocate
   - movit
   - neovim-catppuccin-git
+  - neovim-remote
+  - neovim-lspconfig
   - ninja
   - nmap
   - nodejs
@@ -323,6 +327,7 @@ desktop_gui:
   - gst-plugins-good
   - gst-plugins-ugly
   - gtk4
+  - cups-browsed
   - kitty
   - meld
   - openrgb
@@ -332,6 +337,8 @@ desktop_gui:
   - solaar
   - variety
   - qbittorrent
+  - btop-theme-catppuccin
+  - flameshot-git
 
 ##
 # Gaming packages
