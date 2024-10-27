@@ -1,0 +1,33 @@
+- name: Deploy greetd config.toml
+  ansible.builtin.copy:
+    src: greetd.config.toml
+    dest: /etc/greetd/config.toml
+    mode: "0644"
+  become: true
+
+- name: Deploy greetd hyprland.conf
+  ansible.builtin.copy:
+    src: greetd.hyprland.conf
+    dest: /etc/greetd/hyprland.conf
+    mode: "0644"
+  become: true
+
+- name: Deploy greetd regreet.conf
+  ansible.builtin.copy:
+    src: greetd.regreet.conf
+    dest: /etc/greetd/regreet.conf
+    mode: "0644"
+  become: true
+
+- name: Deploy greetd regreet.css
+  ansible.builtin.copy:
+    src: greetd.regreet.css
+    dest: /etc/greetd/regreet.css
+    mode: "0644"
+  become: true
+
+- name: Enable greetd greeter
+  ansible.builtin.service:
+    name: greetd
+    enabled: true
+  become: true

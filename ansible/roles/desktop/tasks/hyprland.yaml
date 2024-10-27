@@ -1,52 +1,53 @@
 - name: Install Hyprland
   kewlfft.aur.aur:
     name:
-      - aquamarine
-      - hyprcursor
-      - hypridle
-      - hyprland
-      - hyprlang
-      - hyprlock
-      - hyprpaper
-      - hyprpicker
-      - hyprutils
-      - hyprwayland-scanner
-      - hyprsysteminfo
+      - aquamarine-git
+      - hyprcursor-git
+      - hypridle-git
+      - hyprland-git
+      - hyprland-protocols-git
+      - hyprlang-git
+      - hyprlock-git
+      - hyprpaper-git
+      - hyprpicker-git
+      - hyprutils-git
+      - hyprwayland-scanner-git
+      - hyprsysteminfo-git
       - xdg-desktop-portal-gtk
-      - xdg-desktop-portal-hyprland
+      - xdg-desktop-portal-hyprland-git
     use: yay
   become: true
   become_user: "{{ user.name }}"
 
-- name: Install Thunar file manager
-  kewlfft.aur.aur:
-    name:
-      - thunar
-      - thunar-volman
-      - thunar-archive-plugin
-      - thunar-media-tags-plugin
-      - tumbler
-      - gvfs
-      - catfish
-      - gvfs-smb
-      - gvfs-onedrive
-      - gvfs-nfs
-      - gvfs-wsdd
-      - engrampa
-      - ark
-      - xarchiver
-      - ffmpegthumbnailer
-      - libgepub
-      - p7zip
-      - unrar
-      - rpm-tools
-      - lha
-      - lzip
-      - unarj
-      - unrar
-    use: yay
-  become: true
-  become_user: "{{ user.name }}"
+# - name: Install Thunar file manager
+#   kewlfft.aur.aur:
+#     name:
+#       - thunar
+#       - thunar-volman
+#       - thunar-archive-plugin
+#       - thunar-media-tags-plugin
+#       - tumbler
+#       - gvfs
+#       - catfish
+#       - gvfs-smb
+#       - gvfs-onedrive
+#       - gvfs-nfs
+#       - gvfs-wsdd
+#       - engrampa
+#       - ark
+#       - xarchiver
+#       - ffmpegthumbnailer
+#       - libgepub
+#       - p7zip
+#       - unrar
+#       - rpm-tools
+#       - lha
+#       - lzip
+#       - unarj
+#       - unrar
+#     use: yay
+#   become: true
+#   become_user: "{{ user.name }}"
 
 - name: Install gnome stuff
   kewlfft.aur.aur:
@@ -56,10 +57,10 @@
       # - gnome-system-monitor
       # - gnome-text-editor
       # - polkit-gnome
-      # - gvfs-nfs
-      # - gvfs-onedrive
-      # - gvfs-smb
-      # - nautilus
+      - gvfs-nfs
+      - gvfs-onedrive
+      - gvfs-smb
+      - nautilus
       # - pavucontrol
       # - seahorse-nautilus
     use: yay
@@ -73,6 +74,9 @@
       - qt6-wayland
       - breeze-icons
       - kvantum
+      - kwallet
+      - kwallet-pam
+      - kwalletmanager
     use: yay
   become: true
   become_user: "{{ user.name }}"
@@ -80,12 +84,15 @@
 - name: Install additional Hyprland tools
   kewlfft.aur.aur:
     name:
+      - ags-hyprpanel-git
       - anyrun-git
       - aylurs-gtk-shell
       - bibata-cursor-git
       - blueberry
       - brightnessctl
+      - bun-bin
       - cliphist
+      - clipse
       - fuzzel
       - greetd
       - greetd-regreet-git
@@ -93,14 +100,16 @@
       - grimshot
       - jaq
       - lf
-      - mako
+      # - mako
       - nm-applet
       - pamixer
       - slurp
+      - smile
       - sweet-cursors-hyprcursor-git
       - udiskie
       - udiskie-systemd-git
       - waybar
+      - wayprompt
       - webcord-bin
       - wf-recorder
       - wl-clipboard
@@ -108,8 +117,6 @@
       - wofi
       - xwaylandvideobridge-git
       - yad
-      - smile
-      - clipse
     use: yay
   become: true
   become_user: "{{ user.name }}"
@@ -121,3 +128,6 @@
     use: yay
   become: true
   become_user: "{{ user.name }}"
+
+- name: Configure greetd
+  ansible.builtin.import_tasks: greetd.yaml
