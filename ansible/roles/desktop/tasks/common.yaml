@@ -1,16 +1,166 @@
-- name: Install common "desktop" cli tools
-  kewlfft.aur.aur:
-    name: "{{ desktop_cli }}"
-    use: yay
-  become: true
-  become_user: "{{ user.name }}"
+- name: Deploy common packages via pacman
+  community.general.pacman:
+    name:
+      - ansible-language-server
+      - ansible-lint
+      - argyllcms
+      - arj
+      - atomicparsley
+      - atuin
+      - bash-completion
+      - bash-language-server
+      - bat
+      - bc
+      - catdoc
+      - cdrdao
+      - cdrtools
+      - chezmoi
+      - chezmoi_modify_manager
+      - cmake
+      - colord-sane
+      - cowsay
+      - cpanminus
+      - ctags
+      - diff-so-fancy
+      - dosfstools
+      - dvd+rw-tools
+      - emovix
+      - exfatprogs
+      - eza
+      - f2fs-tools
+      - fatresize
+      - festival
+      - find-the-command
+      - fortune-mod
+      - fprintd
+      - fzf
+      - gavl
+      - geoclue
+      - geoipupdate
+      - git-delta
+      - github-cli
+      - gnuplot
+      - go
+      - graphviz
+      - gum
+      - hunspell-en_us
+      - hunspell-pt-br
+      - inotify-tools
+      - jdk-openjdk
+      - jfsutils
+      - ladspa
+      - languagetool
+      - libappimage
+      - libappindicator-gtk2
+      - libappindicator-gtk3
+      - libayatana-appindicator
+      - libdvdcss
+      - libgtop
+      - libid3tag
+      - libqalculate
+      - libsynctex
+      - libwmf
+      - lolcat
+      - lrzip
+      - lua-language-server
+      - lzop
+      - mediainfo
+      - mlocate
+      - movit
+      - neovim-lspconfig
+      - neovim-remote
+      - ninja
+      - nmap
+      - nodejs
+      - npm
+      - ntfs-3g
+      - opencv
+      - openmp
+      - opentimelineio
+      - p7zip
+      - perl
+      - perl-bundle-camelcade
+      - perl-devel-camelcadedb
+      - pstoedit
+      - python-lsp-server
+      - python-setuptools
+      - ripgrep
+      - ruby
+      - ruby-docs
+      - rust
+      - sane-airscan
+      - shellcheck
+      - snap-pac
+      - snapper
+      - speech-dispatcher
+      - sshfs
+      - sshoot
+      - sshuttle
+      - starship
+      - strace
+      - subversion
+      - tesseract
+      - tesseract-data-eng
+      - tesseract-data-por
+      - tmux
+      - trash-cli
+      - udftools
+      - udiskie
+      - unarchiver
+      - unzip
+      - vcdimager
+      - wget
+      - xfsprogs
+      - yaml-language-server
+      - yamlfmt
+      - yamllint
+    state: present
+  register: task_result
+  until: task_result is success
+  retries: 2
+  delay: 2
 
-- name: Install common "desktop" GUI tools
+- name: Install common "desktop" cli tools via aur
   kewlfft.aur.aur:
-    name: "{{ desktop_gui }}"
+    name: "{{ item }}"
     use: yay
+    aur_only: true
   become: true
   become_user: "{{ user.name }}"
+  with_items:
+    - ansible-gpg-key-git
+    - espanso-wayland-git
+
+- name: Install common "desktop" GUI tools via pacman
+  community.general.pacman:
+    name:
+      - alacritty
+      - btop-theme-catppuccin
+      - btrfs-assistant
+      - btrfsmaintenance
+      - cups-browsed
+      - easyeffects
+      - flameshot-git
+      - gst-plugin-pipewire
+      - gst-plugins-bad
+      - gst-plugins-good
+      - gst-plugins-ugly
+      - gtk4
+      - kitty
+      - meld
+      - mpv
+      - openrgb
+      - power-profiles-daemon
+      - qalculate-gtk
+      - qbittorrent
+      - raw-thumbnailer
+      - solaar
+      - variety
+    state: present
+  register: task_result
+  until: task_result is success
+  retries: 2
+  delay: 2
 
 - name: Set permissions on /game to be owned by users and g=rwx
   file:
