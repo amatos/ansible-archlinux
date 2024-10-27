@@ -50,7 +50,7 @@
 #   become_user: "{{ user.name }}"
 
 - name: Install gnome stuff
-  kewlfft.aur.aur:
+  community.general.pacman:
     name:
       # - evince
       # - gnome-control-center
@@ -63,12 +63,12 @@
       - nautilus
       # - pavucontrol
       # - seahorse-nautilus
-    use: yay
+    state: present
   become: true
   become_user: "{{ user.name }}"
 
 - name: Install KDE stuff
-  kewlfft.aur.aur:
+  community.general.pacman:
     name:
       - qt5-wayland
       - qt6-wayland
@@ -77,7 +77,7 @@
       - kwallet
       - kwallet-pam
       - kwalletmanager
-    use: yay
+    state: present
   become: true
   become_user: "{{ user.name }}"
 
@@ -117,6 +117,7 @@
       - wofi
       - xwaylandvideobridge-git
       - yad
+      - darkman
     use: yay
   become: true
   become_user: "{{ user.name }}"
