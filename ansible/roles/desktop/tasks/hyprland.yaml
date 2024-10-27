@@ -1,58 +1,67 @@
 - name: Install Hyprland
   kewlfft.aur.aur:
     name:
-      - aquamarine-git
-      - hyprcursor-git
-      - hypridle-git
-      - hyprland-git
-      - hyprlang-git
-      - hyprlock-git
-      - hyprpaper-git
-      - hyprpicker-git
-      - hyprutils-git
-      - hyprwayland-scanner-git
-      - hyprsysteminfo-git
+      - aquamarine
+      - hyprcursor
+      - hypridle
+      - hyprland
+      - hyprlang
+      - hyprlock
+      - hyprpaper
+      - hyprpicker
+      - hyprutils
+      - hyprwayland-scanner
+      - hyprsysteminfo
       - xdg-desktop-portal-gtk
-      - xdg-desktop-portal-hyprland-git
+      - xdg-desktop-portal-hyprland
     use: yay
   become: true
   become_user: "{{ user.name }}"
 
-# - name: Install Thunar file manager
-#   kewlfft.aur.aur:
-#     name:
-#       - thunar
-#       - catfish
-#       - gvfs
-#       - tumbler
-#       - thunar-volman
-#       - thunar-archive-plugin
-#       - thunar-media-tags-plugin
-#       - zeitgeist
-#       - ffmpegthumbnails
-#       - libgsf
-#       - libgepub
-#       - file-roller
-#       - engrampa
-#       - xarchiver
-#     use: yay
-#   become: true
-#   become_user: "{{ user.name }}"
+- name: Install Thunar file manager
+  kewlfft.aur.aur:
+    name:
+      - thunar
+      - thunar-volman
+      - thunar-archive-plugin
+      - thunar-media-tags-plugin
+      - tumbler
+      - gvfs
+      - catfish
+      - gvfs-smb
+      - gvfs-onedrive
+      - gvfs-nfs
+      - gvfs-wsdd
+      - engrampa
+      - ark
+      - xarchiver
+      - ffmpegthumbnailer
+      - libgepub
+      - p7zip
+      - unrar
+      - rpm-tools
+      - lha
+      - lzip
+      - unarj
+      - unrar
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
 
 - name: Install gnome stuff
   kewlfft.aur.aur:
     name:
-      - evince
-      - gnome-control-center
-      - gnome-system-monitor
-      - gnome-text-editor
-      - polkit-gnome
-      - gvfs-nfs
-      - gvfs-onedrive
-      - gvfs-smb
-      - nautilus
-      - pavucontrol
-      - seahorse-nautilus
+      # - evince
+      # - gnome-control-center
+      # - gnome-system-monitor
+      # - gnome-text-editor
+      # - polkit-gnome
+      # - gvfs-nfs
+      # - gvfs-onedrive
+      # - gvfs-smb
+      # - nautilus
+      # - pavucontrol
+      # - seahorse-nautilus
     use: yay
   become: true
   become_user: "{{ user.name }}"
