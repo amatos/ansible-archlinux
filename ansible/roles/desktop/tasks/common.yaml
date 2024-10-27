@@ -11,3 +11,11 @@
     use: yay
   become: true
   become_user: "{{ user.name }}"
+
+- name: Set permissions on /game to be owned by users and g=rwx
+  file:
+    path: "/games"
+    state: directory
+    group: users
+    mode: 0775
+  become: true
