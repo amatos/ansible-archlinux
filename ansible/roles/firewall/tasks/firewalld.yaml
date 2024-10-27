@@ -9,11 +9,21 @@
     enabled: true
     state: started
 
-- name: Change network for interfaces to "Home"
+- name: Change network for interfaces to "Home" (permanent)
   ansible.posix.firewalld:
     zone: home
     interface: "{{ item }}"
     permanent: true
+    state: enabled
+  with_items:
+    - "{{ ansible_interfaces }}"
+  when: item != 'lo'
+  notify: restart FirewallD
+
+- name: Change network for interfaces to "Home" (runtime)
+  ansible.posix.firewalld:
+    zone: home
+    interface: "{{ item }}"
     state: enabled
   with_items:
     - "{{ ansible_interfaces }}"
