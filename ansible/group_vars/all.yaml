@@ -92,6 +92,7 @@ kdepim: false
 # true/false to install Hyprland
 ##
 hyprland: true
+hyprgreetd: false
 
 ##
 # Install Gnome

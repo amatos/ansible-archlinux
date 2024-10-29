@@ -1,9 +1,20 @@
+- name: Install additional Hyprland tools
+  kewlfft.aur.aur:
+    name:
+      - greetd
+      - greetd-regreet-git
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
+  register: greetded
+
 - name: Deploy greetd config.toml
   ansible.builtin.copy:
     src: greetd.config.toml
     dest: /etc/greetd/config.toml
     mode: "0644"
   become: true
+  when: greetded
 
 - name: Deploy greetd hyprland.conf
   ansible.builtin.copy:
@@ -11,6 +22,7 @@
     dest: /etc/greetd/hyprland.conf
     mode: "0644"
   become: true
+  when: greetded
 
 - name: Deploy greetd regreet.conf
   ansible.builtin.copy:
@@ -18,6 +30,7 @@
     dest: /etc/greetd/regreet.conf
     mode: "0644"
   become: true
+  when: greetded
 
 - name: Deploy greetd regreet.css
   ansible.builtin.copy:
@@ -25,9 +38,11 @@
     dest: /etc/greetd/regreet.css
     mode: "0644"
   become: true
+  when: greetded
 
 - name: Enable greetd greeter
   ansible.builtin.service:
     name: greetd
     enabled: true
   become: true
+  when: greetded

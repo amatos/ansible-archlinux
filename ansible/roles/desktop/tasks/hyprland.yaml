@@ -94,8 +94,6 @@
       - cliphist
       - clipse
       - fuzzel
-      - greetd
-      - greetd-regreet-git
       - grim
       - grimshot
       - jaq
@@ -132,3 +130,4 @@
 
 - name: Configure greetd
   ansible.builtin.import_tasks: greetd.yaml
+  when: hyprgreetd
