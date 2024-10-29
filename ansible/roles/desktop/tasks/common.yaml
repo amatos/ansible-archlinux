@@ -15,7 +15,6 @@
       - cdrdao
       - cdrtools
       - chezmoi
-      - chezmoi_modify_manager
       - cmake
       - colord-sane
       - cowsay
@@ -30,7 +29,6 @@
       - f2fs-tools
       - fatresize
       - festival
-      - find-the-command
       - fortune-mod
       - fprintd
       - fzf
@@ -44,7 +42,6 @@
       - graphviz
       - gum
       - hunspell-en_us
-      - hunspell-pt-br
       - inotify-tools
       - jdk-openjdk
       - jfsutils
@@ -68,7 +65,6 @@
       - mlocate
       - movit
       - neovim-lspconfig
-      - neovim-remote
       - ninja
       - nmap
       - nodejs
@@ -79,8 +75,6 @@
       - opentimelineio
       - p7zip
       - perl
-      - perl-bundle-camelcade
-      - perl-devel-camelcadedb
       - pstoedit
       - python-lsp-server
       - python-setuptools
@@ -94,7 +88,6 @@
       - snapper
       - speech-dispatcher
       - sshfs
-      - sshoot
       - sshuttle
       - starship
       - strace
@@ -114,6 +107,9 @@
       - yaml-language-server
       - yamlfmt
       - yamllint
+      - jq
+      - xmlstarlet
+      - rclone
     state: present
   register: task_result
   until: task_result is success
@@ -130,17 +126,20 @@
   with_items:
     - ansible-gpg-key-git
     - espanso-wayland-git
+    - chezmoi_modify_manager
+    - find-the-command
+    - hunspell-pt-br
+    - neovim-remote
+    - perl-bundle-camelcade
+    - perl-devel-camelcadedb
+    - sshoot
 
 - name: Install common "desktop" GUI tools via pacman
   community.general.pacman:
     name:
       - alacritty
-      - btop-theme-catppuccin
-      - btrfs-assistant
-      - btrfsmaintenance
       - cups-browsed
       - easyeffects
-      - flameshot-git
       - gst-plugin-pipewire
       - gst-plugins-bad
       - gst-plugins-good
@@ -153,7 +152,6 @@
       - power-profiles-daemon
       - qalculate-gtk
       - qbittorrent
-      - raw-thumbnailer
       - solaar
       - variety
     state: present
@@ -170,6 +168,11 @@
   become: true
   become_user: "{{ user.name }}"
   with_items:
+    - btop-theme-catppuccin
+    - btrfs-assistant
+    - btrfsmaintenance
+    - flameshot-git
+    - raw-thumbnailer
     - webcord-bin
 
 - name: Set permissions on /game to be owned by users and g=rwx

@@ -202,7 +202,7 @@
     name:
       - plasma-gamemode-git
     use: yay
-  when: ((system.type == "desktop") and (graphics_card == "amd"))
+  when: ((system.type == "desktop") and (system.graphics_card == "amd"))
   become: true
   become_user: "{{ user.name }}"
   register: task_result
