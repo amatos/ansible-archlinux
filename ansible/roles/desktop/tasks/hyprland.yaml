@@ -131,3 +131,7 @@
 - name: Configure greetd
   ansible.builtin.import_tasks: greetd.yaml
   when: hyprgreetd
+
+- name: Configure SDDM with Hyprland
+  ansible.builtin.import_tasks: sddm_hyprland.yaml
+  when: hyprsddm

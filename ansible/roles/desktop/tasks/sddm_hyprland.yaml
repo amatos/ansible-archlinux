@@ -1,0 +1,39 @@
+- name: Install sddm
+  community.general.pacman:
+    name:
+      - sddm
+    state: present
+  become: true
+  become_user: "{{ user.name }}"
+  register: sddmed
+
+- name: Deploy sddm config file
+  ansible.builtin.copy:
+    src: hyprland.sddm.conf
+    dest: /etc/sddm.conf
+    mode: "0644"
+  become: true
+  when: sddmed
+
+- name: Create /etc/sddm.conf.d directory
+  ansible.builtin.file:
+    path: /etc/sddm.conf.d
+    state: directory
+    mode: "0755"
+  register: created_sddm_conf_d_dir
+  when: sddmed
+
+- name: Deploy sddm hyprland.conf
+  ansible.builtin.copy:
+    src: sddm-conf-d.hyprland.conf
+    dest: /etc/sddm.conf.d/hyprland.conf
+    mode: "0644"
+  become: true
+  when: created_sddm_conf_d_dir
+
+- name: Enable sddm greeter
+  ansible.builtin.service:
+    name: sddm
+    enabled: true
+  become: true
+  when: sddmed
