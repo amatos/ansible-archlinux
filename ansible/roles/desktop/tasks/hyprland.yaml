@@ -10,9 +10,10 @@
       - hyprlock-git
       - hyprpaper-git
       - hyprpicker-git
+      - hyprpolkitagent-git
+      - hyprsysteminfo-git
       - hyprutils-git
       - hyprwayland-scanner-git
-      - hyprsysteminfo-git
       - xdg-desktop-portal-gtk
       - xdg-desktop-portal-hyprland-git
     use: yay
@@ -52,17 +53,27 @@
 - name: Install gnome stuff
   community.general.pacman:
     name:
-      # - evince
       # - gnome-control-center
       # - gnome-system-monitor
       # - gnome-text-editor
+      # - pavucontrol
       # - polkit-gnome
+      - evince
+      - gvfs-afc
+      - gvfs-dnssd
+      - gvfs-goa
+      - gvfs-google
+      - gvfs-gphoto2
+      - gvfs-mtp
       - gvfs-nfs
       - gvfs-onedrive
       - gvfs-smb
+      - gvfs-wsdd
+      - libportal-gtk3
+      - libportal-gtk4
       - nautilus
-      # - pavucontrol
-      # - seahorse-nautilus
+      - seahorse-nautilus
+      - network-manager-applet
     state: present
   become: true
   become_user: "{{ user.name }}"
@@ -70,13 +81,21 @@
 - name: Install KDE stuff
   community.general.pacman:
     name:
-      - qt5-wayland
-      - qt6-wayland
+      - ark
       - breeze-icons
+      - dolphin
+      - dolphin-plugins
+      - gwenview
       - kvantum
       - kwallet
       - kwallet-pam
       - kwalletmanager
+      - okular
+      - qt5-wayland
+      - qt5ct
+      - qt6-wayland
+      - qt6ct
+      - sddm
     state: present
   become: true
   become_user: "{{ user.name }}"
@@ -84,7 +103,8 @@
 - name: Install additional Hyprland tools
   kewlfft.aur.aur:
     name:
-      - ags-hyprpanel-git
+      # - mako
+      - ags-hyprpanel
       - anyrun-git
       - aylurs-gtk-shell
       - bibata-cursor-git
@@ -93,14 +113,19 @@
       - bun-bin
       - cliphist
       - clipse
+      - darkman
+      - nm-applet
       - fuzzel
       - grim
       - grimshot
       - jaq
+      - layer-shell-qt
       - lf
-      # - mako
-      - nm-applet
       - pamixer
+      - python-pyqt6
+      - python-pyqt6-3d
+      - python-pyqt6-networkauth
+      - python-pyqt6-webengine
       - slurp
       - smile
       - sweet-cursors-hyprcursor-git
@@ -108,14 +133,11 @@
       - udiskie-systemd-git
       - waybar
       - wayprompt
-      - webcord-bin
       - wf-recorder
       - wl-clipboard
       - wlogout
-      - wofi
       - xwaylandvideobridge-git
       - yad
-      - darkman
     use: yay
   become: true
   become_user: "{{ user.name }}"

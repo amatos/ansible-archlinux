@@ -162,6 +162,16 @@
   retries: 2
   delay: 2
 
+- name: Install common "desktop" gui tools via aur
+  kewlfft.aur.aur:
+    name: "{{ item }}"
+    use: yay
+    aur_only: true
+  become: true
+  become_user: "{{ user.name }}"
+  with_items:
+    - webcord-bin
+
 - name: Set permissions on /game to be owned by users and g=rwx
   file:
     path: "/games"
