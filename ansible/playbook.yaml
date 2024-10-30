@@ -6,7 +6,7 @@
     - {role: bootstrap, tags: ["bootstrap"]}
     - {role: kernel, tags: ["kernel"]}
     - {role: network, tags: ["network"]}
-    - {role: firewall, tags: ["firewall"]}
+    - {role: firewall, tags: ["firewall"], when: not chrooted}
     - {role: grub, tags: ["grub"], when: bootloader == "grub"}
     - {role: refind, tags: ["refind"], when: bootloader == "refind"}
     - {role: macspoof, tags: ["macspoof"], when: system.macspoof}

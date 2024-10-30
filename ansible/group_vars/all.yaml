@@ -8,6 +8,12 @@
 system_distribution: "arch"
 
 ##
+# Inside a chroot environment?
+# ============================
+##
+chrooted: true
+
+##
 # Linux Kernel
 # ============
 # For details, see https://wiki.archlinux.org/title/Kernel
@@ -72,7 +78,7 @@ system:
   processor: "amd"
   graphics_card: "amd"
   macspoof: false
-  type: "desktop"
+  type: ""
 
 ############# Desktop Envionment Settings ####################
 ####                                                      ####
@@ -91,8 +97,8 @@ kdepim: false
 # ================
 # true/false to install Hyprland
 ##
-hyprland: true
-hyprsddm: true
+hyprland: false
+hyprsddm: false
 hyprgreetd: false
 
 ##
