@@ -11,6 +11,7 @@
       - bash-language-server
       - bat
       - bc
+      - darkman
       - catdoc
       - cdrdao
       - cdrtools
