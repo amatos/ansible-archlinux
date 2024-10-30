@@ -176,6 +176,16 @@
     - raw-thumbnailer
     - webcord-bin
 
+- name: Install tealdeer
+  community.general.pacman:
+    name:
+      - tealdeer
+    state: present
+  register: installed_tealdeer
+  until: installed_tealdeer is success
+  retries: 2
+  delay: 2
+
 - name: Set permissions on /game to be owned by users and g=rwx
   file:
     path: "/games"
@@ -183,3 +193,8 @@
     group: users
     mode: 0775
   become: true
+
+- name: Update tealdeer
+  ansible.builtin.command:
+    cmd: tealdeer --update
+  when: installed_tealdeer
