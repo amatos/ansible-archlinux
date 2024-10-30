@@ -22,7 +22,7 @@
     name:
       - gnome-shell-extension-clipboard-indicator
       - gnome-shell-extension-blur-my-shell
-      - gnome-shell-extension-sound-output-device-chooser
+      - ulauncher
     use: yay
   when: gnome_installed
   become: true
