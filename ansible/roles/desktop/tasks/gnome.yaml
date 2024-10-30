@@ -8,9 +8,9 @@
     - gnome-extra
     - gnome-tweaks
     - gnome-shell-extensions
+    - gnome-browser-connector
     - gnome-shell-extension-appindicator
-    - gnome-shell-extension-arc-menu
-    - gnome-shell-extension-vitals
+    - gnome-shell-extension-dash-to-panel
     - gnome-shell-extension-weather-oclock
   register: gnome_installed
   until: gnome_installed is success
@@ -21,7 +21,6 @@
   kewlfft.aur.aur:
     name:
       - gnome-shell-extension-clipboard-indicator
-      - gnome-shell-extension-openweather
       - gnome-shell-extension-blur-my-shell
       - gnome-shell-extension-sound-output-device-chooser
     use: yay
