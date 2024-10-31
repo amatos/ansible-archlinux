@@ -138,7 +138,6 @@
 - name: Install common "desktop" GUI tools via pacman
   community.general.pacman:
     name:
-      - alacritty
       - cups-browsed
       - easyeffects
       - gst-plugin-pipewire
@@ -196,5 +195,5 @@
 
 - name: Update tealdeer
   ansible.builtin.command:
-    cmd: tealdeer --update
+    cmd: tldr --update
   when: installed_tealdeer
