@@ -24,7 +24,6 @@
     src: sddm-wayland.conf
     dest: /etc/sddm.conf.d/10-wayland.conf
     mode: "0644"
-  become: true
   when: created_sddm_conf_d_dir
 
 - name: Deploy Hyprland compositor config
@@ -32,7 +31,6 @@
     src: sddm-hyprland.conf
     dest: /etc/sddm.conf.d/sddm-hyprland.conf
     mode: "0644"
-  become: true
   when: created_sddm_conf_d_dir
 
 - name: Deploy virtual keyboard config
@@ -40,7 +38,6 @@
     src: sddm-virtualkbd.conf
     dest: /etc/sddm.conf.d/20-virtualkbd.conf
     mode: "0644"
-  become: true
   when: created_sddm_conf_d_dir
 
 - name: Deploy user avatar config
@@ -48,7 +45,6 @@
     src: sddm-avatar.conf
     dest: /etc/sddm.conf.d/30-avatar.conf
     mode: "0644"
-  become: true
   register: avatared
   when: created_sddm_conf_d_dir
 
@@ -58,18 +54,16 @@
     state: directory
     mode: "0755"
   register: created_avatar_dir
-  when: avatared
 
 - name: Deploy avatars
   ansible.builtin.copy:
-    src: {{ items }}.png
-    dest: /var/lib/AccountsService/icons/{{ items }}.face.icon
+    src: "{{ item }}.png"
+    dest: "/var/lib/AccountsService/icons/{{ item }}.face.icon"
     mode: "0644"
-  with item:
+  when: created_sddm_conf_d_dir
+  with_items:
     - alberth
     - llewellyn
-  become: true
-  when: created_sddm_conf_d_dir
 
 - name: Enable sddm greeter
   ansible.builtin.service:
