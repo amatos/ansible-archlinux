@@ -27,3 +27,13 @@
   when: (kernel == "linux-zen") and (system_distribution == "arch")
   notify:
     - Regenerate initramfs
+
+- name: Install linux-lts and lts headers
+  community.general.pacman:
+    name:
+      - linux-lts
+      - linux-lts-headers
+    state: present
+  when: (system_distribution == "arch")
+  notify:
+    - Regenerate initramfs
