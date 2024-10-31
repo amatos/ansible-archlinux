@@ -1,19 +1,15 @@
-- name: Install sddm
+- name: Install sddm and associated packages
   community.general.pacman:
     name:
       - sddm
+      - qt6-virtualkeyboard
+      - weston
+      - layer-shell-qt
+      - layer-shell-qt5
     state: present
   become: true
   become_user: "{{ user.name }}"
   register: sddmed
-
-- name: Deploy sddm config file
-  ansible.builtin.copy:
-    src: hyprland.sddm.conf
-    dest: /etc/sddm.conf
-    mode: "0644"
-  become: true
-  when: sddmed
 
 - name: Create /etc/sddm.conf.d directory
   ansible.builtin.file:
@@ -23,11 +19,55 @@
   register: created_sddm_conf_d_dir
   when: sddmed
 
-- name: Deploy sddm hyprland.conf
+- name: Deploy wayland override config
   ansible.builtin.copy:
-    src: sddm-conf-d.hyprland.conf
-    dest: /etc/sddm.conf.d/hyprland.conf
+    src: sddm-wayland.conf
+    dest: /etc/sddm.conf.d/10-wayland.conf
     mode: "0644"
+  become: true
+  when: created_sddm_conf_d_dir
+
+- name: Deploy Hyprland compositor config
+  ansible.builtin.copy:
+    src: sddm-hyprland.conf
+    dest: /etc/sddm.conf.d/sddm-hyprland.conf
+    mode: "0644"
+  become: true
+  when: created_sddm_conf_d_dir
+
+- name: Deploy virtual keyboard config
+  ansible.builtin.copy:
+    src: sddm-virtualkbd.conf
+    dest: /etc/sddm.conf.d/20-virtualkbd.conf
+    mode: "0644"
+  become: true
+  when: created_sddm_conf_d_dir
+
+- name: Deploy user avatar config
+  ansible.builtin.copy:
+    src: sddm-avatar.conf
+    dest: /etc/sddm.conf.d/30-avatar.conf
+    mode: "0644"
+  become: true
+  register: avatared
+  when: created_sddm_conf_d_dir
+
+- name: Create user avatar directory
+  ansible.builtin.file:
+    path: /var/lib/AccountsService/icons/
+    state: directory
+    mode: "0755"
+  register: created_avatar_dir
+  when: avatared
+
+- name: Deploy avatars
+  ansible.builtin.copy:
+    src: {{ items }}.png
+    dest: /var/lib/AccountsService/icons/{{ items }}.face.icon
+    mode: "0644"
+  with item:
+    - alberth
+    - llewellyn
   become: true
   when: created_sddm_conf_d_dir
 
