@@ -2,9 +2,33 @@
   kewlfft.aur.aur:
     name: "{{ item }}"
     use: yay
-  with_items: "{{ gaming_packages }}"
   become: true
   become_user: "{{ user.name }}"
+  with_items:
+    - gamemode
+    - gamescope
+    - goverlay
+    - heroic-games-launcher-bin
+    - lib32-dbus
+    - lib32-glu
+    - lib32-libcurl-compat
+    - lib32-mesa
+    - lib32-nss
+    - lib32-systemd
+    - lib32-vkbasalt
+    - libva-mesa-driver
+    - lutris
+    - mangohud
+    - mesa
+    - protonup-qt
+    - sndio
+    - steam
+    - steamtinkerlaunch
+    - v4l2loopback-dkms
+    - vkbasalt
+    - vkbasalt-cli
+    - wf-recorder
+
 - name: Arch-specific gaming items
   kewlfft.aur.aur:
     name:
@@ -14,3 +38,4 @@
   when: system_distribution == "arch"
   become: true
   become_user: "{{ user.name }}"
+
