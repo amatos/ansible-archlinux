@@ -7,7 +7,6 @@
       - layer-shell-qt
       - layer-shell-qt5
     state: present
-  become: true
   become_user: "{{ user.name }}"
   register: sddmed
 
@@ -69,5 +68,4 @@
   ansible.builtin.service:
     name: sddm
     enabled: true
-  become: true
   when: sddmed
