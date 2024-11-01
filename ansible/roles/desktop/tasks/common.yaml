@@ -111,6 +111,8 @@
       - jq
       - xmlstarlet
       - rclone
+      - python-pydbus
+      - python-psutil
     state: present
   register: task_result
   until: task_result is success
