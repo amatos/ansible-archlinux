@@ -74,6 +74,9 @@
       - nautilus
       - seahorse-nautilus
       - network-manager-applet
+      - dconf-editor
+      - gnome settings
+      - gnome-online-accounts
     use: yay
   become: true
   become_user: "{{ user.name }}"
@@ -103,8 +106,7 @@
 - name: Install additional Hyprland tools
   kewlfft.aur.aur:
     name:
-      - mako
-      - ags-hyprpanel
+      - ags-hyprpanel-git
       - anyrun-git
       - aylurs-gtk-shell
       - bibata-cursor-git
@@ -113,21 +115,30 @@
       - bun-bin
       - cliphist
       - clipse
-      - nm-applet
+      - dart-sass
       - fuzzel
+      - gnome-bluetooth-3.0
+      - gnome-themes-extra
       - grim
+      - grimblast-git
       - grimshot
+      - gtk-engine-murrine
       - jaq
       - layer-shell-qt
       - lf
+      - mako
+      - mutagen-bin
+      - nm-applet
       - pamixer
       - python-pyqt6
       - python-pyqt6-3d
       - python-pyqt6-networkauth
       - python-pyqt6-webengine
+      - sassc
       - slurp
       - smile
       - sweet-cursors-hyprcursor-git
+      - swww
       - udiskie
       - udiskie-systemd-git
       - waybar
@@ -156,3 +167,11 @@
 - name: Configure SDDM with Hyprland
   ansible.builtin.import_tasks: sddm_hyprland.yaml
   when: hyprland_greeter.sddm
+
+- name: Create a symbolic for ags-hyprpanel-git
+  ansible.builtin.file:
+    src: /usr/share/HyprPanel/
+    dest: ~/.config/ags
+    state: link
+  become: true
+  become_user: "{{ user.name }}"
