@@ -185,6 +185,11 @@
   retries: 2
   delay: 2
 
+- name: Update tealdeer
+  ansible.builtin.command:
+    cmd: tldr --update
+  when: installed_tealdeer
+
 - name: Set permissions on /game to be owned by users and g=rwx
   file:
     path: "/games"
@@ -192,8 +197,3 @@
     group: users
     mode: 0775
   become: true
-
-- name: Update tealdeer
-  ansible.builtin.command:
-    cmd: tldr --update
-  when: installed_tealdeer

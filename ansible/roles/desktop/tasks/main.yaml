@@ -6,21 +6,21 @@
   ansible.builtin.import_tasks: amdgpu.yaml
   when: system.graphics_card == "amd"
 
+- name: Cosmic
+  ansible.builtin.import_tasks: cosmic.yaml
+  when: cosmic
+
 - name: Gnome
   ansible.builtin.import_tasks: gnome.yaml
   when: gnome
-
-- name: KDE
-  ansible.builtin.import_tasks: kde.yaml
-  when: kde
 
 - name: Hyprland
   ansible.builtin.import_tasks: hyprland.yaml
   when: hyprland
 
-- name: Cosmic
-  ansible.builtin.import_tasks: cosmic.yaml
-  when: cosmic
+- name: KDE
+  ansible.builtin.import_tasks: kde.yaml
+  when: kde
 
 - name: Bluetooth
   ansible.builtin.import_tasks: bluetooth.yaml
@@ -46,7 +46,7 @@
 - name: Install Steam and other gaming packages
   ansible.builtin.import_tasks: games.yaml
 
-- name: Install gitkraken
+- name: Install GitKraken
   ansible.builtin.import_tasks: gitkraken.yaml
 
 - name: Install Thunderbird
