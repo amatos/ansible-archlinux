@@ -1,0 +1,48 @@
+- name: Find UEFI partition
+  ansible.builtin.shell: 'cat /etc/fstab |grep efi | grep UUID | cut -f 2'
+  register: uefi_path
+
+- name: Create UEFI/EFI/Linux
+  ansible.builtin.file:
+    path: "{{ uefi_path.stdout | replace(' ', '') }}/EFI/Linux"
+    state: directory
+    mode: '0755'
+
+- name: Get boot device UUID
+  ansible.builtin.shell: "blkid -s UUID -o value {{ root_device }}"   # noqa: no-handler
+  register: root_uuid
+
+- name: Get swap device UUID
+  ansible.builtin.shell: 'cat /etc/fstab | grep swap | grep "UUID" | cut -f 1'   # noqa: no-handler
+  register: swap_uuid
+
+- name: Populate kernel command line root file
+  ansible.builtin.template:
+    src: root.conf.j2
+    dest: /etc/cmdline.d/root.conf
+    mode: '0644'
+
+- name: Populate kernel command line resume file
+  ansible.builtin.template:
+    src: resume.conf.j2
+    dest: /etc/cmdline.d/resume.conf
+    mode: '0644'
+
+- name: Populate kernel command line plymouth file
+  ansible.builtin.copy:
+    src: plymouth.conf
+    dest: /etc/cmdline.d
+    mode: '0644'
+
+- name: Populate kernel command line amd file
+  ansible.builtin.copy:
+    src: amd.conf
+    dest: /etc/cmdline.d
+    mode: '0644'
+  when: system.processor == "amd"
+
+- name: Populate kernel command line kernel file
+  ansible.builtin.copy:
+    src: kernel.conf
+    dest: /etc/cmdline.d
+    mode: '0644'
