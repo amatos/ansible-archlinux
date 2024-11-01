@@ -24,14 +24,14 @@
     src: sddm-wayland.conf
     dest: /etc/sddm.conf.d/10-wayland.conf
     mode: "0644"
-  when: created_sddm_conf_d_dir
+  when: (hyprland_greeter.sddm_wayland and created_sddm_conf_d_dir)
 
 - name: Deploy Hyprland compositor config
   ansible.builtin.copy:
     src: sddm-hyprland.conf
     dest: /etc/sddm.conf.d/sddm-hyprland.conf
     mode: "0644"
-  when: created_sddm_conf_d_dir
+  when: (hyprland_greeter.sddm_wayland and created_sddm_conf_d_dir)
 
 - name: Deploy virtual keyboard config
   ansible.builtin.copy:
