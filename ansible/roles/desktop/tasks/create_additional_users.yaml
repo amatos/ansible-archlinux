@@ -1,0 +1,12 @@
+- name: Create additional users
+  ansible.builtin.user:
+    name: "{{ item }}"
+    shell: "/usr/bin/bash"
+    groups:
+      - users
+    append: true
+    system: false
+    createhome: true
+    home: /home/{{ item }}
+  with_items:
+    - llewellyn

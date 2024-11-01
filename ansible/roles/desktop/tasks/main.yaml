@@ -63,3 +63,6 @@
 
 - name: Install syncthing
   ansible.builtin.import_tasks: syncthing.yaml
+
+- name: Create additional users
+  ansible.builtin.import_tasks: create_additional_users.yaml
