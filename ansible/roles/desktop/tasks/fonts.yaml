@@ -3,17 +3,17 @@
     name:
       - apple-fonts
       - fontconfig
-      - nerd-fonts-sf-mono
       - noto-fonts-emoji
       - otf-font-awesome
       - ttf-dejavu
       - ttf-droid
       - ttf-font-awesome
+      - ttf-jetbrains-mono-nerd
       - ttf-liberation
       - ttf-mac-fonts
       - ttf-meslo-nerd-font-powerlevel10k
-      - xorg-font-util
       - ttf-pragmasevka-nerd-font
+      - xorg-font-util
     use: yay
   become: true
   become_user: "{{ user.name }}"

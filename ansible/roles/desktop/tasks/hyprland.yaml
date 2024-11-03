@@ -2,64 +2,79 @@
   kewlfft.aur.aur:
     name:
       - aquamarine
-      - hyprcursor
-      - hypridle
       - hyprland
       - hyprland-protocols
+      - hyprutils-git
+      - hyprpolkitagent-git
+      - hyprwayland-scanner-git
+      - hyprcursor
+      - hypridle
       - hyprlang
       - hyprlock
       - hyprpaper
       - hyprpicker
-      - hyprpolkitagent-git
       - hyprsysteminfo-git
-      - hyprutils-git
-      - hyprwayland-scanner
+      - hyprsunset
       - xdg-desktop-portal
-      - xdg-desktop-portal-hyprland
+      - xdg-desktop-portal-hyprland-git
     use: yay
   become: true
   become_user: "{{ user.name }}"
 
-# - name: Install Thunar file manager
-#   kewlfft.aur.aur:
-#     name:
-#       - thunar
-#       - thunar-volman
-#       - thunar-archive-plugin
-#       - thunar-media-tags-plugin
-#       - tumbler
-#       - gvfs
-#       - catfish
-#       - gvfs-smb
-#       - gvfs-onedrive
-#       - gvfs-nfs
-#       - gvfs-wsdd
-#       - engrampa
-#       - ark
-#       - xarchiver
-#       - ffmpegthumbnailer
-#       - libgepub
-#       - p7zip
-#       - unrar
-#       - rpm-tools
-#       - lha
-#       - lzip
-#       - unarj
-#       - unrar
-#     use: yay
-#   become: true
-#   become_user: "{{ user.name }}"
-  when: hyprland_settings.gnome
-
-- name: Install gnome stuff
+- name: Install Thunar file manager
   kewlfft.aur.aur:
     name:
-      # - gnome-control-center
-      # - gnome-system-monitor
-      # - gnome-text-editor
-      # - pavucontrol
-      # - polkit-gnome
+      - thunar
+      - thunar-volman
+      - thunar-archive-plugin
+      - thunar-media-tags-plugin
+      - tumbler
+      - gvfs
+      - catfish
+      - gvfs-smb
+      - gvfs-onedrive
+      - gvfs-nfs
+      - gvfs-wsdd
+      - engrampa
+      - ark
+      - xarchiver
+      - ffmpegthumbnailer
+      - libgepub
+      - p7zip
+      - unrar
+      - rpm-tools
+      - lha
+      - lzip
+      - unarj
+      - unrar
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
+  when: hyprland_settings.thunar
+
+- name: Install optional Gnome stuff
+  kewlfft.aur.aur:
+    name:
+      - nautilus
+      - seahorse-nautilus
+#      - network-manager-applet
+#      - dconf-editor
+#      - gnome-settings-daemon
+#      - gnome-online-accounts
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
+  when: hyprland_settings.gnome
+
+- name: Install required Gnome stuff
+  kewlfft.aur.aur:
+    name:
+      - blueberry
       - evince
+      - gjs
+      - gnome-bluetooth-3.0
+      - gnome-control-center
+      - gnome-keyring
       - gvfs-afc
       - gvfs-dnssd
       - gvfs-goa
@@ -70,37 +85,70 @@
       - gvfs-onedrive
       - gvfs-smb
       - gvfs-wsdd
-      - libportal-gtk3
-      - libportal-gtk4
-      - nautilus
-      - seahorse-nautilus
-      - network-manager-applet
-      - dconf-editor
-      - gnome settings
-      - gnome-online-accounts
+      - gnome-themes-extra
+      - gobject-introspection
+      - polkit-gnome
     use: yay
   become: true
   become_user: "{{ user.name }}"
 
-- name: Install KDE stuff
+- name: Install optional KDE stuff
   kewlfft.aur.aur:
     name:
       - ark
-      - breeze-icons
       - dolphin
       - dolphin-plugins
-      - gwenview
-      - kvantum
       - kwallet
       - kwallet-pam
       - kwalletmanager
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
   when: hyprland_settings.kde
+
+- name: Install required KDE stuff
+  kewlfft.aur.aur:
+    name:
+      - breeze-icons
+      - ffmpegthumbs
+      - gwenview
+      - kvantum
       - okular
       - qt5-wayland
       - qt5ct
       - qt6-wayland
       - qt6ct
-      - sddm
+      - xwaylandvideobridge-git
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
+
+- name: Install required GTK stuff
+  kewlfft.aur.aur:
+    name:
+      - ags-hyprpanel-git
+      - aylurs-gtk-shell
+      - gtk-engine-murrine
+      - gtk-layer-shell
+      - gtk3
+      - gtksourceview3
+      - libportal-gtk3
+      - libportal-gtk4
+      - xdg-user-dirs-gtk
+      - yad
+      - ydotool
+      - xdg-desktop-portal-gtk
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
+
+- name: Install MicroTeX (embedded LaTeX rendering library)
+  kewlfft.aur.aur:
+    name:
+      - tinyxml2
+      - gtkmm3
+      - gtksourceviewmm
+      - cairomm
     use: yay
   become: true
   become_user: "{{ user.name }}"
@@ -108,29 +156,23 @@
 - name: Install additional Hyprland tools
   kewlfft.aur.aur:
     name:
-      - ags-hyprpanel-git
-      - anyrun-git
-      - aylurs-gtk-shell
       - bibata-cursor-git
-      - blueman
       - brightnessctl
       - bun-bin
       - cliphist
       - clipse
       - dart-sass
+      - ffmpegthumbnailer
       - fuzzel
-      - gnome-bluetooth-3.0
-      - gnome-themes-extra
+      - gammastep
       - grim
       - grimblast-git
       - grimshot
-      - gtk-engine-murrine
       - jaq
       - layer-shell-qt
       - lf
-      - mako
+      - libdbusmenu-gtk3
       - mutagen-bin
-      - nm-applet
       - pamixer
       - python-pyqt6
       - python-pyqt6-3d
@@ -143,13 +185,13 @@
       - swww
       - udiskie
       - udiskie-systemd-git
+      - upower
       - waybar
       - wayprompt
+      - webp-pixbuf-loader
       - wf-recorder
       - wl-clipboard
       - wlogout
-      - xwaylandvideobridge-git
-      - yad
     use: yay
   become: true
   become_user: "{{ user.name }}"
@@ -161,6 +203,16 @@
     use: yay
   become: true
   become_user: "{{ user.name }}"
+
+- name: Install Mako notifications
+  kewlfft.aur.aur:
+    name:
+      - mako
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
+  when: hyprland_settings.mako
+
 
 - name: Configure greetd
   ansible.builtin.import_tasks: greetd.yaml
