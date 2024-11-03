@@ -98,10 +98,15 @@ kdepim: false
 # true/false to install Hyprland
 ##
 hyprland: false
-hyprland_greeter:
-  sddm: true
-  sddm_wayland: false
+hyprland_settings:
+  gdm: false
+  gnome: false
   greetd: false
+  kde: false
+  mako: false
+  sddm: false
+  sddm_wayland: false
+  thunar: false
 
 ##
 # Install Gnome

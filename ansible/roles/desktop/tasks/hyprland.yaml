@@ -49,6 +49,7 @@
 #     use: yay
 #   become: true
 #   become_user: "{{ user.name }}"
+  when: hyprland_settings.gnome
 
 - name: Install gnome stuff
   kewlfft.aur.aur:
@@ -93,6 +94,7 @@
       - kwallet
       - kwallet-pam
       - kwalletmanager
+  when: hyprland_settings.kde
       - okular
       - qt5-wayland
       - qt5ct
@@ -162,11 +164,11 @@
 
 - name: Configure greetd
   ansible.builtin.import_tasks: greetd.yaml
-  when: hyprland_greeter.greetd
+  when: hyprland_settings.greetd
 
 - name: Configure SDDM with Hyprland
   ansible.builtin.import_tasks: sddm_hyprland.yaml
-  when: hyprland_greeter.sddm
+  when: hyprland_settings.sddm
 
 - name: Create a symbolic for ags-hyprpanel-git
   ansible.builtin.file:
