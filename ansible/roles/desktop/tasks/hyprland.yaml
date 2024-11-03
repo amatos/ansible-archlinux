@@ -170,6 +170,10 @@
   ansible.builtin.import_tasks: sddm_hyprland.yaml
   when: hyprland_settings.sddm
 
+- name: Configure GDM with Hyprland
+  ansible.builtin.import_tasks: gdm_hyprland.yaml
+  when: hyprland_settings.gdm
+
 - name: Create a symbolic for ags-hyprpanel-git
   ansible.builtin.file:
     src: /usr/share/HyprPanel/
