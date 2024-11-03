@@ -199,3 +199,20 @@
     group: users
     mode: 0775
   become: true
+
+- name: Create user avatar directory
+  ansible.builtin.file:
+    path: /var/lib/AccountsService/icons/
+    state: directory
+    mode: "0755"
+  register: created_avatar_dir
+
+- name: Deploy avatars
+  ansible.builtin.copy:
+    src: "{{ item }}.png"
+    dest: "/var/lib/AccountsService/icons/{{ item }}.face.icon"
+    mode: "0644"
+  when: created_sddm_conf_d_dir
+  with_items:
+    - alberth
+    - llewellyn
