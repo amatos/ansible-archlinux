@@ -1,5 +1,6 @@
 - name: Pacman install steam, lutris, and associated tools
   kewlfft.aur.aur:
+    state: present
     name: "{{ item }}"
     use: yay
   become: true
@@ -31,6 +32,7 @@
 
 - name: Arch-specific gaming items
   kewlfft.aur.aur:
+    state: present
     name:
       - steam-hdr
       - steam-native-runtime

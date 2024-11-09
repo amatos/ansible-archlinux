@@ -13,6 +13,7 @@
 
 - name: Install VirtIO drivers
   kewlfft.aur.aur:
+    state: present
     name: "virtio-win"
     use: yay
   become: true

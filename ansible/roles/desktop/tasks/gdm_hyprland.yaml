@@ -1,8 +1,13 @@
 - name: Install sddm and associated packages
   kewlfft.aur.aur:
+    state: present
     name:
       - gdm
-      gdm-settings
+      - gdm-settings
+      - gdm-tools
+      - arch-gdm-theme-list
+      - loginized
+      - plymouth-theme-gdm-arch
     use: yay
   become_user: "{{ user.name }}"
   register: gdmed

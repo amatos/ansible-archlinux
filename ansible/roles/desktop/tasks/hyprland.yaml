@@ -1,5 +1,6 @@
 - name: Install Hyprland
   kewlfft.aur.aur:
+    state: present
     name:
       - aquamarine
       - hyprland
@@ -54,6 +55,7 @@
 
 - name: Install optional Gnome stuff
   kewlfft.aur.aur:
+    state: present
     name:
       - nautilus
       - seahorse-nautilus
@@ -68,6 +70,7 @@
 
 - name: Install required Gnome stuff
   kewlfft.aur.aur:
+    state: present
     name:
       - blueberry
       - evince
@@ -94,6 +97,7 @@
 
 - name: Install optional KDE stuff
   kewlfft.aur.aur:
+    state: present
     name:
       - ark
       - dolphin
@@ -108,6 +112,7 @@
 
 - name: Install required KDE stuff
   kewlfft.aur.aur:
+    state: present
     name:
       - breeze-icons
       - ffmpegthumbs
@@ -125,6 +130,7 @@
 
 - name: Install required GTK stuff
   kewlfft.aur.aur:
+    state: present
     name:
       - ags-hyprpanel-git
       - aylurs-gtk-shell
@@ -144,6 +150,7 @@
 
 - name: Install MicroTeX (embedded LaTeX rendering library)
   kewlfft.aur.aur:
+    state: present
     name:
       - tinyxml2
       - gtkmm3
@@ -155,6 +162,7 @@
 
 - name: Install additional Hyprland tools
   kewlfft.aur.aur:
+    state: present
     name:
       - bibata-cursor-git
       - brightnessctl
@@ -198,6 +206,7 @@
 
 - name: Install hyprshade
   kewlfft.aur.aur:
+    state: present
     name:
       - hyprshade
     use: yay
@@ -206,6 +215,7 @@
 
 - name: Install Mako notifications
   kewlfft.aur.aur:
+    state: present
     name:
       - mako
     use: yay

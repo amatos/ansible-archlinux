@@ -19,6 +19,7 @@
 
 - name: Install Additional tools from aur
   kewlfft.aur.aur:
+    state: present
     name: "{{ item }}"
     use: yay
   become: true

@@ -12,6 +12,7 @@
 
 - name: Install profile-sync-daemon-thunderbird from AUR
   kewlfft.aur.aur:
+    state: present
     name:
       - profile-sync-daemon-thunderbird
     use: yay

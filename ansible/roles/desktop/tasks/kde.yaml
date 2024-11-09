@@ -199,13 +199,10 @@
 
 - name: Amd-specific gaming items
   kewlfft.aur.aur:
+    state: present
     name:
       - plasma-gamemode-git
     use: yay
   when: ((system.type == "desktop") and (system.graphics_card == "amd"))
   become: true
   become_user: "{{ user.name }}"
-  register: task_result
-  until: task_result is success
-  retries: 2
-  delay: 2

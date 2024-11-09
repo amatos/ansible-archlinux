@@ -125,6 +125,7 @@
 
 - name: Install common "desktop" cli tools via aur
   kewlfft.aur.aur:
+    state: present
     name: "{{ item }}"
     use: yay
     aur_only: true
@@ -168,6 +169,7 @@
 
 - name: Install common "desktop" gui tools via aur
   kewlfft.aur.aur:
+    state: present
     name: "{{ item }}"
     use: yay
     aur_only: true

@@ -10,6 +10,7 @@
 
 - name: Install Brave from AUR
   kewlfft.aur.aur:
+    state: present
     name:
       - brave-bin
       - profile-sync-daemon-brave
@@ -20,6 +21,7 @@
 
 - name: Install Librewolf from AUR
   kewlfft.aur.aur:
+    state: present
     name:
       - librewolf-bin
       - profile-sync-daemon-librewolf

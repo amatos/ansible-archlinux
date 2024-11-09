@@ -1,5 +1,6 @@
 - name: Install Sublime Text
   kewlfft.aur.aur:
+    state: present
     name:
       - sublime-text-4
     use: yay
@@ -37,6 +38,7 @@
 
 - name: Install VSCode
   kewlfft.aur.aur:
+    state: present
     name:
       - visual-studio-code-bin
     use: yay
@@ -46,6 +48,7 @@
 
 - name: Install Zed
   kewlfft.aur.aur:
+    state: present
     name:
       - zed
     use: yay
@@ -55,6 +58,7 @@
 
 - name: Install neovide
   kewlfft.aur.aur:
+    state: present
     name:
       - neovide
     use: yay

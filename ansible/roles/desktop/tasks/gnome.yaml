@@ -19,6 +19,7 @@
 
 - name: Gnome items from aur
   kewlfft.aur.aur:
+    state: present
     name:
       - gnome-shell-extension-clipboard-indicator
       - gnome-shell-extension-blur-my-shell
@@ -27,10 +28,6 @@
   when: gnome_installed
   become: true
   become_user: "{{ user.name }}"
-  register: task_result
-  until: task_result is success
-  retries: 2
-  delay: 2
 
 - name: Enable gdm service
   ansible.builtin.service:

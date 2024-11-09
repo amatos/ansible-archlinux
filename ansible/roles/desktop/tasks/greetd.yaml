@@ -1,5 +1,6 @@
 - name: Install additional Hyprland tools
   kewlfft.aur.aur:
+    state: present
     name:
       - greetd
       - greetd-regreet-git
