@@ -169,6 +169,12 @@ ssh:
 resolved_stub: false
 
 ##
+# Install TeX live
+# =================
+##
+TeXlive: false
+
+##
 # Base package configuration
 # ==========================
 ##

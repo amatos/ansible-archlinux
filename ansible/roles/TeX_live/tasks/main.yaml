@@ -1,0 +1,28 @@
+- name: Install TeXLive
+  community.general.pacman:
+    name: texlive
+    state: present
+
+- name: Install additional TeX packages
+  community.general.pacman:
+    name: texlive
+    state: present
+      - ed
+      - dialog
+      - java-runtime
+      - perl-tk
+      - perl-yaml-tiny
+      - perl-file-homedir
+      - perl-ipc-system-simple
+      - python
+      - texlive-latexrecommended
+      - wdiff
+      - luametatex
+      - python-pygments
+      - fontforge
+      - biber
+
+- name: Install Pandoc
+  community.general.pacman:
+    name: pandoc
+    state: present
