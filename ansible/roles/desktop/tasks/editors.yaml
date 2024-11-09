@@ -66,6 +66,17 @@
   become: true
   become_user: "{{ user.name }}"
 
+- name: Install neovim package manager LazyVim
+  kewlfft.aur.aur:
+    state: present
+    name:
+      - luarocks
+      - lua51
+    use: yay
+  when: system.type == "desktop"
+  become: true
+  become_user: "{{ user.name }}"
+
 - name: Deploy neovim node package
   ansible.builtin.command: "npm install -g neovim"
 
