@@ -1,8 +1,45 @@
 - name: Install minimal OS base packages
   community.general.pacman:
-    name: "{{ minimal_packages }}"
+    name: "{{ item }}"
     state: present
-  register: minimal_packages_deployed
-  until: minimal_packages_deployed is success
-  retries: 2
-  delay: 2
+  with_items:
+    - avahi
+    - base-devel
+    - bash
+    - bind
+    - ccache
+    - chrony
+    - coreutils
+    - cronie
+    - curl
+    - dateutils
+    - fish
+    - fwupd
+    - git
+    - links
+    - lsof
+    - man-db
+    - man-pages
+    - neovim
+    - nss-mdns
+    - openssh
+    - pacman-contrib
+    - pacutils
+    - pbzip2
+    - pigz
+    - pkgfile
+    - pkgstats
+    - python
+    - python-jmespath
+    - python-pipx
+    - reflector
+    - rsync
+    - sbctl
+    - strace
+    - sysstat
+    - texinfo
+    - udisks2
+    - udisks2-btrfs
+    - zsh
+    - btop
+    - wireless-regdb
