@@ -39,6 +39,13 @@
     mode: "0644"
   when: created_sddm_conf_d_dir
 
+- name: Deploy SDDM base theme config
+  ansible.builtin.copy:
+    src: sddm-base.conf
+    dest: /etc/sddm.conf.d/25-base-theme.conf
+    mode: "0644"
+  when: created_sddm_conf_d_dir
+
 - name: Deploy user avatar config
   ansible.builtin.copy:
     src: sddm-avatar.conf
