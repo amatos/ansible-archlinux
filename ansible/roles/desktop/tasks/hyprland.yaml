@@ -21,9 +21,36 @@
     use: yay
   become: true
   become_user: "{{ user.name }}"
+  when: not hyprland_settings.hyprland_git
+
+- name: Install Hyprland
+  kewlfft.aur.aur:
+    state: present
+    name:
+      - aquamarine-git
+      - hyprland-git
+      - hyprland-protocols-git
+      - hyprutils-git
+      - hyprpolkitagent-git
+      - hyprwayland-scanner-git
+      - hyprcursor-git
+      - hypridle-git
+      - hyprlang-git
+      - hyprlock-git
+      - hyprpaper-git
+      - hyprpicker-git
+      - hyprsysteminfo-git
+      - hyprsunset-git
+      - xdg-desktop-portal
+      - xdg-desktop-portal-hyprland-git
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
+  when: hyprland_settings.hyprland_git
 
 - name: Install Thunar file manager
   kewlfft.aur.aur:
+    state: present
     name:
       - thunar
       - thunar-volman
@@ -58,7 +85,27 @@
     state: present
     name:
       - nautilus
+      - python-nautilus
+      - nautilus-open-any-terminal
       - seahorse-nautilus
+      - cheese
+      - gnome-photos
+      - gnome-connections
+      - snapshot
+      - cheese
+      - nautilus-open-any-terminal
+      - yelp
+      - gnome-font-viewer
+      - gnome-music
+      - gnome-characters
+      - tali
+      - iagno
+      - gnome-initial-setup
+      - gnome-shell-extensions
+      - gnome-maps
+      - gnome-boxes
+      - gnome-weather
+      - gnome-software
 #      - network-manager-applet
 #      - dconf-editor
 #      - gnome-settings-daemon
@@ -72,6 +119,13 @@
   kewlfft.aur.aur:
     state: present
     name:
+      - morewaita-icon-theme
+      - gnome-system-monitor
+      - adwaita-icon-theme
+      - loupe
+      - baobab
+      - qogir-icon-theme
+      - extension-manager
       - blueberry
       - evince
       - gjs

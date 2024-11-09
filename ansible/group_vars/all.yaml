@@ -107,6 +107,7 @@ hyprland_settings:
   sddm: false
   sddm_wayland: false
   thunar: false
+  hyprland_git: true
 
 ##
 # Install Gnome
