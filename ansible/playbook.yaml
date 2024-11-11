@@ -12,4 +12,5 @@
     - {role: macspoof, tags: ["macspoof"], when: system.macspoof}
     - {role: printing, tags: ["printing"]}
     - {role: TeXlive, tags: ["TeX", "tex", "TeXLive", "texlive"], when TeXLive}
+    - {role: qemu, tags: ["qemu", "QEMU", "Qemu"], when: qemu}
     - {role: desktop, tags: ["desktop"], when: (system.type == "desktop")}

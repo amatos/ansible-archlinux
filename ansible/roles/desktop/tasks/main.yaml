@@ -58,9 +58,6 @@
 - name: Install graphics editing tools
   ansible.builtin.import_tasks: graphics_editing.yaml
 
-- name: Install qemu and kvm virtualization tools
-  ansible.builtin.import_tasks: qemu.yaml
-
 - name: Install syncthing
   ansible.builtin.import_tasks: syncthing.yaml
 

@@ -10,6 +10,10 @@
   with_items:
     - qemu-full
     - virt-manager
+    - iptables-nft
+    - swtpm
+    - libtpms
+    - dnsmasq
 
 - name: Install VirtIO drivers
   kewlfft.aur.aur:
@@ -35,11 +39,56 @@
     groups: libvirt
     append: true
 
-- name: Enable libvirtd service
+- name: Enable libvirtd services and sockets
   ansible.builtin.service:
-    name: libvirtd.service
-    state: started
+    name: "{{ item }}"
     enabled: true
+  with_items:
+    - virtchd.service
+    - virtinterfaced.service
+    - virtlockd.service
+    - virtlogd.service
+    - virtlxcd.service
+    - virtnetworkd.service
+    - virtnodedevd.service
+    - virtnwfilterd.service
+    - virtproxyd.service
+    - virtqemud.service
+    - virtsecretd.service
+    - virtstoraged.service
+    - virtvboxd.service
+    - virtchd.socket
+    - virtinterfaced.socket
+    - virtlockd.socket
+    - virtlogd.socket
+    - virtlxcd.socket
+    - virtnetworkd.socket
+    - virtnodedevd.socket
+    - virtnwfilterd.socket
+    - virtproxyd.socket
+    - virtqemud.socket
+    - virtsecretd.socket
+    - virtstoraged.socket
+    - virtvboxd.socket
+
+- name: Start libvirtd services and sockets
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: started
+  with_items:
+    - virtchd.socket
+    - virtinterfaced.socket
+    - virtlockd.socket
+    - virtlogd.socket
+    - virtlxcd.socket
+    - virtnetworkd.socket
+    - virtnodedevd.socket
+    - virtnwfilterd.socket
+    - virtproxyd.socket
+    - virtqemud.socket
+    - virtsecretd.socket
+    - virtstoraged.socket
+    - virtvboxd.socket
 
 - name: Update nsswitch.conf
   ansible.builtin.lineinfile:

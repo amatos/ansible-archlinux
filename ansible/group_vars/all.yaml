@@ -174,3 +174,9 @@ resolved_stub: false
 # =================
 ##
 TeXlive: false
+
+##
+# Install QEMU Virtualization
+# =================
+##
+qemu: false
