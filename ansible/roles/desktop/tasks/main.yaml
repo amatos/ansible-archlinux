@@ -43,6 +43,9 @@
 - name: Install text editors and Libre Office
   ansible.builtin.import_tasks: editors.yaml
 
+- name: Install NeoVIM, prerequisites, and plugins
+  ansible.builtin.import_tasks: neovim.yaml
+
 - name: Install Steam and other gaming packages
   ansible.builtin.import_tasks: games.yaml
 

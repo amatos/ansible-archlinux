@@ -1,0 +1,68 @@
+- name: Install neovide
+  kewlfft.aur.aur:
+    state: present
+    name:
+      - neovide
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
+
+- name: Install neovim package manager LazyVim
+  kewlfft.aur.aur:
+    state: present
+    name:
+      - luarocks
+      - lua51
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
+
+- name: Install neovim packages
+  kewlfft.aur.aur:
+    state: present
+    name:
+      - ruby-neovim
+      - neovim-nvim-treesitter
+      - tree-sitter-cli
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
+
+- name: Deploy neovim node package
+  ansible.builtin.command: "npm install -g neovim"
+
+- name: Deploy neovim ruby package
+  ansible.builtin.command: "gem install neovim"
+  become: true
+  become_user: "{{ user.name }}"
+
+- name: Install php
+  kewlfft.aur.aur:
+    state: present
+    name:
+      - php
+      - composer
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
+
+- name: Install Julia
+  kewlfft.aur.aur:
+    state: present
+    name:
+      - julia
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
+
+- name: Install Python modules
+  kewlfft.aur.aur:
+    state: present
+    name:
+      - python-pip
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
+
+- name: Deploy perl neovim package
+  ansible.builtin.command: "/usr/bin/vendor_perl/cpanm -n Neovim::Ext"
