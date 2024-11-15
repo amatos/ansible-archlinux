@@ -1,0 +1,9 @@
+- name: Install Elgato Stream Deck tooling from aur
+  kewlfft.aur.aur:
+    state: present
+    name: "{{ item }}"
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
+  with_items:
+    - streamcontroller
