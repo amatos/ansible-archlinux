@@ -67,12 +67,14 @@ user:
 #                    if you wan't proprietary drivers follow the steps documented in the arch wiki.
 # pacoloco: Install custom pacoloco mirror
 # cockpit:  Install web management UI
+# plymouth: Bootup/shutdown image
 ##
 system:
   hostname: ""
   pacman: true
   makepkg: true
   cockpit: true
+  plymouth: true
   locale: "en_US.UTF-8"
   timezone: "America/New_York"
   processor: "amd"

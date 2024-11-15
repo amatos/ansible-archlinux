@@ -16,6 +16,15 @@
   ansible.builtin.import_tasks: uki.yaml
   when: uki
 
+- name: Plymouth
+  community.general.pacman:
+    name:
+      - plymouth
+    state: present
+  when: system.plymouth
+  notify:
+    - Regenerate initramfs
+
 - name: Push mkinitcpio configuration
   ansible.builtin.template:
     src: mkinitcpio.conf.j2

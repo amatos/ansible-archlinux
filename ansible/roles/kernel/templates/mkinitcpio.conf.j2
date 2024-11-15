@@ -11,7 +11,13 @@ BINARIES=({{ initrd_bin }})
 
 FILES=({{ initrd_files }})
 
-HOOKS=({{ initrd_hooks }})
+{% if system.plymouth %}
+HOOKS=({{ initrd_hooks_pre }} plymouth {{ initrd_hooks_post }})
+{% else %}
+HOOKS=({{ initrd_hooks_pre }} {{ initrd_hooks_post }})
+{% endif %}
+
+HOOKS=({{ initrd_hooks_pre }} {{ initrd_hooks_post }})
 
 COMPRESSION="{{ initrd_compression }}"
 
