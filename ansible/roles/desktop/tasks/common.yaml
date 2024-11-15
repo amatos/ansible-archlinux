@@ -48,6 +48,7 @@
       - jfsutils
       - ladspa
       - languagetool
+      - lazygit
       - libappimage
       - libappindicator-gtk2
       - libappindicator-gtk3
