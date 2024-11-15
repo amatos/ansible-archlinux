@@ -31,6 +31,17 @@
   become_user: "{{ user.name }}"
   notify: Browser psd restart
 
+- name: Install MS Edge from AUR
+  kewlfft.aur.aur:
+    state: present
+    name:
+      - microsoft-edge-stable-bin
+      - profile-sync-daemon-edge-stable
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"
+  notify: Browser psd restart
+
 - name: Start Profile Sync Daemon back up
   ansible.builtin.service:
     name: psd
