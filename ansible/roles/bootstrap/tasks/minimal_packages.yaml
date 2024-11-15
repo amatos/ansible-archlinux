@@ -43,3 +43,4 @@
     - zsh
     - btop
     - wireless-regdb
+  register: minimal_packages_deployed
