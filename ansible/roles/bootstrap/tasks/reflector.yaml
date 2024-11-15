@@ -22,7 +22,7 @@
     insertafter: "EOF"
     marker: "# {mark} reflector ANSIBLE MANAGED BLOCK"
     block: |
-      --latest 25
+      --latest 200
       --country us,ca
   register: inserted_changes
 
