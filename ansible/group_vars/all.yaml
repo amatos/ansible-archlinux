@@ -99,17 +99,45 @@ kdepim: false
 # ================
 # true/false to install Hyprland
 ##
-hyprland: false
+hyprland: true
+##
+# Settings
+# --------
+# Greeters:
+# toggle to true to install the optional greeter.
+# Put your preferred greeter in "use_greeter" (note: defaults to greetd)
+# gdm: Gnome greeter
+# greetd: Greetd with ReGreet
+# sddm: KDE greeter
+# sddm_wayland: either false, or one of: weston or hyprland
+# use_greeter: one gdm, greetd, or sddm.
+#
+# DE tools:
+# --------
+# gnome: Install optional Gnome apps
+# kde: Install optional KDE apps
+# secret_store: Which secret store to use: gnome or kde
+#
+# Misc tools:
+# mako: Notification Daemon
+# ags: aylurs-gtk-shell toolkit and notification daemon
+# thunar: Thunar File Manager
+# hyprland_git: true
+# 
+##
 hyprland_settings:
-  gdm: false
-  gnome: false
-  greetd: false
-  kde: false
-  use_greeter: greetd
-  sddm: false
-  sddm_wayland: false
-  thunar: false
   hyprland_git: true
+  gdm: false
+  greetd: true
+  sddm: true
+  sddm_wayland: hyprland
+  use_greeter: greetd
+  gnome: true
+  kde: true
+  secret_store: kde
+  mako: true
+  ags: false
+  thunar: false
 
 ##
 # Install Gnome
