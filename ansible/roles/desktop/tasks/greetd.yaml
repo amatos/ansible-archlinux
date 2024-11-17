@@ -1,4 +1,4 @@
-- name: Install additional Hyprland tools
+- name: Install greetd with regreet
   kewlfft.aur.aur:
     state: present
     name:
@@ -25,10 +25,10 @@
   become: true
   when: greetded
 
-- name: Deploy greetd regreet.conf
+- name: Deploy greetd regreet.toml
   ansible.builtin.copy:
-    src: greetd.regreet.conf
-    dest: /etc/greetd/regreet.conf
+    src: greetd.regreet.toml
+    dest: /etc/greetd/regreet.toml
     mode: "0644"
   become: true
   when: greetded
