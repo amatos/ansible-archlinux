@@ -1,21 +1,21 @@
-- name: Install Hyprland
+- name: Install Hyprland (release)
   kewlfft.aur.aur:
     state: present
     name:
       - aquamarine
-      - hyprland
-      - hyprland-protocols
-      - hyprutils-git
-      - hyprpolkitagent-git
-      - hyprwayland-scanner-git
       - hyprcursor
       - hypridle
+      - hyprland
+      - hyprland-protocols-git
       - hyprlang
       - hyprlock
       - hyprpaper
       - hyprpicker
+      - hyprpolkitagent-git
+      - hyprsunset-git
       - hyprsysteminfo-git
-      - hyprsunset
+      - hyprutils-git
+      - hyprwayland-scanner-git
       - xdg-desktop-portal
       - xdg-desktop-portal-hyprland-git
     use: yay
@@ -23,7 +23,7 @@
   become_user: "{{ user.name }}"
   when: not hyprland_settings.hyprland_git
 
-- name: Install Hyprland
+- name: Install Hyprland (git)
   kewlfft.aur.aur:
     state: present
     name:
@@ -186,10 +186,10 @@
   kewlfft.aur.aur:
     state: present
     name:
-      - ags-hyprpanel-git
-      - aylurs-gtk-shell
-      - gtk-engine-murrine
-      - gtk-layer-shell
+      #      - ags-hyprpanel-git
+      #      - aylurs-gtk-shell
+      #      - gtk-engine-murrine
+      #      - gtk-layer-shell
       - gtk3
       - gtksourceview3
       - libportal-gtk3
@@ -277,7 +277,6 @@
   become_user: "{{ user.name }}"
   when: hyprland_settings.mako
 
-
 - name: Configure greetd
   ansible.builtin.import_tasks: greetd.yaml
   when: hyprland_settings.greetd
@@ -300,3 +299,4 @@
     state: link
   become: true
   become_user: "{{ user.name }}"
+  when: hyprland_settings.ags
