@@ -7,3 +7,4 @@
   become_user: "{{ user.name }}"
   with_items:
     - streamcontroller
+    - opendeck
