@@ -1,0 +1,5 @@
+- name: Create hostname file
+  ansible.builtin.lineinfile:
+    path: /etc/hostname
+    line: "{{ system.hostname }}"
+    create: yes

@@ -1,3 +1,6 @@
+- name: Configure system hostname
+  ansible.builtin.import_tasks: hostname.yaml
+  
 - name: Create User Account
   ansible.builtin.import_tasks: create_user.yaml
 
