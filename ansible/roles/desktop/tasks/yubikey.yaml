@@ -6,7 +6,7 @@
   with_items:
     - yubikey-touch-detector
     - yubikey-manager
-    - yubikey-pam
+    - yubico-pam
     - yubikey-manager-qt
     - yubikey-personalization
     - yubikey-personalization-gui
