@@ -7,7 +7,6 @@
       - layer-shell-qt
       - layer-shell-qt5
     state: present
-  become_user: "{{ user.name }}"
   register: sddmed
 
 - name: Create /etc/sddm.conf.d directory
