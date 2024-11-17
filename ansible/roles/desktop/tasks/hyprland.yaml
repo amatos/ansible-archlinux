@@ -290,6 +290,9 @@
   ansible.builtin.import_tasks: gdm_hyprland.yaml
   when: hyprland_settings.gdm
 
+- name: Configure Hyprland greeter
+  ansible.builtin.import_tasks: greeter_hyprland.yaml
+
 - name: Create a symbolic for ags-hyprpanel-git
   ansible.builtin.file:
     src: /usr/share/HyprPanel/

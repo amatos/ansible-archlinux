@@ -41,9 +41,10 @@
   become: true
   when: greetded
 
-- name: Enable greetd greeter
-  ansible.builtin.service:
-    name: greetd
-    enabled: true
-  become: true
-  when: greetded
+- name: Create /usr/local/backgrounds for regreet background images
+  ansible.builtin.file:
+    path: /usr/local/backgrounds
+    state: directory
+    mode: '0755'
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"

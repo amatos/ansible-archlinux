@@ -105,7 +105,7 @@ hyprland_settings:
   gnome: false
   greetd: false
   kde: false
-  mako: false
+  use_greeter: greetd
   sddm: false
   sddm_wayland: false
   thunar: false

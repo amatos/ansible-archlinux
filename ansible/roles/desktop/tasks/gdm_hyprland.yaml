@@ -10,11 +10,3 @@
       - plymouth-theme-gdm-arch
     use: yay
   become_user: "{{ user.name }}"
-  register: gdmed
-
-
-- name: Enable gdm greeter
-  ansible.builtin.service:
-    name: gdm
-    enabled: true
-  when: gdmed

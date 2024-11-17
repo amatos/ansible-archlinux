@@ -52,9 +52,3 @@
     mode: "0644"
   register: avatared
   when: created_sddm_conf_d_dir
-
-- name: Enable sddm greeter
-  ansible.builtin.service:
-    name: sddm
-    enabled: true
-  when: sddmed
