@@ -31,6 +31,9 @@
 - name: Install common "Desktop" items
   ansible.builtin.import_tasks: common.yaml
 
+- name: Install Rust tooling
+  ansible.builtin.import_tasks: rust.yaml
+
 - name: Install ElGato StreamDeck tooling
   ansible.builtin.import_tasks: streamdeck.yaml
 

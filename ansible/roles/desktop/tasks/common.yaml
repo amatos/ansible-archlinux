@@ -83,7 +83,6 @@
       - ripgrep
       - ruby
       - ruby-docs
-      - rust
       - sane-airscan
       - shellcheck
       - snap-pac
