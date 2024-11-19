@@ -254,6 +254,8 @@
       - wf-recorder
       - wl-clipboard
       - wlogout
+      - avizo
+      - light
     use: yay
   become: true
   become_user: "{{ user.name }}"

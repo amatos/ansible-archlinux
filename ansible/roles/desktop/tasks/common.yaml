@@ -141,6 +141,7 @@
     - perl-bundle-camelcade
     - perl-devel-camelcadedb
     - sshoot
+    - moar
 
 - name: Install common "desktop" GUI tools via pacman
   community.general.pacman:
