@@ -8,7 +8,8 @@
 - name: Set default rust channel
   ansible.builtin.command:
     cmd: rustup default stable
-  when: rusted_channel
+  when: rusted
+  register: rusted_channel
 
 - name: Install stable rust
   ansible.builtin.command:
