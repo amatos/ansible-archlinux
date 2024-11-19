@@ -24,4 +24,4 @@
   ansible.builtin.service:
     name: gdm
     enabled: true
-  when: hyprland_settings.use_greeter == "greetd"
+  when: hyprland_settings.use_greeter == "gdm"
