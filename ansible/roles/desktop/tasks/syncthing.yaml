@@ -16,11 +16,21 @@
   with_items:
     - syncthingtray-qt6
 
+- name: Load getent DB
+  getent:
+    database: passwd
+
+- name: Set user id factum
+  ansible.builtin.set_fact:
+    myuid: "{{ getent_passwd[item].1 }}"
+  loop:
+    - "{{ user.name }}"
+
 - name: Enable Syncthing user service
   ansible.builtin.systemd_service:
     name: "syncthing"
-    state: started
     enabled: true
     scope: "user"
+  become_user: "{{ user.name }}"
   environment:
     XDG_RUNTIME_DIR: "/run/user/{{ myuid }}"
