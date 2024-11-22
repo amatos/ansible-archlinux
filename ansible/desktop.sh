@@ -2,7 +2,7 @@
 
 echo "Ansible pre-flight"
 
-echo "\n\n-------------------\n\n"
+echo "-------------------"
 echo "Installing yay and powerpill"
 echo "Cloning yay"
 git clone https://aur.archlinux.org/yay /tmp/yay.git
@@ -14,11 +14,14 @@ popd
 echo "Installing powerpill"
 yay -S powerpill
 
-echo "\n\n-------------------\n\n"
-echo "Installing SF nerd font mono"
-yay -S nerd-fonts-sf-mono
+echo "Installing development tools"
+yay -S rustup
 
-echo "\n\n-------------------\n\n"
+echo "-------------------"
+echo "Installing nerd fonts patched apple fonts"
+yay -S nerd-fonts-apple
+
+echo "-------------------"
 echo "Setting chrooted to false"
 sed -i 's/chrooted: true/chrooted: false/g' group_vars/all.yaml
 
