@@ -1,0 +1,11 @@
+- name: Install Spotify
+  kewlfft.aur.aur:
+    state: present
+    name:
+      - spotify
+      - zenity
+      - ffmpeg4.4
+      - spotifywm-git
+    use: yay
+  become: true
+  become_user: "{{ user.name }}"

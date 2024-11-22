@@ -75,3 +75,6 @@
 
 - name: Create additional users
   ansible.builtin.import_tasks: create_additional_users.yaml
+
+- name: Install Spotify
+  ansible.builtin.import_tasks: spotify.yaml
