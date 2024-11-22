@@ -17,7 +17,7 @@
     state: enabled
   with_items:
     - "{{ ansible_interfaces }}"
-  when: item != 'lo'
+  when: ('item.startswith("wl")') or ('item.startswith("enp")')
   notify: restart FirewallD
 
 - name: Change network for interfaces to "Home" (runtime)
@@ -27,7 +27,7 @@
     state: enabled
   with_items:
     - "{{ ansible_interfaces }}"
-  when: item != 'lo'
+  when: ('item.startswith("wl")') or ('item.startswith("enp")')
   notify: restart FirewallD
 
 - name: Updating home zone rules
@@ -47,3 +47,4 @@
     - syncthing-gui
     - syncthing-relay
     - upnp-client
+    - mndp
