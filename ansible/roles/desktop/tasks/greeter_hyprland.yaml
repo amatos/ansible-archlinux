@@ -1,11 +1,20 @@
-- name: Disable greeters before enabling the specified greeter
+- name: Disable gdm before enabling the specified greeter
   ansible.builtin.systemd_service:
-    name: "{{ item }}"
+    name: "gdm"
     enabled: false
-  with_items:
-    - greetd
-    - sddm
-    - gdm
+  when: hyprland_settings.gdm
+
+- name: Disable greetd before enabling the specified greeter
+  ansible.builtin.systemd_service:
+    name: "greetd"
+    enabled: false
+  when: hyprland_settings.greetd
+
+- name: Disable sddm before enabling the specified greeter
+  ansible.builtin.systemd_service:
+    name: "sddm"
+    enabled: false
+  when: hyprland_settings.sddm
 
 - name: Enable greetd greeter
   ansible.builtin.service:
