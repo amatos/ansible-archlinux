@@ -5,9 +5,8 @@
       - aquamarine
       - hyprcursor
       - hypridle
-      - hyprland
       - hyprland-protocols-git
-      - hyprlang
+      - hyprlang-git
       - hyprlock
       - hyprpaper
       - hyprpicker
@@ -18,6 +17,7 @@
       - hyprwayland-scanner-git
       - xdg-desktop-portal
       - xdg-desktop-portal-hyprland-git
+      - hyprland
     use: yay
   become: true
   become_user: "{{ user.name }}"
@@ -106,9 +106,21 @@
       - gnome-boxes
       - gnome-weather
       - gnome-software
-#      - network-manager-applet
-#      - dconf-editor
-#      - gnome-settings-daemon
+      - gnome-system-monitor
+      - loupe
+      - baobab
+      - qogir-icon-theme
+      - evince
+      - gjs
+      - gnome-bluetooth-3.0
+      - gnome-control-center
+      - gnome-keyring
+      - gnome-themes-extra
+      - gobject-introspection
+      - polkit-gnome
+      - network-manager-applet
+      - dconf-editor
+      - gnome-settings-daemon
 #      - gnome-online-accounts
     use: yay
   become: true
@@ -120,18 +132,9 @@
     state: present
     name:
       - morewaita-icon-theme
-      - gnome-system-monitor
       - adwaita-icon-theme
-      - loupe
-      - baobab
-      - qogir-icon-theme
       - extension-manager
       - blueberry
-      - evince
-      - gjs
-      - gnome-bluetooth-3.0
-      - gnome-control-center
-      - gnome-keyring
       - gvfs-afc
       - gvfs-dnssd
       - gvfs-goa
@@ -142,9 +145,6 @@
       - gvfs-onedrive
       - gvfs-smb
       - gvfs-wsdd
-      - gnome-themes-extra
-      - gobject-introspection
-      - polkit-gnome
     use: yay
   become: true
   become_user: "{{ user.name }}"
@@ -256,6 +256,7 @@
       - wlogout
       - avizo
       - light
+      - uwsm
     use: yay
   become: true
   become_user: "{{ user.name }}"
